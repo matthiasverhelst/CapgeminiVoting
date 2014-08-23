@@ -1,0 +1,24 @@
+#eventDetails {
+    width: 200px;
+}
+
+#eventDiv {
+	position: fixed;
+}
+
+img.removeQuestion {
+	float: right;
+	margin-top: -10px;
+	margin-bottom: 10px;
+	border: 1px solid #C0C0C0;
+}
+
+img.removeQuestion:hover {
+	cursor: pointer;
+	box-shadow: 2px 2px 5px #888888;
+}
+
+#title{
+	font-size:x-large;
+	font: bold;
+}
