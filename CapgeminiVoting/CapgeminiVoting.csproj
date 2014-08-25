@@ -165,6 +165,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAO\DAOBase.cs" />
     <Compile Include="DTO\DTOAnswer.cs" />
     <Compile Include="DTO\DTOEvent.cs" />
     <Compile Include="DTO\DTOQuestion.cs" />
@@ -183,14 +184,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Services\IVotingRead.cs" />
-    <Compile Include="Services\IVotingWrite.cs" />
-    <Compile Include="Services\VotingRead.svc.cs">
-      <DependentUpon>VotingRead.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Services\VotingWrite.svc.cs">
-      <DependentUpon>VotingWrite.svc</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -245,9 +238,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Services\VotingRead.svc" />
-    <Content Include="Services\VotingWrite.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -288,7 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

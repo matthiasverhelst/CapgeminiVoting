@@ -35,7 +35,7 @@ namespace CapgeminiVoting.DTO
         public DateTime endDate { get; set; }
 
         [Column("description")]
-        public string? description { get; set; }
+        public string description { get; set; }
 
         [Required]
         [Column("user_id")]

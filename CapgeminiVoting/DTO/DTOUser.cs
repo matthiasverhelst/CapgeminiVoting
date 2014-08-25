@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CapgeminiVoting.DTO
 {
-    class DTOUser
+    public class DTOUser
     {
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 namespace CapgeminiVoting.DTO
 {
     [Table("Answer")]
-    class DTOAnswer
+    public class DTOAnswer
     {
         [Key]
         [Required]

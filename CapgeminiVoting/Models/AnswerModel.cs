@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CapgeminiVoting.Models
 {
-    class AnswerModel
+    public class AnswerModel
     {
         public string answer { get; set; }
     }
