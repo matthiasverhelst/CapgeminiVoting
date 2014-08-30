@@ -10,20 +10,23 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
+            //TODO: Page should not trigger login. Should ask for event ID (this can be directly added to redirect link in view -> Vote/"ID"
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        [ActionName("Vote")]
+        public ActionResult Vote(int eventId)
         {
-            ViewBag.Message = "Your application description page.";
-
+            //TODO: Page should provide vote form for this specific eventId, using VoteModel
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        [ActionName("Vote")]
+        public ActionResult Vote(int eventId)
         {
-            ViewBag.Message = "Your contact page.";
-
+            //TODO: Page should capture input of votes, using VoteModel
             return View();
         }
     }
