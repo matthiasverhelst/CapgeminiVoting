@@ -12,7 +12,6 @@ namespace CapgeminiVoting.Contexts
         public DbSet<DTOEvent> events { get; set; }
         public DbSet<DTOQuestion> questions { get; set; }
         public DbSet<DTOAnswer> answers { get; set; }
-        public DbSet<DTOUser> users { get; set; }
 
         public VotingContext()
             : base("VotingContext")

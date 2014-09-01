@@ -11,6 +11,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using CapgeminiVoting.Models;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
 
 namespace CapgeminiVoting
 {
@@ -18,8 +21,18 @@ namespace CapgeminiVoting
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("appvoting@gmail.com");
+            msg.To.Add(new MailAddress(message.Destination));
+            msg.Subject = message.Subject;
+            msg.Body = message.Body;
+            msg.IsBodyHtml = true;
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            NetworkCredential credentials = new System.Net.NetworkCredential("appvoting@gmail.com", "Voting123");
+            smtpClient.Credentials = credentials;
+            smtpClient.EnableSsl = true;
+            return smtpClient.SendMailAsync(msg);
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapgeminiVoting.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,7 @@ using System.Web;
 
 namespace CapgeminiVoting.DTO
 {
+    [Table("Event")]
     public class DTOEvent
     {
         [Key]
@@ -38,10 +40,10 @@ namespace CapgeminiVoting.DTO
         public string description { get; set; }
 
         [Required]
-        [Column("user_id")]
-        public int userId { get; set; }
+        [Column("user_name")]
+        public string userName { get; set; }
 
-        [ForeignKey("userId")]
-        public virtual DTOUser user { get; set; }
+        [ForeignKey("userName")]
+        public virtual ApplicationUser user { get; set; }
     }
 }

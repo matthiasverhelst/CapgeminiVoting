@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapgeminiVoting.BusinessLayer;
+using CapgeminiVoting.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,23 +8,29 @@ using System.Web.Mvc;
 
 namespace CapgeminiVoting.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         public ActionResult Index()
         {
-            //TODO: Page should trigger login. After that, show list of all Events this user has created
+            //TODO: Show list of all Events this user has created
             return View();
         }
 
         public ActionResult EventDetails(int eventId)
         {
-            //TODO: Page should provide details of one selected event (using EventModel).
-            return View();
+            EventModel model = AdminBusinessLayer.getEventById(eventId);
+            if (model == null)
+            {
+                return Index();
+            }
+
+            return View(model);
         }
 
         public ActionResult ResultDetails(int eventId)
         {
-            //TODO: Page should return results of this specific event using ResultModel.
+            //TODO: Return results of this specific event using ResultModel.
             return View();
         }
     }
