@@ -16,7 +16,7 @@ namespace CapgeminiVoting.Controllers
 
         [HttpGet]
         [ActionName("Vote")]
-        public ActionResult Vote(int eventId)
+        public ActionResult VoteGet(int eventId)
         {
             //TODO: Page should provide vote form for this specific eventId, using VoteModel
             return View();
@@ -24,7 +24,7 @@ namespace CapgeminiVoting.Controllers
 
         [HttpPost]
         [ActionName("Vote")]
-        public ActionResult Vote(int eventId)
+        public ActionResult VotePost(int eventId)
         {
             //TODO: Page should capture input of votes, using VoteModel
             return View();
