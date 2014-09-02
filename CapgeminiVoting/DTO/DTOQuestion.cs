@@ -31,5 +31,7 @@ namespace CapgeminiVoting.DTO
 
         [ForeignKey("eventId")]
         public virtual DTOEvent @event { get; set; }
+
+        public virtual IList<DTOAnswer> answers { get; set; }
     }
 }

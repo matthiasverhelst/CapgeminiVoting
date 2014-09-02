@@ -174,8 +174,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAO\DAOAnswer.cs" />
     <Compile Include="DAO\DAOBase.cs" />
     <Compile Include="DAO\DAOEvent.cs" />
+    <Compile Include="DAO\DAOQuestion.cs" />
     <Compile Include="DTO\DTOAnswer.cs" />
     <Compile Include="DTO\DTOEvent.cs" />
     <Compile Include="DTO\DTOQuestion.cs" />

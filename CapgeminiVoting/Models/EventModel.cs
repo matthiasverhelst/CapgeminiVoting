@@ -19,6 +19,6 @@ namespace CapgeminiVoting.Models
 
         public string description { get; set; }
 
-        public List<QuestionModel> questions { get; set; }
+        public IList<QuestionModel> questions { get; set; }
     }
 }

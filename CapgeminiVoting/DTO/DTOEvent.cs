@@ -45,5 +45,7 @@ namespace CapgeminiVoting.DTO
 
         [ForeignKey("userName")]
         public virtual ApplicationUser user { get; set; }
+
+        public virtual IList<DTOQuestion> questions { get; set; }
     }
 }
