@@ -59,5 +59,77 @@ namespace CapgeminiVoting {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new event.
+        /// </summary>
+        internal static string Create_new_event {
+            get {
+                return ResourceManager.GetString("Create_new_event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event list.
+        /// </summary>
+        internal static string Event_list_title {
+            get {
+                return ResourceManager.GetString("Event_list_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        internal static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        internal static string Table_code {
+            get {
+                return ResourceManager.GetString("Table_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string Table_description {
+            get {
+                return ResourceManager.GetString("Table_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        internal static string Table_enddate {
+            get {
+                return ResourceManager.GetString("Table_enddate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Table_name {
+            get {
+                return ResourceManager.GetString("Table_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        internal static string Table_startdate {
+            get {
+                return ResourceManager.GetString("Table_startdate", resourceCulture);
+            }
+        }
     }
 }

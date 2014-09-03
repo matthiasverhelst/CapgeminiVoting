@@ -8,16 +8,19 @@ namespace CapgeminiVoting.Models
 {
     public class EventOverviewModel
     {
-        [Display(Name="Event name")]
+        [Display(Name = Resources.Table_name)]
         public string name { get; set; }
 
-        [Display(Name = "Start date")]
+        [Display(Name = Resources.Table_code)]
+        public int code { get; set; }
+
+        [Display(Name = Resources.Table_startdate)]
         public DateTime startDate { get; set; }
 
-        [Display(Name = "End date")]
+        [Display(Name = Resources.Table_enddate)]
         public DateTime endDate { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = Resources.Table_description)]
         public string description { get; set; }
     }
 }
