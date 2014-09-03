@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapgeminiVoting.BusinessLayer;
+using CapgeminiVoting.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,19 +15,31 @@ namespace CapgeminiVoting.Controllers
             return View();
         }
 
-        [HttpGet]
-        [ActionName("Vote")]
-        public ActionResult VoteGet(int eventId)
+        public ActionResult Vote(int eventCode)
         {
-            //TODO: Page should provide vote form for this specific eventId, using VoteModel
+           //VoteModel voteInfo = CommonBusinessLayer.getQuestionsByEvent(eventCode);
+           // if (model == null)
+           // {
+           //     return Index();
+           // }
+
             return View();
+            //invullen voteInfo met questions voor dit event van business layer
+
+            //return View(voteInfo);
         }
 
-        [HttpPost]
-        [ActionName("Vote")]
-        public ActionResult VotePost(int eventId)
+        public ActionResult VoteSubmit(VoteModel voteResult)
         {
-            //TODO: Page should capture input of votes, using VoteModel
+            //answers valideren + door business layer laten updaten in database
+
+            // on error: return Vote(voteResult.code);
+
+            return VoteComplete();
+        }
+
+        public ActionResult VoteComplete()
+        {
             return View();
         }
     }
