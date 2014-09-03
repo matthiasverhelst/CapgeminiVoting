@@ -17,16 +17,14 @@ namespace CapgeminiVoting.Controllers
 
         public ActionResult Vote(int eventCode)
         {
-           //VoteModel voteInfo = CommonBusinessLayer.getQuestionsByEvent(eventCode);
-           // if (model == null)
-           // {
-           //     return Index();
-           // }
+            IList<QuestionModel> model = CommonBusinessLayer.getQuestionsByEvent(eventCode);
+            
+            if (model == null)
+            {
+                return Index();
+            }
 
-            return View();
-            //invullen voteInfo met questions voor dit event van business layer
-
-            //return View(voteInfo);
+            return View(model);
         }
 
         public ActionResult VoteSubmit(VoteModel voteResult)

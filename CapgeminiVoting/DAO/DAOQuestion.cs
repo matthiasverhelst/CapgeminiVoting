@@ -11,7 +11,7 @@ namespace CapgeminiVoting.DAO
     {
         public IList<DTOQuestion> getQuestionsByEvent(int eventId)
         {
-            IQueryable<DTOQuestion> query = from question in db.questions where question.eventId == eventId select question;
+            IQueryable<DTOQuestion> query = from @question in db.questions where @question.eventId == eventId select @question;
             return query.ToList();
         }
     }
