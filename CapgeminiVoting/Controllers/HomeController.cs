@@ -10,7 +10,6 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
-            //TODO: Page should not trigger login. Should ask for event ID (this can be directly added to redirect link in view -> Vote/"ID"
             return View();
         }
 

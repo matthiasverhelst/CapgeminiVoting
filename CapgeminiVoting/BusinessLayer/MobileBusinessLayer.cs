@@ -7,5 +7,6 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class MobileBusinessLayer
     {
+        
     }
 }
