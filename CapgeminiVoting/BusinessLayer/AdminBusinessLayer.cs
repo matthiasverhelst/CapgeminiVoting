@@ -11,9 +11,9 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class AdminBusinessLayer
     {
-        public static EventModel getEventById(int eventId)
+        public static EventDetailsModel getEventById(int eventId)
         {
-            EventModel model = null;
+            EventDetailsModel model = null;
             using(DAOEvent dao = new DAOEvent())
             {
                 DTOEvent dtoEvent = dao.getEventById(eventId);
@@ -25,9 +25,9 @@ namespace CapgeminiVoting.BusinessLayer
             return model;
         }
 
-        public static IList<EventModel> getEventsByUser(string userName)
+        public static IList<EventOverviewModel> getEventsByUser(string userName)
         {
-            List<EventModel> result = new List<EventModel>();
+            List<EventOverviewModel> result = new List<EventOverviewModel>();
             using(DAOEvent dao = new DAOEvent())
             {
                 IList<DTOEvent> events = dao.getEventsByUser(userName);
@@ -36,7 +36,7 @@ namespace CapgeminiVoting.BusinessLayer
 
                 foreach (DTOEvent dtoEvent in events)
                 {
-                    EventModel model = null;
+                    EventOverviewModel model = null;
                     Mapper.Map(dtoEvent, model, dtoEvent.GetType(), model.GetType());
                     result.Add(model);
                 }

@@ -19,7 +19,7 @@ namespace CapgeminiVoting.Controllers
 
         public ActionResult EventDetails(int eventId)
         {
-            EventModel model = AdminBusinessLayer.getEventById(eventId);
+            EventDetailsModel model = AdminBusinessLayer.getEventById(eventId);
             if (model == null)
             {
                 return Index();
