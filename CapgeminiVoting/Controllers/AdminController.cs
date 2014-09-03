@@ -8,13 +8,13 @@ using System.Web.Mvc;
 
 namespace CapgeminiVoting.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AdminController : Controller
     {
         public ActionResult Index()
         {
-            //TODO: Show list of all Events this user has created
-            return View();
+            IList<EventOverviewModel> model = AdminBusinessLayer.getEventsByUser(User.Identity.Name);
+            return View(model);
         }
 
         public ActionResult EventDetails(int eventId)

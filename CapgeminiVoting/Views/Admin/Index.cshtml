@@ -7,7 +7,7 @@
 <div id="eventList" class="large-9 columns">
     <label id="title">@Resources.Event_list_title</label>
     <br>
-    <input type="button" value="@Resources.Create_new_event" onclick="location.href='@Url.Action("CreateEvent","Admin")'" class="button small" />
+    <input type="button" value="@Resources.Create_new_event" onclick="location.href='@Url.Action("CreateEvent")'" class="button small" />
     <br>
 
     @if(Model.Count() > 0)
@@ -29,7 +29,10 @@
                     <td>@Html.DisplayFor(modelItem => item.endDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.description)</td>
                     <td>
-                        <input type="button" value="@Resources.Results" onclick="location.href='@Url.Action("EventResult", "Admin")'" />
+                        <input type="button" value="@Resources.Modify" onclick="location.href='@Url.Action("EventDetails", new { item.id })'" />
+                    </td>
+                    <td>
+                        <input type="button" value="@Resources.Results" onclick="location.href='@Url.Action("ResultDetails", new { item.id })'" />
                     </td>
                 </tr>
             }

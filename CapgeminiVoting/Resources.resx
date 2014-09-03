@@ -123,6 +123,9 @@
   <data name="Event_list_title" xml:space="preserve">
     <value>Event list</value>
   </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
   <data name="Results" xml:space="preserve">
     <value>Results</value>
   </data>

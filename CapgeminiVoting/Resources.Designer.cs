@@ -22,7 +22,7 @@ namespace CapgeminiVoting {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CapgeminiVoting {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CapgeminiVoting.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace CapgeminiVoting {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to Create new event.
         /// </summary>
-        internal static string Create_new_event {
+        public static string Create_new_event {
             get {
                 return ResourceManager.GetString("Create_new_event", resourceCulture);
             }
@@ -72,16 +72,25 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to Event list.
         /// </summary>
-        internal static string Event_list_title {
+        public static string Event_list_title {
             get {
                 return ResourceManager.GetString("Event_list_title", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Results.
         /// </summary>
-        internal static string Results {
+        public static string Results {
             get {
                 return ResourceManager.GetString("Results", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
-        internal static string Table_code {
+        public static string Table_code {
             get {
                 return ResourceManager.GetString("Table_code", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        internal static string Table_description {
+        public static string Table_description {
             get {
                 return ResourceManager.GetString("Table_description", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to End date.
         /// </summary>
-        internal static string Table_enddate {
+        public static string Table_enddate {
             get {
                 return ResourceManager.GetString("Table_enddate", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string Table_name {
+        public static string Table_name {
             get {
                 return ResourceManager.GetString("Table_name", resourceCulture);
             }
@@ -126,7 +135,7 @@ namespace CapgeminiVoting {
         /// <summary>
         ///   Looks up a localized string similar to Start date.
         /// </summary>
-        internal static string Table_startdate {
+        public static string Table_startdate {
             get {
                 return ResourceManager.GetString("Table_startdate", resourceCulture);
             }
