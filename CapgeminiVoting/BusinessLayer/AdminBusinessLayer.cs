@@ -44,25 +44,6 @@ namespace CapgeminiVoting.BusinessLayer
             return result;
         }
 
-        public static IList<QuestionModel> getQuestionsByEvent(int eventId)
-        {
-            List<QuestionModel> result = new List<QuestionModel>();
-            using(DAOQuestion dao = new DAOQuestion())
-            {
-                IList<DTOQuestion> questions = dao.getQuestionsByEvent(eventId);
-                if (questions.Count == 0)
-                    return result;
-
-                foreach (DTOQuestion dtoQuestion in questions)
-                {
-                    QuestionModel model = null;
-                    Mapper.Map(dtoQuestion, model, dtoQuestion.GetType(), model.GetType());
-                    result.Add(model);
-                }
-            }
-            return result;
-        }
-
         public static IList<AnswerModel> getAnswersByQuestion(int questionId)
         {
             List<AnswerModel> result = new List<AnswerModel>();
