@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace CapgeminiVoting.Controllers
 {
-    public class HomeController : Controller
+    public class MobileController : Controller
     {
         public ActionResult Index()
         {
