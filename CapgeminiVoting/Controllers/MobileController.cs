@@ -12,6 +12,7 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
+            //hello
             return View();
         }
 
