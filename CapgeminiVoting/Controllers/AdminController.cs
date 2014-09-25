@@ -17,6 +17,11 @@ namespace CapgeminiVoting.Controllers
             return View(model);
         }
 
+        public ActionResult CreateEvent()
+        {
+            return View();
+        }
+
         public ActionResult EventDetails(int eventId)
         {
             EventDetailsModel model = AdminBusinessLayer.getEventById(eventId);

@@ -1,0 +1,25 @@
+﻿@model CapgeminiVoting.Models.EventDetailsModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm())
+    {
+    <div id="eventDiv" class="large-3 columns">
+
+        <fieldset>
+            @Html.TextBoxFor(m => m.name, new { @placeholder = Resources.New_event_name})
+            @Html.TextBoxFor(m => m.startDate, new { @placeholder = Resources.New_event_start_date, @readonly = true })
+            @Html.TextBoxFor(m => m.endDate, new { @placeholder = Resources.New_event_end_date, @readonly = true })
+            @Html.TextAreaFor(m => m.description, new { @placeholder = Resources.New_event_description })
+        </fieldset>
+
+        <input type="submit" id="submitEvent" value=@Resources.New_event_submit class="button" disabled />
+    </div>
+    }
+
+
+
+
+</div>

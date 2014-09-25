@@ -15,7 +15,7 @@ namespace CapgeminiVoting.DAO
         {
             get
             {
-                if (_db != null)
+                if (_db == null)
                 {
                     _db = new T();
                     _db.Configuration.AutoDetectChangesEnabled = false;

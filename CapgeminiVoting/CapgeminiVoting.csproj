@@ -294,6 +294,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Mobile\Vote.cshtml" />
     <Content Include="Views\Mobile\VoteComplete.cshtml" />
+    <Content Include="Views\Admin\CreateEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

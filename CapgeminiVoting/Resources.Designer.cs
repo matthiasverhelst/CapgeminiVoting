@@ -88,6 +88,51 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string New_event_description {
+            get {
+                return ResourceManager.GetString("New_event_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string New_event_end_date {
+            get {
+                return ResourceManager.GetString("New_event_end_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event name.
+        /// </summary>
+        public static string New_event_name {
+            get {
+                return ResourceManager.GetString("New_event_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        public static string New_event_start_date {
+            get {
+                return ResourceManager.GetString("New_event_start_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit event.
+        /// </summary>
+        public static string New_event_submit {
+            get {
+                return ResourceManager.GetString("New_event_submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Results.
         /// </summary>
         public static string Results {

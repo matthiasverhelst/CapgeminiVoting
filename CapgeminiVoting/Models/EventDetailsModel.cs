@@ -8,13 +8,13 @@ namespace CapgeminiVoting.Models
 {
     public class EventDetailsModel
     {
-        [Required(ErrorMessage = "")]
+        [Required]
         public string name { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required]
         public DateTime startDate { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required]
         public DateTime endDate { get; set; }
 
         public string description { get; set; }

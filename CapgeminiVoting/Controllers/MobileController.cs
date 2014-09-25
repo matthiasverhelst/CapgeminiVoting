@@ -30,7 +30,7 @@ namespace CapgeminiVoting.Controllers
 
         public ActionResult VoteSubmit(VoteModel voteResult)
         {
-            //answers valideren + door business layer laten updaten in database
+            //Answers valideren + door business layer laten updaten in database
 
             // on error: return Vote(voteResult.code);
 

@@ -1,4 +1,5 @@
 ﻿using CapgeminiVoting.DTO;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,14 +10,20 @@ namespace CapgeminiVoting.Contexts
 {
     public class VotingContext : DbContext
     {
-        public DbSet<DTOEvent> events { get; set; }
-        public DbSet<DTOQuestion> questions { get; set; }
-        public DbSet<DTOAnswer> answers { get; set; }
+        public DbSet<DTOEvent> Events { get; set; }
+        public DbSet<DTOQuestion> Questions { get; set; }
+        public DbSet<DTOAnswer> Answers { get; set; }
 
-        public VotingContext()
-            : base("VotingContext")
+        public VotingContext() : base("VotingContext")
         {
             
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(u => u.UserId);
+            modelBuilder.Entity<IdentityUserRole>().HasKey<string>(u => u.UserId);
         }
     }
 }
