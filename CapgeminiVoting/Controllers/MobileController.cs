@@ -12,17 +12,18 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
-            //hello
-            return View();
+            String errMsg = TempData["ErrorMessage"] as string;
+            return View("Index",null,errMsg);
         }
 
         public ActionResult Vote(int eventCode)
         {
             IList<QuestionModel> model = CommonBusinessLayer.getQuestionsByEvent(eventCode);
             
-            if (model == null)
+            if (model.Count() == 0)
             {
-                return Index();
+                TempData["ErrorMessage"] = "No questions found for this event ID."; 
+                return RedirectToAction("Index");
             }
 
             return View(model);
@@ -31,7 +32,6 @@ namespace CapgeminiVoting.Controllers
         public ActionResult VoteSubmit(VoteModel voteResult)
         {
             //Answers valideren + door business layer laten updaten in database
-
             // on error: return Vote(voteResult.code);
 
             return VoteComplete();

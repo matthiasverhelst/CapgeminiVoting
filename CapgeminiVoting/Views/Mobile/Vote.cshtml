@@ -16,12 +16,12 @@
         {
             <h5>@q.question</h5>
             
-            @foreach (CapgeminiVoting.Models.AnswerModel a in q.answers)
+            foreach (CapgeminiVoting.Models.AnswerModel a in q.answers)
             {
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.EditorFor(q => a.answer, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(q => a.answer, "", new { @class = "text-danger" })
+                        Html.EditorFor(q => a.answer, new { htmlAttributes = new { class = "form-control" } })
+                        Html.ValidationMessageFor(q => a.answer, "", new { class = "text-danger" })
                     </div>
                 </div>
             }

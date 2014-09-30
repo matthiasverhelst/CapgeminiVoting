@@ -1,13 +1,19 @@
-﻿@{
+﻿@model string
+    
+@{
     ViewBag.Title = "Capgemini Voting";
 }
 <br />
 <div class="jumbotron">
     <h1>Capgemini Voting</h1>
     <p class="lead">Please provide the event code given to you during the presentation</p>
-    @using (Html.BeginForm("Vote", "Mobile",FormMethod.Post))
+    @using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
     {
-        <p>@Html.TextBox("eventCode", String.Empty, new { pattern = "[0-9]*" })</p>
+        if (!Model.IsEmpty())
+        {
+            <div class="alert alert-danger" role="alert">@Model</div>
+        }
+        <p>@Html.TextBox("eventCode", String.Empty, new { pattern = "[0-9]*" }) </p>
         <p><input type="submit" value="Go! &raquo;" class="btn btn-primary btn-lg" /></p>
     }
 </div>
