@@ -32,9 +32,11 @@ namespace CapgeminiVoting
         {
             protected override void Seed(VotingContext context)
             {
+                var userName = string.Empty;
                 using (ApplicationDbContext db = new ApplicationDbContext())
                 {
                     db.Database.Initialize(false);
+                    userName = db.Users.FirstAsync().Result.Id;
                 }
 
                 var dtoQuestions = new List<DTOQuestion>
@@ -57,7 +59,7 @@ namespace CapgeminiVoting
                         startDate = DateTime.Now,
                         endDate = DateTime.Now.AddDays(10),
                         description = "Bla.",
-                        userName = "Tom",
+                        userName = userName,
                         questions = dtoQuestions
                     }
                 };
@@ -73,7 +75,6 @@ namespace CapgeminiVoting
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 ApplicationUser user = new ApplicationUser();
-                user.Id = "Tom";
                 user.Email = "dummy@gmail.com";
                 user.EmailConfirmed = true;
                 user.LockoutEnabled = false;
@@ -81,7 +82,7 @@ namespace CapgeminiVoting
                 user.PhoneNumber = "027081777";
                 user.PhoneNumberConfirmed = true;
                 user.SecurityStamp = "kdafskfdjjkf";
-                user.UserName = "Tom";
+                user.UserName = "dummy@gmail.com";
 
                 userManager.Create(user, "Test123");
             }
