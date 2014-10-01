@@ -23,7 +23,7 @@ namespace CapgeminiVoting.BusinessLayer
                 foreach (DTOQuestion dtoQuestion in questions)
                 {
                     QuestionModel model = null;
-                    Mapper.Map(dtoQuestion, model, dtoQuestion.GetType(), model.GetType());
+                    Mapper.Map<DTOQuestion,QuestionModel>(dtoQuestion, model);
                     result.Add(model);
                 }
             }
