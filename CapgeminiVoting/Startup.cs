@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using System;
 using System.Web;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 [assembly: OwinStartupAttribute(typeof(CapgeminiVoting.Startup))]
 namespace CapgeminiVoting
@@ -19,16 +20,8 @@ namespace CapgeminiVoting
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
-            //using (DbContext db = new ApplicationDbContext())
-            //{
-            //    db.Database.Initialize(false);
-            //}
-            //Database.SetInitializer<VotingContext>(new DbInitializer());
-            //using (DbContext db = new VotingContext())
-            //{
-            //    db.Database.Initialize(false);
-            //}
+            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            Database.SetInitializer<VotingContext>(new DbInitializer());
         }
 
         private class DbInitializer : DropCreateDatabaseAlways<VotingContext>
@@ -73,7 +66,8 @@ namespace CapgeminiVoting
         {
             protected override void Seed(ApplicationDbContext context)
             {
-                ApplicationUserManager userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
                 ApplicationUser user = new ApplicationUser();
                 user.Id = "Tom";
                 user.Email = "dummy@gmail.com";
