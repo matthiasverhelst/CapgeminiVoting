@@ -20,7 +20,7 @@ namespace CapgeminiVoting.BusinessLayer
                 if (dtoEvent == null)
                     return null;
 
-                Mapper.Map(dtoEvent, model, dtoEvent.GetType(), model.GetType());
+                model = Mapper.Map<DTOEvent, EventDetailsModel>(dtoEvent);
             }
             return model;
         }
@@ -36,8 +36,7 @@ namespace CapgeminiVoting.BusinessLayer
 
                 foreach (DTOEvent dtoEvent in events)
                 {
-                    EventOverviewModel model = null;
-                    Mapper.Map(dtoEvent, model, dtoEvent.GetType(), model.GetType());
+                    EventOverviewModel model = Mapper.Map<DTOEvent, EventOverviewModel>(dtoEvent);
                     result.Add(model);
                 }
             }
@@ -55,8 +54,7 @@ namespace CapgeminiVoting.BusinessLayer
 
                 foreach (DTOAnswer dtoAnswer in answers)
                 {
-                    AnswerModel model = null;
-                    Mapper.Map(dtoAnswer, model, dtoAnswer.GetType(), model.GetType());
+                    AnswerModel model = Mapper.Map<DTOAnswer, AnswerModel>(dtoAnswer);
                     result.Add(model);
                 }
             }
