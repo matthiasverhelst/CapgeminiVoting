@@ -16,8 +16,18 @@ namespace CapgeminiVoting.Controllers
             return View("Index",null,errMsg);
         }
 
-        public ActionResult Vote(int eventCode)
+        public ActionResult Vote(string eventCodeString)
         {
+            int eventCode;
+
+            try {
+                eventCode = Convert.ToInt32(eventCodeString);
+            }
+            catch {
+                TempData["ErrorMessage"] = "The event ID should be numeric.";
+                return RedirectToAction("Index");
+            }
+
             IList<QuestionModel> model = CommonBusinessLayer.getQuestionsByEvent(eventCode);
             
             if (model.Count() == 0)

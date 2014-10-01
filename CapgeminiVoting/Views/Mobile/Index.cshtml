@@ -13,7 +13,7 @@
         {
             <div class="alert alert-danger" role="alert">@Model</div>
         }
-        <p>@Html.TextBox("eventCode", String.Empty, new { pattern = "[0-9]*" }) </p>
+        <p>@Html.TextBox("eventCodeString", String.Empty) </p>
         <p><input type="submit" value="Go! &raquo;" class="btn btn-primary btn-lg" /></p>
     }
 </div>
