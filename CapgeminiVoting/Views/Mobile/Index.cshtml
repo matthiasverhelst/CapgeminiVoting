@@ -6,12 +6,12 @@
 <br />
 <div class="jumbotron">
     <h1>Capgemini Voting</h1>
-    <p class="lead">Please provide the event code given to you during the presentation</p>
+    <p class="lead">Please provide the event code given to you during the presentation.</p>
     @using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
     {
         if (!Model.IsEmpty())
         {
-            <div class="alert alert-danger" role="alert">@Model</div>
+            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> @Model</div>
         }
         <p>@Html.TextBox("eventCodeString", String.Empty) </p>
         <p><input type="submit" value="Go! &raquo;" class="btn btn-primary btn-lg" /></p>

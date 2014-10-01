@@ -4,7 +4,7 @@
     ViewBag.Title = "Vote";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -14,22 +14,21 @@
 
         @foreach (CapgeminiVoting.Models.QuestionModel q in Model)
         {
-            <h5>@q.question</h5>
-            
+            <h2>@q.question</h2>
+
+            if (q.answers.Count() == 0)
+            {
+                <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> No answers were found for this question.</div>
+            }
+
             foreach (CapgeminiVoting.Models.AnswerModel a in q.answers)
             {
-                <div class="form-group">
-                    <div class="col-md-10">
-                        Html.EditorFor(q => a.answer, new { htmlAttributes = new { class = "form-control" } })
-                        Html.ValidationMessageFor(q => a.answer, "", new { class = "text-danger" })
-                    </div>
-                </div>
+                if (q.questionType.Equals("0"))
+                {
+                    <p><input type="submit" name="answer" value="@a.answer" class="btn btn-primary btn-lg" /></p>
+                }
             }
         }
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
 }
+
