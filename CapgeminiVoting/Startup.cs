@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Validation;
 
 [assembly: OwinStartupAttribute(typeof(CapgeminiVoting.Startup))]
 namespace CapgeminiVoting
@@ -39,32 +40,41 @@ namespace CapgeminiVoting
                     userName = db.Users.FirstAsync().Result.Id;
                 }
 
-                var dtoQuestions = new List<DTOQuestion>
-                {
-                    new DTOQuestion
-                    {
-                        id = 1,
-                        question = "Was de pizza te pikant?",
-                        questionType = 0,
-                        eventId = 100000
-                    }
-                };
+                var events = new List<DTOEvent>();
+                var dtoEvent = new DTOEvent()
+                               {
+                                   name = "Sprint 1 Questionaire",
+                                   startDate = DateTime.Now,
+                                   endDate = DateTime.Now.AddDays(10),
+                                   description = "Bla.",
+                                   userName = userName,
+                                   questions = new List<DTOQuestion>()
+                                                       {
+                                                           new DTOQuestion
+                                                           {
+                                                               question = "Was de pizza te pikant?",
+                                                               questionType = 0
+                                                           }
+                                                       }
+                                };
+                events.Add(dtoEvent);
 
-                var events = new List<DTOEvent>
-                {
-                    new DTOEvent
-                    {
-                        id = 100000,
-                        name = "Sprint 1 Questionaire",
-                        startDate = DateTime.Now,
-                        endDate = DateTime.Now.AddDays(10),
-                        description = "Bla.",
-                        userName = userName,
-                        questions = dtoQuestions
-                    }
-                };
                 events.ForEach(p => context.Events.Add(p));
-                context.SaveChanges();
+                context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Event', RESEED, 100000)");
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        }
+                    }
+                }
             }
         }
 

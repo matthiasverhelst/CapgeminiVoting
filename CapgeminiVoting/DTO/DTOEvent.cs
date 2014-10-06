@@ -13,7 +13,6 @@ namespace CapgeminiVoting.DTO
     {
         [Key]
         [Required]
-        [Range(100000, 999999)]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
