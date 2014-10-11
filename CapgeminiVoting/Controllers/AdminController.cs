@@ -1,5 +1,6 @@
 ﻿using CapgeminiVoting.BusinessLayer;
 using CapgeminiVoting.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,12 @@ using System.Web.Mvc;
 
 namespace CapgeminiVoting.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AdminController : Controller
     {
         public ActionResult Index()
         {
-            IList<EventOverviewModel> model = AdminBusinessLayer.getEventsByUser(User.Identity.Name);
+            IList<EventOverviewModel> model = AdminBusinessLayer.getEventsByUser(User.Identity.GetUserId());
             return View(model);
         }
 

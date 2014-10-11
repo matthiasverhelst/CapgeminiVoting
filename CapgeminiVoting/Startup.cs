@@ -83,7 +83,7 @@ namespace CapgeminiVoting
             protected override void Seed(ApplicationDbContext context)
             {
                 var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userManager = new ApplicationUserManager(userStore);
                 ApplicationUser user = new ApplicationUser();
                 user.Email = "dummy@gmail.com";
                 user.EmailConfirmed = true;

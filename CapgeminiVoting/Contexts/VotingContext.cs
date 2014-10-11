@@ -14,7 +14,7 @@ namespace CapgeminiVoting.Contexts
         public DbSet<DTOQuestion> Questions { get; set; }
         public DbSet<DTOAnswer> Answers { get; set; }
 
-        public VotingContext() : base("VotingContext")
+        public VotingContext() : base("DefaultConnection")
         {
             
         }
