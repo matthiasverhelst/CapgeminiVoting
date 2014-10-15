@@ -8,21 +8,19 @@ namespace CapgeminiVoting.Models
 {
     public class EventOverviewModel
     {
-        public int id { get; set; }
+        [Display(Name = "Table_code", ResourceType = typeof(Resources))]
+        public int Id { get; set; }
 
         [Display(Name = "Table_name", ResourceType = typeof(Resources))]
-        public string name { get; set; }
-
-        [Display(Name = "Table_code", ResourceType = typeof(Resources))]
-        public int code { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Table_startdate", ResourceType = typeof(Resources))]
-        public DateTime startDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Display(Name = "Table_enddate", ResourceType = typeof(Resources))]
-        public DateTime endDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Display(Name = "Table_description", ResourceType = typeof(Resources))]
-        public string description { get; set; }
+        public string Description { get; set; }
     }
 }
