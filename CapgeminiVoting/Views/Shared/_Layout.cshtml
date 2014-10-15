@@ -18,6 +18,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Capgemini Voting", "Index", "Mobile", new { area = "" }, new { @class = "navbar-brand" })
+                @if (User.Identity.IsAuthenticated) {
+                    @Html.ActionLink("My Events", "Index", "Admin", null, new { @class = "navbar-brand" });
+                }
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
