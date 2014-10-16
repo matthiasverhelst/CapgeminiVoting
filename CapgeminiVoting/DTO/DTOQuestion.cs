@@ -26,6 +26,10 @@ namespace CapgeminiVoting.DTO
         public byte questionType { get; set; }
 
         [Required]
+        [Column("question_number")]
+        public int questionNumber { get; set; }
+
+        [Required]
         [Column("event_id")]
         public int eventId { get; set; }
 

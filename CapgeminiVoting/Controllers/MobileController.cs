@@ -13,26 +13,39 @@ namespace CapgeminiVoting.Controllers
         public ActionResult Index()
         {
             String errMsg = TempData["ErrorMessage"] as string;
-            return View("Index",null,errMsg);
+
+            return View("Index", null, errMsg);
         }
 
-        public ActionResult Vote(string eventCodeString)
+        public ActionResult Vote(VoteModel voteInfo)
         {
             int eventCode;
+            QuestionModel model;
 
-            try {
-                eventCode = Convert.ToInt32(eventCodeString);
+            try 
+            {
+                eventCode = Convert.ToInt32(voteInfo.EventCode);
             }
-            catch {
+            catch
+            {
                 TempData["ErrorMessage"] = "The event ID should be numeric.";
                 return RedirectToAction("Index");
             }
 
-            IList<QuestionModel> model = CommonBusinessLayer.getQuestionsByEvent(eventCode);
-            
-            if (model.Count() == 0)
+            IList<QuestionModel> questionList = CommonBusinessLayer.getQuestionsByEvent(eventCode);
+
+            if (questionList.Count() > voteInfo.QuestionIndex)
+            {
+                model = questionList.ElementAt(voteInfo.QuestionIndex);
+            }
+            else if (questionList.Count() == 0)
             {
                 TempData["ErrorMessage"] = "No questions found for this event ID."; 
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Question not found for this event.";
                 return RedirectToAction("Index");
             }
 

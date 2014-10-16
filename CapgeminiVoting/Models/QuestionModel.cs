@@ -11,6 +11,8 @@ namespace CapgeminiVoting.Models
 
         public int questionType { get; set; }
 
+        public int questionNumber { get; set; }
+
         public IList<AnswerModel> answers { get; set; }
     }
 }

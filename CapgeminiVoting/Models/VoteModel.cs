@@ -9,6 +9,8 @@ namespace CapgeminiVoting.Models
     public class VoteModel
     {
         [Required(ErrorMessage = "")]
-        public string code { get; set; }
+        public string EventCode { get; set; }
+
+        public int QuestionIndex { get; set; }
     }
 }

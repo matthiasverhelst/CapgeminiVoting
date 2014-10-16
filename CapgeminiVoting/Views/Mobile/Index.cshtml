@@ -13,7 +13,8 @@
         {
             <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> @Model</div>
         }
-        <p>@Html.TextBox("eventCodeString", String.Empty) </p>
+        <p>@Html.TextBox("EventCode", String.Empty) </p>
+        <input type="hidden" name="QuestionIndex" value="0">
         <p><input type="submit" value="Go! &raquo;" class="btn btn-primary btn-lg" /></p>
     }
 </div>

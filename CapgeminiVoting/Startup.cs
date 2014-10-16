@@ -53,7 +53,40 @@ namespace CapgeminiVoting
                                                            new DTOQuestion
                                                            {
                                                                question = "Was de pizza te pikant?",
-                                                               questionType = 0
+                                                               questionType = 0,
+                                                               questionNumber = 1,
+                                                               answers = new List<DTOAnswer>()
+                                                               {
+                                                                   new DTOAnswer
+                                                                   {
+                                                                       answer = "Yes.",
+                                                                       predefined = true
+                                                                   },
+                                                                   new DTOAnswer
+                                                                   {
+                                                                       answer = "FUCK YES.",
+                                                                       predefined = true
+                                                                   }
+                                                               }
+                                                           },
+                                                           new DTOQuestion
+                                                           {
+                                                               question = "Is de Matti weird?",
+                                                               questionType = 0,
+                                                               questionNumber = 2,
+                                                               answers = new List<DTOAnswer>()
+                                                               {
+                                                                   new DTOAnswer
+                                                                   {
+                                                                       answer = "Yes.",
+                                                                       predefined = true
+                                                                   },
+                                                                   new DTOAnswer
+                                                                   {
+                                                                       answer = "FUCK YES.",
+                                                                       predefined = true
+                                                                   }
+                                                               }
                                                            }
                                                        }
                                 };
