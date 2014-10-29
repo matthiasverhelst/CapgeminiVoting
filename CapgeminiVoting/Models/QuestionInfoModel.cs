@@ -6,11 +6,11 @@ using System.Web;
 
 namespace CapgeminiVoting.Models
 {
-    public class VoteModel
+    public class QuestionInfoModel
     {
         [Required(ErrorMessage = "")]
         public string EventCode { get; set; }
 
-        public int QuestionIndex { get; set; }
+        public QuestionModel QuestionData { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿@model CapgeminiVoting.Models.QuestionModel
+﻿@model CapgeminiVoting.Models.QuestionInfoModel
 
 @{
     ViewBag.Title = "Vote";
 }
 
-@using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
+@using (Html.BeginForm("VoteSubmit", "Mobile", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -12,19 +12,20 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <h2>@Model.question</h2>
+        <h2>@Model.QuestionData.question</h2>
 
-        @if (Model.answers.Count() == 0)
+        @if (Model.QuestionData.answers.Count() == 0)
         {
             <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>No answers were found for this question.</div>
         }
 
-        @foreach (CapgeminiVoting.Models.AnswerModel a in Model.answers)
+        @foreach (CapgeminiVoting.Models.AnswerModel a in Model.QuestionData.answers)
         {
-            if (Model.questionType.Equals(0))
+            if (Model.QuestionData.questionType.Equals(0))
             {
-                <input type="hidden" name="QuestionIndex" value="@(Model.questionNumber + 1)">
-                <p><input type="submit" name="answer" value="@a.answer" class="btn btn-primary btn-lg" /></p>
+                <input type="hidden" name="EventCode" value="@Model.EventCode">
+                <input type="hidden" name="QuestionNumber" value="@Model.QuestionData.questionNumber">
+                <p><input type="submit" name="Answer" value="@a.answer" class="btn btn-primary btn-lg" /></p>
             }
         }
     </div>

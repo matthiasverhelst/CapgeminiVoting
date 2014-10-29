@@ -12,57 +12,75 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
-            String errMsg = TempData["ErrorMessage"] as string;
+            String model = TempData["Message"] as string;
 
-            return View("Index", null, errMsg);
+            return View("Index", null, model);
         }
 
-        public ActionResult Vote(VoteModel voteInfo)
+        public ActionResult Vote(QuestionRequestModel questionRequest)
         {
             int eventCode;
-            QuestionModel model;
+            QuestionInfoModel model = new QuestionInfoModel();
 
             try 
             {
-                eventCode = Convert.ToInt32(voteInfo.EventCode);
+                eventCode = Convert.ToInt32(questionRequest.EventCode);
             }
             catch
             {
-                TempData["ErrorMessage"] = "The event ID should be numeric.";
+                TempData["Message"] = "The event ID should be numeric.";
                 return RedirectToAction("Index");
             }
 
             IList<QuestionModel> questionList = CommonBusinessLayer.getQuestionsByEvent(eventCode);
 
-            if (questionList.Count() > voteInfo.QuestionIndex)
+            if (questionList.Count() >= questionRequest.QuestionNumber && questionRequest.QuestionNumber > 0)
             {
-                model = questionList.ElementAt(voteInfo.QuestionIndex);
+                model.EventCode = questionRequest.EventCode;
+                model.QuestionData = questionList.ElementAt(questionRequest.QuestionNumber - 1);
+            }
+            else if (questionList.Count() < questionRequest.QuestionNumber)
+            {
+                TempData["Message"] = "All questions have been processed.";
+                return RedirectToAction("VoteComplete");
             }
             else if (questionList.Count() == 0)
             {
-                TempData["ErrorMessage"] = "No questions found for this event ID."; 
+                TempData["Message"] = "No questions found for this event ID."; 
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["ErrorMessage"] = "Question not found for this event.";
+                TempData["Message"] = "Question not found for this event.";
                 return RedirectToAction("Index");
             }
 
             return View(model);
         }
 
-        public ActionResult VoteSubmit(VoteModel voteResult)
+        public ActionResult VoteSubmit(VoteResultModel voteResult)
         {
-            //Answers valideren + door business layer laten updaten in database
-            // on error: return Vote(voteResult.code);
+            QuestionRequestModel model = new QuestionRequestModel();
+            
+            // Answer validation
 
-            return VoteComplete();
+            if (MobileBusinessLayer.ProvideAnswer() != true)
+            {
+                TempData["Message"] = "Unable to update your answer on the database.";
+                return RedirectToAction("Index");
+            }
+
+            model.EventCode = voteResult.EventCode;
+            model.QuestionNumber = voteResult.QuestionNumber + 1;
+
+            return RedirectToAction("Vote", model);
         }
 
         public ActionResult VoteComplete()
         {
-            return View();
+            String model = TempData["Message"] as string;
+
+            return View("VoteComplete", null, model);
         }
     }
 }
