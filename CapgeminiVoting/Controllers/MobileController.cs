@@ -14,6 +14,8 @@ namespace CapgeminiVoting.Controllers
         {
             String model = TempData["Message"] as string;
 
+            // veranderen naar viewbagz!
+
             return View("Index", null, model);
         }
 
@@ -28,7 +30,7 @@ namespace CapgeminiVoting.Controllers
             }
             catch
             {
-                TempData["Message"] = "The event ID should be numeric.";
+                TempData["Message"] = Resources.Err_event_not_numeric;
                 return RedirectToAction("Index");
             }
 
@@ -41,17 +43,17 @@ namespace CapgeminiVoting.Controllers
             }
             else if (questionList.Count() < questionRequest.QuestionNumber)
             {
-                TempData["Message"] = "All questions have been processed.";
+                TempData["Message"] = Resources.Msg_all_questions_processed;
                 return RedirectToAction("VoteComplete");
             }
             else if (questionList.Count() == 0)
             {
-                TempData["Message"] = "No questions found for this event ID."; 
+                TempData["Message"] = Resources.Err_no_questions_found_for_event; 
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["Message"] = "Question not found for this event.";
+                TempData["Message"] = Resources.Err_no_questions_found_for_event;
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +68,7 @@ namespace CapgeminiVoting.Controllers
 
             if (MobileBusinessLayer.ProvideAnswer() != true)
             {
-                TempData["Message"] = "Unable to update your answer on the database.";
+                TempData["Message"] = Resources.Err_unable_to_update_answer_on_db;
                 return RedirectToAction("Index");
             }
 
