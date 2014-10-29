@@ -14,18 +14,32 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
-            IList<EventOverviewModel> model = AdminBusinessLayer.getEventsByUser(User.Identity.GetUserId());
+            IList<EventOverviewModel> model = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult CreateEvent()
         {
             return View();
         }
 
+        [HttpPost]
+        public JsonResult CreateEvent(EventDetailsModel @event)
+        {
+            bool result = false;
+
+            if (@event != null)
+                result = AdminBusinessLayer.CreateEvent(@event);
+
+            if (result)
+                return Json("Event successfully created!");
+            else return Json("Event creation failed, please try again.");
+        }
+
         public ActionResult EventDetails(int eventId)
         {
-            EventDetailsModel model = AdminBusinessLayer.getEventById(eventId);
+            EventDetailsModel model = AdminBusinessLayer.GetEventById(eventId);
             if (model == null)
             {
                 return Index();

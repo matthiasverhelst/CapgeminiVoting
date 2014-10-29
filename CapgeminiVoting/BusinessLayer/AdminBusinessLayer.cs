@@ -11,12 +11,12 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class AdminBusinessLayer
     {
-        public static EventDetailsModel getEventById(int eventId)
+        public static EventDetailsModel GetEventById(int eventId)
         {
             EventDetailsModel model = null;
             using(DAOEvent dao = new DAOEvent())
             {
-                DTOEvent dtoEvent = dao.getEventById(eventId);
+                DTOEvent dtoEvent = dao.GetEventById(eventId);
                 if (dtoEvent == null)
                     return null;
 
@@ -25,12 +25,12 @@ namespace CapgeminiVoting.BusinessLayer
             return model;
         }
 
-        public static IList<EventOverviewModel> getEventsByUser(string userName)
+        public static IList<EventOverviewModel> GetEventsByUser(string userName)
         {
             List<EventOverviewModel> result = new List<EventOverviewModel>();
             using(DAOEvent dao = new DAOEvent())
             {
-                IList<DTOEvent> events = dao.getEventsByUser(userName);
+                IList<DTOEvent> events = dao.GetEventsByUser(userName);
                 if (events.Count == 0)
                     return result;
 
@@ -43,7 +43,7 @@ namespace CapgeminiVoting.BusinessLayer
             return result;
         }
 
-        public static IList<AnswerModel> getAnswersByQuestion(int questionId)
+        public static IList<AnswerModel> GetAnswersByQuestion(int questionId)
         {
             List<AnswerModel> result = new List<AnswerModel>();
             using (DAOAnswer dao = new DAOAnswer())
@@ -59,6 +59,15 @@ namespace CapgeminiVoting.BusinessLayer
                 }
             }
             return result;
+        }
+
+        public static bool CreateEvent(EventDetailsModel @event)
+        {
+            DTOEvent dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
+            using(DAOEvent daoEvent = new DAOEvent())
+            {
+                return daoEvent.CreateEvent(dtoEvent);
+            }
         }
     }
 }
