@@ -61,11 +61,56 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add answer.
+        /// </summary>
+        public static string Add_answer {
+            get {
+                return ResourceManager.GetString("Add_answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add question.
+        /// </summary>
+        public static string Add_question {
+            get {
+                return ResourceManager.GetString("Add_question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkboxes.
+        /// </summary>
+        public static string Checkboxes {
+            get {
+                return ResourceManager.GetString("Checkboxes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new event.
         /// </summary>
         public static string Create_new_event {
             get {
                 return ResourceManager.GetString("Create_new_event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your answer.
+        /// </summary>
+        public static string Enter_answer {
+            get {
+                return ResourceManager.GetString("Enter_answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your question.
+        /// </summary>
+        public static string Enter_question {
+            get {
+                return ResourceManager.GetString("Enter_question", resourceCulture);
             }
         }
         
@@ -79,6 +124,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free text.
+        /// </summary>
+        public static string Free_text {
+            get {
+                return ResourceManager.GetString("Free_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify.
         /// </summary>
         public static string Modify {
@@ -88,7 +142,16 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description.
+        ///   Looks up a localized string similar to Multiple choice.
+        /// </summary>
+        public static string Multiple_choice {
+            get {
+                return ResourceManager.GetString("Multiple_choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a description.
         /// </summary>
         public static string New_event_description {
             get {
@@ -97,7 +160,7 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End date.
+        ///   Looks up a localized string similar to Choose the end date.
         /// </summary>
         public static string New_event_end_date {
             get {
@@ -106,7 +169,7 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event name.
+        ///   Looks up a localized string similar to Enter an event name.
         /// </summary>
         public static string New_event_name {
             get {
@@ -115,7 +178,7 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start date.
+        ///   Looks up a localized string similar to Choose the start date.
         /// </summary>
         public static string New_event_start_date {
             get {
@@ -129,6 +192,24 @@ namespace CapgeminiVoting {
         public static string New_event_submit {
             get {
                 return ResourceManager.GetString("New_event_submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Possible answers.
+        /// </summary>
+        public static string Possible_answers {
+            get {
+                return ResourceManager.GetString("Possible_answers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question.
+        /// </summary>
+        public static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         
@@ -183,6 +264,15 @@ namespace CapgeminiVoting {
         public static string Table_startdate {
             get {
                 return ResourceManager.GetString("Table_startdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
     }

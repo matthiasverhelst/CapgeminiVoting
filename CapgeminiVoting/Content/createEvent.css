@@ -1,24 +1,51 @@
-#eventDetails {
-    width: 200px;
-}
-
-#eventDiv {
-	position: fixed;
-}
-
 img.removeQuestion {
 	float: right;
-	margin-top: -10px;
-	margin-bottom: 10px;
-	border: 1px solid #C0C0C0;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
 }
 
-img.removeQuestion:hover {
+img.removeAnswer {
+    margin-left: 4px;
+    display: inline-block;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+}
+
+img.removeQuestion:hover, img.removeAnswer:hover {
 	cursor: pointer;
 	box-shadow: 2px 2px 5px #888888;
 }
 
-#title{
-	font-size:x-large;
+#title {
+	font-size: x-large;
 	font: bold;
+}
+
+.datepicker:read-only {
+    cursor: text;
+}
+
+#addQuestionDiv {
+    padding: 10px;
+}
+
+.eventDetails {
+    padding: 10px;
+    border: 1px solid #C0C0C0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+}
+
+.form-control {
+    display: inline-block;
+}
+
+.answer {
+    margin: 2px 0;
 }
