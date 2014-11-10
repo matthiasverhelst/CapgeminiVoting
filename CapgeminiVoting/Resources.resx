@@ -129,6 +129,18 @@
   <data name="Create_new_event" xml:space="preserve">
     <value>Create new event</value>
   </data>
+  <data name="Err_event_not_numeric" xml:space="preserve">
+    <value>The event ID should be numeric.</value>
+  </data>
+  <data name="Err_no_questions_found_for_event" xml:space="preserve">
+    <value>No questions found for this event ID.</value>
+  </data>
+  <data name="Err_question_not_found_for_event" xml:space="preserve">
+    <value>Question not found for this event.</value>
+  </data>
+  <data name="Err_unable_to_update_answer_on_db" xml:space="preserve">
+    <value>Unable to update your answer on the database.</value>
+  </data>
   <data name="Enter_answer" xml:space="preserve">
     <value>Enter your answer</value>
   </data>
@@ -143,6 +155,9 @@
   </data>
   <data name="Modify" xml:space="preserve">
     <value>Modify</value>
+  </data>
+  <data name="Msg_all_questions_processed" xml:space="preserve">
+    <value>All questions have been processed.</value>
   </data>
   <data name="Multiple_choice" xml:space="preserve">
     <value>Multiple choice</value>
