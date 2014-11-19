@@ -38,6 +38,12 @@
                         <td>
                             <input type="button" value="@Resources.Results" onclick="location.href='@Url.Action("ResultDetails", new { item.Id })'" class="btn btn-primary btn-xs" />
                         </td>
+                        <td>
+                            <input type="button" value="@Resources.Delete" onclick="location.href='@Url.Action("EventDetail", new { item.Id })'" class="btn btn-primary btn-xs" />
+                        </td>
+                        <td>
+                            <input type="button" value="@Resources.Share" onclick="location.href='@Url.Action("EventDetails2", new { item.Id })'" class="btn btn-primary btn-xs" />
+                        </td>
                     </tr>
                 }
             </tbody>
