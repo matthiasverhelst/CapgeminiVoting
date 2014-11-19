@@ -12,22 +12,32 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <h2>@Model.QuestionData.question</h2>
+        <h2>@Model.QuestionData.Question</h2>
 
-        @if (Model.QuestionData.answers.Count() == 0)
+        @if (Model.QuestionData.Answers.Count() == 0)
         {
             <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>No answers were found for this question.</div>
         }
 
-        @foreach (CapgeminiVoting.Models.AnswerModel a in Model.QuestionData.answers)
-        {
-            if (Model.QuestionData.questionType.Equals(0))
-            {
-                <input type="hidden" name="EventCode" value="@Model.EventCode">
-                <input type="hidden" name="QuestionNumber" value="@Model.QuestionData.questionNumber">
-                <p><input type="submit" name="Answer" value="@a.answer" class="btn btn-primary btn-lg" /></p>
-            }
-        }
+        <input type="hidden" name="EventCode" value="@Model.EventCode">
+        <input type="hidden" name="QuestionNumber" value="@Model.QuestionData.QuestionNumber">
+
+        <div>
+                @if (Model.QuestionData.QuestionType.Equals(0))
+                {
+                    foreach (CapgeminiVoting.Models.AnswerModel a in Model.QuestionData.Answers)
+                    {
+                        <h3>
+                            <label class="radio">
+                                <input type="radio" name="Answer" value="@a.Answer" checked> @a.Answer
+                            </label>
+                        </h3>
+                    }
+                }
+        </div>
+        <h1>
+            <input type="submit" name="submit" value="Next question &raquo;" class="btn btn-primary btn-lg" />
+        </h1>
     </div>
 }
 

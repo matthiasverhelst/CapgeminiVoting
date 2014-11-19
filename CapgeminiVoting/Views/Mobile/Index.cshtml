@@ -1,5 +1,4 @@
-﻿@model string
-    
+﻿ 
 @{
     ViewBag.Title = "Capgemini Voting";
 }
@@ -9,9 +8,9 @@
     <p class="lead">Please provide the event code given to you during the presentation.</p>
     @using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
     {
-        if (!Model.IsEmpty())
+        if (ViewBag.Message != null)
         {
-            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> @Model</div>
+            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> @ViewBag.Message</div>
         }
         <p>@Html.TextBox("EventCode", String.Empty) </p>
         <input type="hidden" name="QuestionNumber" value="1">

@@ -12,11 +12,8 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
-            String model = TempData["Message"] as string;
-
-            // veranderen naar viewbagz!
-
-            return View("Index", null, model);
+            ViewBag.Message = TempData["Message"] as string;
+            return View();
         }
 
         public ActionResult Vote(QuestionRequestModel questionRequest)
@@ -66,7 +63,7 @@ namespace CapgeminiVoting.Controllers
             
             // Answer validation
 
-            if (MobileBusinessLayer.ProvideAnswer() != true)
+            if (MobileBusinessLayer.ProvideAnswer(voteResult) != true)
             {
                 TempData["Message"] = Resources.Err_unable_to_update_answer_on_db;
                 return RedirectToAction("Index");
@@ -80,9 +77,8 @@ namespace CapgeminiVoting.Controllers
 
         public ActionResult VoteComplete()
         {
-            String model = TempData["Message"] as string;
-
-            return View("VoteComplete", null, model);
+            ViewBag.Message = TempData["Message"] as string;
+            return View();
         }
     }
 }

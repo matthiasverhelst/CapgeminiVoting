@@ -54,7 +54,7 @@ namespace CapgeminiVoting
                                                            {
                                                                question = "Was de pizza te pikant?",
                                                                questionType = 0,
-                                                               questionNumber = 1,
+                                                               questionNumber = 2,
                                                                answers = new List<DTOAnswer>()
                                                                {
                                                                    new DTOAnswer
@@ -73,7 +73,7 @@ namespace CapgeminiVoting
                                                            {
                                                                question = "Is de Matti weird?",
                                                                questionType = 0,
-                                                               questionNumber = 2,
+                                                               questionNumber = 1,
                                                                answers = new List<DTOAnswer>()
                                                                {
                                                                    new DTOAnswer

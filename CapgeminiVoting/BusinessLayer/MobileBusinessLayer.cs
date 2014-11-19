@@ -8,9 +8,14 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class MobileBusinessLayer
     {
-        public static bool ProvideAnswer()
+        public static bool ProvideAnswer(VoteResultModel voteResult)
         {
-            // DO THA MAGIC SHIT.
+            
+            // DO THA MAGIC SHIT. Using:
+            // - Eventcode
+            // - QuestionNumber
+            // - Answer
+
             return true;
         }
     }

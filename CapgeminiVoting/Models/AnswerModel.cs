@@ -7,6 +7,6 @@ namespace CapgeminiVoting.Models
 {
     public class AnswerModel
     {
-        public string answer { get; set; }
+        public string Answer { get; set; }
     }
 }

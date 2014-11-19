@@ -25,6 +25,10 @@ namespace CapgeminiVoting.DTO
         public bool predefined { get; set; }
 
         [Required]
+        [Column("votes")]
+        public int votes { get; set; }
+
+        [Required]
         [Column("question_id")]
         public int questionId { get; set; }
 

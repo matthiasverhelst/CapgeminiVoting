@@ -1,6 +1,4 @@
-﻿@model string
-
-@{
+﻿@{
     ViewBag.Title = "Capgemini Voting";
 }
 <br />
@@ -9,9 +7,9 @@
     <p class="lead">Thank you for your time.</p>
     @using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
     {
-        if (!Model.IsEmpty())
+        if (ViewBag.Message != null)
         {
-            <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> @Model</div>
+            <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> @ViewBag.Message</div>
         }
     }
 </div>
