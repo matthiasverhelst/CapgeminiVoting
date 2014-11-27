@@ -59,11 +59,20 @@ namespace CapgeminiVoting.Controllers
 
         public ActionResult VoteSubmit(VoteResultModel voteResult)
         {
+            int eventCode;
             QuestionRequestModel model = new QuestionRequestModel();
-            
-            // Answer validation
 
-            if (MobileBusinessLayer.ProvideAnswer(voteResult) != true)
+            try
+            {
+                eventCode = Convert.ToInt32(voteResult.EventCode);
+            }
+            catch
+            {
+                TempData["Message"] = Resources.Err_event_not_numeric;
+                return RedirectToAction("Index");
+            }
+            
+            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber) != true)
             {
                 TempData["Message"] = Resources.Err_unable_to_update_answer_on_db;
                 return RedirectToAction("Index");

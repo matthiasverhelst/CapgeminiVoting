@@ -54,7 +54,7 @@ namespace CapgeminiVoting
                                                            {
                                                                question = "Was de pizza te pikant?",
                                                                questionType = 0,
-                                                               questionNumber = 2,
+                                                               questionNumber = 1,
                                                                answers = new List<DTOAnswer>()
                                                                {
                                                                    new DTOAnswer
@@ -72,8 +72,8 @@ namespace CapgeminiVoting
                                                            new DTOQuestion
                                                            {
                                                                question = "Is de Matti weird?",
-                                                               questionType = 0,
-                                                               questionNumber = 1,
+                                                               questionType = 1,
+                                                               questionNumber = 2,
                                                                answers = new List<DTOAnswer>()
                                                                {
                                                                    new DTOAnswer
@@ -87,6 +87,13 @@ namespace CapgeminiVoting
                                                                        predefined = true
                                                                    }
                                                                }
+                                                           },
+                                                           new DTOQuestion
+                                                           {
+                                                               question = "Welk gevoel heb je bij het aankomen van de pizzaman?",
+                                                               questionType = 2,
+                                                               questionNumber = 3,
+                                                               answers = new List<DTOAnswer>()
                                                            }
                                                        }
                                 };
