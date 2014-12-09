@@ -43,48 +43,47 @@ namespace CapgeminiVoting
                 var events = new List<DTOEvent>();
                 var dtoEvent = new DTOEvent()
                                {
-                                   name = "Sprint 1 Questionaire",
-                                   startDate = DateTime.Now,
-                                   endDate = DateTime.Now.AddDays(10),
-                                   description = "Bla.",
-                                   userName = userName,
-                                   questions = new List<DTOQuestion>()
+                                   Name = "Sprint 1 Questionaire",
+                                   CreationDate = DateTime.Now,
+                                   Description = "Bla.",
+                                   UserName = userName,
+                                   Questions = new List<DTOQuestion>()
                                                        {
                                                            new DTOQuestion
                                                            {
-                                                               question = "Was de pizza te pikant?",
-                                                               questionType = 0,
-                                                               questionNumber = 2,
-                                                               answers = new List<DTOAnswer>()
+                                                               Question = "Was de pizza te pikant?",
+                                                               QuestionType = 0,
+                                                               QuestionNumber = 2,
+                                                               Answers = new List<DTOAnswer>()
                                                                {
                                                                    new DTOAnswer
                                                                    {
-                                                                       answer = "Yes.",
-                                                                       predefined = true
+                                                                       Answer = "Yes.",
+                                                                       Predefined = true
                                                                    },
                                                                    new DTOAnswer
                                                                    {
-                                                                       answer = "FUCK YES.",
-                                                                       predefined = true
+                                                                       Answer = "FUCK YES.",
+                                                                       Predefined = true
                                                                    }
                                                                }
                                                            },
                                                            new DTOQuestion
                                                            {
-                                                               question = "Is de Matti weird?",
-                                                               questionType = 0,
-                                                               questionNumber = 1,
-                                                               answers = new List<DTOAnswer>()
+                                                               Question = "Is de Matti weird?",
+                                                               QuestionType = 0,
+                                                               QuestionNumber = 1,
+                                                               Answers = new List<DTOAnswer>()
                                                                {
                                                                    new DTOAnswer
                                                                    {
-                                                                       answer = "Yes.",
-                                                                       predefined = true
+                                                                       Answer = "Yes.",
+                                                                       Predefined = true
                                                                    },
                                                                    new DTOAnswer
                                                                    {
-                                                                       answer = "FUCK YES.",
-                                                                       predefined = true
+                                                                       Answer = "FUCK YES.",
+                                                                       Predefined = true
                                                                    }
                                                                }
                                                            }

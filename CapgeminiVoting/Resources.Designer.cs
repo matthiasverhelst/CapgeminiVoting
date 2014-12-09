@@ -187,6 +187,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify event.
+        /// </summary>
+        public static string Modify_event {
+            get {
+                return ResourceManager.GetString("Modify_event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All questions have been processed..
         /// </summary>
         public static string Msg_all_questions_processed {
@@ -295,6 +304,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        public static string Table_creationdate {
+            get {
+                return ResourceManager.GetString("Table_creationdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Table_description {
@@ -304,29 +322,11 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End date.
-        /// </summary>
-        public static string Table_enddate {
-            get {
-                return ResourceManager.GetString("Table_enddate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Table_name {
             get {
                 return ResourceManager.GetString("Table_name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start date.
-        /// </summary>
-        public static string Table_startdate {
-            get {
-                return ResourceManager.GetString("Table_startdate", resourceCulture);
             }
         }
         

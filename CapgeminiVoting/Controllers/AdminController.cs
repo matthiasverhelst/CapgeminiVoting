@@ -12,8 +12,15 @@ namespace CapgeminiVoting.Controllers
     [Authorize]
     public class AdminController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
+            return Index(string.Empty);
+        }
+
+        public ActionResult Index(string message)
+        {
+            ViewBag.message = message;
             IList<EventOverviewModel> model = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
             return View(model);
         }
@@ -21,11 +28,25 @@ namespace CapgeminiVoting.Controllers
         [HttpGet]
         public ActionResult CreateEvent()
         {
+            ViewBag.Title = Resources.Create_new_event;
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ModifyEvent(int id)
+        {
+            ViewBag.Title = Resources.Modify_event;
+            EventDetailsModel model = AdminBusinessLayer.GetEventById(id);
+            if (model == null)
+            {
+                return View("CreateEvent");
+            }
+
+            return View("CreateEvent", model);
+        }
+
         [HttpPost]
-        public JsonResult CreateEvent(EventDetailsModel @event)
+        public ActionResult CreateEvent(EventDetailsModel @event)
         {
             bool result = false;
 
@@ -33,8 +54,15 @@ namespace CapgeminiVoting.Controllers
                 result = AdminBusinessLayer.CreateEvent(@event);
 
             if (result)
-                return Json("Event successfully created!");
-            else return Json("Event creation failed, please try again.");
+                return RedirectToAction("Index");
+            else return RedirectToAction("CreateEvent");
+        }
+
+        [HttpPost]
+        public ActionResult ModifyEvent(EventDetailsModel @event)
+        {
+            AdminBusinessLayer.ModifyEvent(@event);
+            return RedirectToAction("Index");
         }
 
         public ActionResult EventDetails(int eventId)

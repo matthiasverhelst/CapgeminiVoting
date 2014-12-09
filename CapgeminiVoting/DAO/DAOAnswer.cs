@@ -11,7 +11,7 @@ namespace CapgeminiVoting.DAO
     {
         public IList<DTOAnswer> getAnswersByQuestion(int questionId)
         {
-            IQueryable<DTOAnswer> query = from answer in db.Answers where answer.questionId == questionId select answer;
+            IQueryable<DTOAnswer> query = from answer in db.Answers where answer.QuestionId == questionId select answer;
             return query.ToList();
         }
     }

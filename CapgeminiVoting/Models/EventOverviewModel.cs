@@ -14,11 +14,8 @@ namespace CapgeminiVoting.Models
         [Display(Name = "Table_name", ResourceType = typeof(Resources))]
         public string Name { get; set; }
 
-        [Display(Name = "Table_startdate", ResourceType = typeof(Resources))]
-        public DateTime StartDate { get; set; }
-
-        [Display(Name = "Table_enddate", ResourceType = typeof(Resources))]
-        public DateTime EndDate { get; set; }
+        [Display(Name = "Table_creationdate", ResourceType = typeof(Resources))]
+        public DateTime CreationDate { get; set; }
 
         [Display(Name = "Table_description", ResourceType = typeof(Resources))]
         public string Description { get; set; }
