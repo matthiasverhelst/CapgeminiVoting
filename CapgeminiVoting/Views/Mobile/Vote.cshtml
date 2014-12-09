@@ -14,7 +14,7 @@
 
         <h2>@Model.QuestionData.Question</h2>
 
-        @if (Model.QuestionData.Answers.Count() == 0)
+        @if (Model.QuestionData.Answers.Count() == 0 && !Model.QuestionData.QuestionType.Equals(2))
         {
             <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>No answers were found for this question.</div>
         }
@@ -33,6 +33,21 @@
                             </label>
                         </h3>
                     }
+                }
+                else if (Model.QuestionData.QuestionType.Equals(1))
+                {
+                    foreach (CapgeminiVoting.Models.AnswerModel a in Model.QuestionData.Answers)
+                    {
+                        <h3>
+                            <label class="checkbox">
+                                <input type="checkbox" name="Answer" value="@a.Answer"> @a.Answer
+                            </label>
+                        </h3>
+                    }
+                }
+                else if (Model.QuestionData.QuestionType.Equals(2))
+                {
+                    @Html.TextBox("Answer", String.Empty)
                 }
         </div>
         <h1>

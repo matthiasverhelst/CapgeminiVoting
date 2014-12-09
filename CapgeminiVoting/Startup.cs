@@ -86,6 +86,13 @@ namespace CapgeminiVoting
                                                                        Predefined = true
                                                                    }
                                                                }
+                                                           },
+                                                           new DTOQuestion
+                                                           {
+                                                               Question = "Welk gevoel heb je bij het aankomen van de pizzaman?",
+                                                               QuestionType = 2,
+                                                               QuestionNumber = 3,
+                                                               Answers = new List<DTOAnswer>()
                                                            }
                                                        }
                                 };

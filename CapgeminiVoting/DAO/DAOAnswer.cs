@@ -14,5 +14,12 @@ namespace CapgeminiVoting.DAO
             IQueryable<DTOAnswer> query = from answer in db.Answers where answer.QuestionId == questionId select answer;
             return query.ToList();
         }
+
+        public bool CreateAnswer(DTOAnswer answer)
+        {
+            db.Answers.Add(answer);
+            int result = db.SaveChanges();
+            return (result == 1);
+        }
     }
 }
