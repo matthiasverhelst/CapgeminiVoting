@@ -53,5 +53,11 @@ namespace CapgeminiVoting.Controllers
             //TODO: Return results of this specific event using ResultModel.
             return View();
         }
+        public ActionResult DeleteEvent(int eventID)
+        {
+            AdminBusinessLayer.DeleteEvent(eventID);
+            IList<EventOverviewModel> model = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
+            return View(model);
+        }
     }
 }

@@ -69,5 +69,17 @@ namespace CapgeminiVoting.BusinessLayer
                 return daoEvent.CreateEvent(dtoEvent);
             }
         }
+        public static bool DeleteEvent(int eventID)
+        {
+            using (DAOEvent dao = new DAOEvent())
+            {
+                return dao.DeleteEventById(eventID);
+                // DTOEvent dtoEvent = dao.DeleteEventById(eventID);
+                //if (dtoEvent == null)
+                  //  return null;
+
+                //model = Mapper.Map<DTOEvent, EventDetailsModel>(dtoEvent);
+            }
+        }
     }
 }

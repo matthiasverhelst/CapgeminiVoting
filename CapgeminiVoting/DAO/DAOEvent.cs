@@ -31,5 +31,28 @@ namespace CapgeminiVoting.DAO
             int result = db.SaveChanges();
             return (result == 1);
         }
+        public bool DeleteEventById(int eventId)
+        {
+            var query = (from @event in db.Events
+                        where @event.id == eventId
+                        select @event).First();
+              //foreach (var ev in query)
+                //{
+                    //db.Events.DeleteOnSubmit(query);
+                    db.Events.Remove(query);
+                //}
+              //try
+              //{
+                //  db.SubmitChanges();
+                    int result = db.SaveChanges();
+                    return (result == 1);
+              //}
+              //catch (Exception e)
+              //{
+                //  Console.WriteLine(e);
+                  // Provide for exceptions.
+              //}
+
+         }
     }
 }
