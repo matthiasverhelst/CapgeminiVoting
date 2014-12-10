@@ -23,3 +23,28 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Header */
+.header {
+    background-color: #00A0D7;
+}
+
+.header-bottom-left {
+    background-color: red;
+    width: 20%;
+    height: 50px;
+    background-color: white;
+    border-top-right-radius: 100px;
+    float: left;
+
+}
+
+.header-bottom-right {
+    background-color: red;
+    background-color: red;
+    width: 80%;
+    height: 50px;
+    background-color: white;
+    border-top-left-radius: 100px;
+    float: left;
+}
