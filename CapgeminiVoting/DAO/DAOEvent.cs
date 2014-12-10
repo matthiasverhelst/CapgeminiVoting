@@ -50,7 +50,7 @@ namespace CapgeminiVoting.DAO
         public bool DeleteEventById(int eventId)
         {
             var query = (from @event in db.Events
-                        where @event.id == eventId
+                        where @event.Id == eventId
                         select @event).First();
               //foreach (var ev in query)
                 //{

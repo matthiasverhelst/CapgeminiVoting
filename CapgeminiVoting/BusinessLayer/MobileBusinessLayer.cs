@@ -11,11 +11,36 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class MobileBusinessLayer
     {
-        public static bool SetAnswerCount(int eventCode, int questionNumber)
+        public static bool SetAnswerCount(int eventId, int questionNumber, IList<AnswerModel> answers)
         {
+            EventDetailsModel eventDetails = null;
+            QuestionModel questionDetails = null;
 
-            // check if answer exists for this question
-            // daoEvent.GetEventById
+            using (DAOEvent dao = new DAOEvent())
+            {
+                DTOEvent dtoEvent = dao.GetEventById(eventId);
+                if (dtoEvent == null)
+                    return false;
+
+                eventDetails = Mapper.Map<DTOEvent, EventDetailsModel>(dtoEvent);
+            }
+
+
+            questionDetails = eventDetails.Questions.ElementAtOrDefault(questionNumber);
+
+            if (questionDetails == null)
+                return false;
+
+            foreach(AnswerModel ans in answers)
+            {
+                if (questionDetails.Answers.Contains(ans))
+                {
+                    using (DAOAnswer dao = new DAOAnswer())
+                    {
+                        dao.IncrementVotes(questionDetails.Answers.IndexOf(ans));
+                    }
+                }
+            }
 
             // if it does not, get questionID based on eventcode
 

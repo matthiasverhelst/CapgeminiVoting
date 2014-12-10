@@ -15,6 +15,12 @@ namespace CapgeminiVoting.DAO
             return query.ToList();
         }
 
+        public bool IncrementVotes(int answerId)
+        {
+            //update db
+            return true;
+        }
+
         public bool CreateAnswer(DTOAnswer answer)
         {
             db.Answers.Add(answer);

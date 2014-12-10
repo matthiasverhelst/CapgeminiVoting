@@ -72,7 +72,7 @@ namespace CapgeminiVoting.Controllers
                 return RedirectToAction("Index");
             }
             
-            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber) != true)
+            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber, voteResult.Answer) != true)
             {
                 TempData["Message"] = Resources.Err_unable_to_update_answer_on_db;
                 return RedirectToAction("Index");
