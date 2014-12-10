@@ -322,6 +322,7 @@
     <Content Include="Views\Mobile\Vote.cshtml" />
     <Content Include="Views\Mobile\VoteComplete.cshtml" />
     <Content Include="Views\Admin\CreateEvent.cshtml" />
+    <Content Include="Views\Admin\_CreateQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,62 @@
+﻿@model CapgeminiVoting.Models.QuestionModel
+
+@{
+    var questionDivId = "questionDiv" + Model.QuestionNumber;
+    var answersDivId = "answersDiv" + Model.QuestionNumber;
+}
+
+
+<div id="@questionDivId" class="eventDetails">
+
+    <img src="@Url.Content("~/Images/close.png")" alt="Remove question" class="removeQuestion" onclick="removeQuestion(@Model.QuestionNumber)" />
+    <div class="form-group">
+        @Html.Label(Resources.Question)
+        <input type="hidden" id="@Model.QuestionNumber" name="Questions.Index" value="@Model.QuestionNumber" />
+        @Html.TextBox("Questions[" + Model.QuestionNumber + "].Question", Model.Question, new { @placeholder = Resources.Enter_question, @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label(Resources.Type)
+        @Html.DropDownList("Questions[" + Model.QuestionNumber + "].QuestionType", new List<SelectListItem> {
+                            new SelectListItem { Value = "0", Text = Resources.Multiple_choice },
+                            new SelectListItem { Value = "1", Text = Resources.Checkboxes },
+                            new SelectListItem { Value = "2", Text = Resources.Free_text }
+                        }, new { @class = "form-control questionType" })
+    </div>
+
+    <div id="@answersDivId" class="form-group answersDiv">
+        @Html.Label(Resources.Possible_answers)
+        @if (Model.Answers != null)
+        {
+            for (int i = 0; i < Model.Answers.Count; i++)
+            {
+                var imageId = "removeAnswer" + Model.QuestionNumber + "" + i;
+                var imageClass = "removeAnswer removeAnswer" + Model.QuestionNumber;
+
+                <input type="hidden" id="Questions[@Model.QuestionNumber].Answers[@i].Index" name="Questions[@Model.QuestionNumber].Answers.Index" value="@i" />
+                @Html.TextBox("Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", Model.Answers[i].Answer, new { id = "Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", @placeholder = Resources.Enter_answer, @class = "form-control answer" })<!--
+                --><img src="@Url.Content("~/Images/close.png")" alt="Remove this answer" id="@imageId" class="@imageClass" onclick="removeAnswer(@Model.QuestionNumber, @i)">
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                var imageId = "removeAnswer" + Model.QuestionNumber + "" + i;
+                var imageClass = "removeAnswer removeAnswer" + Model.QuestionNumber;
+                <input type="hidden" id="Questions[@Model.QuestionNumber].Answers[@i].Index" name="Questions[@Model.QuestionNumber].Answers.Index" value="@i" />
+                @Html.TextBox("Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", "", new { id = "Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", @placeholder = Resources.Enter_answer, @class = "form-control answer" })<!--
+                --><img src="@Url.Content("~/Images/close.png")" alt="Remove this answer" id="@imageId" class="@imageClass" onclick="removeAnswer(@Model.QuestionNumber, @i)">
+            }
+        }
+    </div>
+
+    @{
+        var buttonId = "addAnswer" + Model.QuestionNumber;
+        var answerAmount = Model.Answers == null ? 2 : Model.Answers.Count;
+    }
+
+    <div class="form-group addAnswerDiv">
+        <input type="button" id="@buttonId" value="@Resources.Add_answer" class="btn btn-primary" onclick="addAnswer(@Model.QuestionNumber, 2)" />
+    </div>
+
+</div>

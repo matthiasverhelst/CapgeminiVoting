@@ -1,7 +1,8 @@
-﻿@model CapgeminiVoting.Models.EventDetailsModel
+﻿@using CapgeminiVoting.Models
+
+@model EventDetailsModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = Resources.Create_new_event;
 }
 
 @section css {
@@ -9,23 +10,20 @@
     <link rel="stylesheet" href="@Url.Content("~/Scripts/jquery-ui-1.11.2/jquery-ui.min.css")">
 }
 
+@{
+    var action = Model != null ? "ModifyEvent" : "CreateEvent";
+}
+
 <div id="eventDiv" class="container">
     <div class="row">
-        @using (Html.BeginForm(new { role = "form" }))
+        @using (Html.BeginForm(action, "Admin", new { role = "form" }))
         {
+            @Html.HiddenFor(m => m.Id)
             <div class="col-md-5 eventDetails">
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.Name)
                         @Html.TextBoxFor(m => m.Name, new { @placeholder = Resources.New_event_name, @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.StartDate)
-                        @Html.TextBoxFor(m => m.StartDate, new { @placeholder = Resources.New_event_start_date, @readonly = true, @class = "datepicker form-control" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.EndDate)
-                        @Html.TextBoxFor(m => m.EndDate, new { @placeholder = Resources.New_event_end_date, @readonly = true, @class = "datepicker form-control" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Description)
@@ -35,41 +33,30 @@
                 <input type="submit" id="submitEvent" value=@Resources.New_event_submit class="btn btn-primary" disabled />
             </div>
 
-    <div id="questionsContainer" class="col-md-6 col-md-offset-1">
-        <div id="questionsDiv">
-            <div id="questionDiv0" class="eventDetails">
+            <div id="questionsContainer" class="col-md-6 col-md-offset-1">
+                <div id="questionsDiv">
+                    @{
+                        var addQuestionCount = 1;
+                        if (Model == null)
+                        {
+                            @Html.Partial("_CreateQuestion", new QuestionModel() { QuestionNumber = 0 })
+                        }
+                        else
+                        {
+                            foreach (QuestionModel question in Model.Questions)
+                            {
+                                @Html.Partial("_CreateQuestion", question)
+                            }
 
-                <img src="@Url.Content("~/Images/close.png")" alt="Remove question" id="removeQuestion0" class="removeQuestion" onclick="removeQuestion(0)" />
-                <div class="form-group">
-                    @Html.Label(Resources.Question)
-                    @Html.TextBox("questions[0].question", "", new { @placeholder = Resources.Enter_question, @class = "form-control" })
-                </div>
-                <div class="form-group">
-                    @Html.Label(Resources.Type)
-                    @Html.DropDownList("questions[0].questionType", new List<SelectListItem> {
-                            new SelectListItem { Value = "1", Text = Resources.Multiple_choice },
-                            new SelectListItem { Value = "2", Text = Resources.Checkboxes },
-                            new SelectListItem { Value = "3", Text = Resources.Free_text }
-                        }, new { @class = "form-control questionType" })
-                </div>
-
-                <div id="answersDiv0" class="form-group answersDiv">
-                    @Html.Label(Resources.Possible_answers)
-                    @Html.TextBox("questions[0].answers[0].answer", "", new { id = "questions[0].answers[0].answer", @placeholder = Resources.Enter_answer, @class = "form-control answer" })<!--
-                    --><img src="@Url.Content("~/Images/close.png")" alt="Remove this answer" id="removeAnswer00" class="removeAnswer removeAnswer0" onclick="removeAnswer(0,0)">
+                            addQuestionCount = Model.Questions.Count;
+                        }
+                    }
                 </div>
 
-                <div class="form-group addAnswerDiv">
-                    <input type="button" id=addAnswer0 value="@Resources.Add_answer" class="btn btn-primary" onclick="addAnswer(0, 1)" />
+                <div id="addQuestionDiv">
+                    <input type="button" id="addQuestionBtn" value="@Resources.Add_question" class="btn btn-primary" onclick="addQuestion(@addQuestionCount)" />
                 </div>
-
             </div>
-        </div>
-        <div id="addQuestionDiv">
-            <input type="button" id="addQuestionBtn" value="@Resources.Add_question" class="btn btn-primary" onclick="addQuestion(1)" />
-        </div>
-
-        </div>
         }
     </div>
 </div>

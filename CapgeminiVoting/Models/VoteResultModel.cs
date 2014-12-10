@@ -13,6 +13,6 @@ namespace CapgeminiVoting.Models
 
         public int QuestionNumber { get; set; }
 
-        public string Answer { get; set; }
+        public IList<string> Answer { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using CapgeminiVoting.DAO;
 using CapgeminiVoting.DTO;
 using CapgeminiVoting.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,20 @@ namespace CapgeminiVoting.BusinessLayer
         public static bool CreateEvent(EventDetailsModel @event)
         {
             DTOEvent dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
+            dtoEvent.UserName = HttpContext.Current.GetOwinContext().Authentication.User.Identity.GetUserId();
+            dtoEvent.CreationDate = DateTime.Now;
+
+            var index = 1;
+            foreach (DTOQuestion question in dtoEvent.Questions)
+            {
+                question.QuestionNumber = index;
+                index++;
+                foreach(DTOAnswer answer in question.Answers)
+                {
+                    answer.Predefined = true;
+                }
+            }
+
             using(DAOEvent daoEvent = new DAOEvent())
             {
                 return daoEvent.CreateEvent(dtoEvent);
@@ -79,6 +94,30 @@ namespace CapgeminiVoting.BusinessLayer
                   //  return null;
 
                 //model = Mapper.Map<DTOEvent, EventDetailsModel>(dtoEvent);
+            }
+        }
+
+        public static bool ModifyEvent(EventDetailsModel @event)
+        {
+            DTOEvent dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
+            dtoEvent.UserName = HttpContext.Current.GetOwinContext().Authentication.User.Identity.GetUserId();
+            dtoEvent.CreationDate = DateTime.Now;
+
+            var index = 1;
+            foreach (DTOQuestion question in dtoEvent.Questions)
+            {
+                question.EventId = @event.Id;
+                question.QuestionNumber = index;
+                index++;
+                foreach (DTOAnswer answer in question.Answers)
+                {
+                    answer.Predefined = true;
+                }
+            }
+
+            using(DAOEvent daoEvent = new DAOEvent())
+            {
+                return daoEvent.ModifyEvent(dtoEvent);
             }
         }
     }

@@ -192,13 +192,10 @@
   <data name="Table_description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Table_enddate" xml:space="preserve">
-    <value>End date</value>
-  </data>
   <data name="Table_name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="Table_startdate" xml:space="preserve">
+  <data name="Table_creationdate" xml:space="preserve">
     <value>Start date</value>
   </data>
   <data name="Type" xml:space="preserve">
@@ -209,5 +206,8 @@
   </data>
   <data name="Share" xml:space="preserve">
     <value>Share</value>
+  </data>
+  <data name="Modify_event" xml:space="preserve">
+    <value>Modify event</value>
   </data>
 </root>

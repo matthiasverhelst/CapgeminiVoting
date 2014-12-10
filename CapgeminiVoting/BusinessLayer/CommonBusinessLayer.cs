@@ -16,7 +16,7 @@ namespace CapgeminiVoting.BusinessLayer
             List<QuestionModel> result = new List<QuestionModel>();
             using (DAOQuestion dao = new DAOQuestion())
             {
-                IList<DTOQuestion> questions = dao.getQuestionsByEvent(eventId);
+                IList<DTOQuestion> questions = dao.GetQuestionsByEvent(eventId);
                 if (questions.Count == 0)
                     return result;
 

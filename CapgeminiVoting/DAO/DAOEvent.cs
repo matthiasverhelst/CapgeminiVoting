@@ -3,6 +3,7 @@ using CapgeminiVoting.DTO;
 using CapgeminiVoting.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,7 @@ namespace CapgeminiVoting.DAO
         public DTOEvent GetEventById(int eventId)
         {
             var query = from @event in db.Events
-                        where @event.id == eventId
+                        where @event.Id == eventId
                         select @event;
             List<DTOEvent> result = query.ToList();
             return result.Count > 0 ? result.First() : null;
@@ -21,7 +22,7 @@ namespace CapgeminiVoting.DAO
 
         public IList<DTOEvent> GetEventsByUser(string userName)
         {
-            IQueryable<DTOEvent> query = from @event in db.Events where @event.userName.Equals(userName) select @event;
+            IQueryable<DTOEvent> query = from @event in db.Events where @event.UserName.Equals(userName) select @event;
             return query.ToList();
         }
 
@@ -29,7 +30,22 @@ namespace CapgeminiVoting.DAO
         {
             db.Events.Add(@event);
             int result = db.SaveChanges();
-            return (result == 1);
+            return (result > 0);
+        }
+
+        public bool ModifyEvent(DTOEvent @event)
+        {
+            var originalEvent = db.Events.Find(@event.Id);
+            db.Entry(originalEvent).OriginalValues.SetValues(originalEvent);
+            db.Entry(originalEvent).CurrentValues.SetValues(@event);
+
+            originalEvent.Questions = @event.Questions;
+
+            db.Entry(originalEvent).State = EntityState.Modified;
+
+            var result = db.SaveChanges();
+
+            return result >= 0;
         }
         public bool DeleteEventById(int eventId)
         {

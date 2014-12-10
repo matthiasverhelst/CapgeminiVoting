@@ -14,25 +14,25 @@ namespace CapgeminiVoting.DTO
         [Required]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Column("answer")]
-        public string answer { get; set; }
+        public string Answer { get; set; }
 
         [Required]
         [Column("predefined")]
-        public bool predefined { get; set; }
+        public bool Predefined { get; set; }
 
         [Required]
         [Column("votes")]
-        public int votes { get; set; }
+        public int Votes { get; set; }
 
         [Required]
         [Column("question_id")]
-        public int questionId { get; set; }
+        public int QuestionId { get; set; }
 
-        [ForeignKey("questionId")]
-        public virtual DTOQuestion question { get; set; }
+        [ForeignKey("QuestionId")]
+        public virtual DTOQuestion Question { get; set; }
     }
 }
