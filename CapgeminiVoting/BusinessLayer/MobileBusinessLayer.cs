@@ -11,10 +11,11 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class MobileBusinessLayer
     {
-        public static bool SetAnswerCount(int eventId, int questionNumber, IList<AnswerModel> answers)
+        public static bool SetAnswerCount(int eventId, int questionNumber, IList<string> answers)
         {
             EventDetailsModel eventDetails = null;
             QuestionModel questionDetails = null;
+            AnswerModel currentAnswer = new AnswerModel();
 
             using (DAOEvent dao = new DAOEvent())
             {
@@ -26,18 +27,20 @@ namespace CapgeminiVoting.BusinessLayer
             }
 
 
-            questionDetails = eventDetails.Questions.ElementAtOrDefault(questionNumber);
+            questionDetails = eventDetails.Questions.ElementAtOrDefault(questionNumber-1);
 
             if (questionDetails == null)
                 return false;
 
-            foreach(AnswerModel ans in answers)
+            foreach(string ans in answers)
             {
-                if (questionDetails.Answers.Contains(ans))
+                currentAnswer.Answer = ans;
+                // contain probleem oplossen
+                if (questionDetails.Answers.Contains<AnswerModel>(currentAnswer))
                 {
                     using (DAOAnswer dao = new DAOAnswer())
                     {
-                        dao.IncrementVotes(questionDetails.Answers.IndexOf(ans));
+                        dao.IncrementVotes(questionDetails.Answers.IndexOf(currentAnswer));
                     }
                 }
             }
