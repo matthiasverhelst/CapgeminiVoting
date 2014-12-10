@@ -44,6 +44,7 @@ namespace CapgeminiVoting
                 var dtoEvent = new DTOEvent()
                                {
                                    Name = "Sprint 1 Questionaire",
+                                   CreationDate = DateTime.Now,
                                    Description = "Bla.",
                                    UserName = userName,
                                    Questions = new List<DTOQuestion>()
