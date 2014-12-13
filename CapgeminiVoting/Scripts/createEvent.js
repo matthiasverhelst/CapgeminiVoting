@@ -1,6 +1,10 @@
 $(document).ready(function () {
     showOrHideRemoveQuestion();
-    showOrHideRemoveAnswer(0);
+
+    for (var i = 0; i <= viewBag.questionCount; i++)
+    {
+        showOrHideRemoveAnswer(i);
+    }
 	
 	$("#Name").keyup(function() {
 		enableOrDisableSubmitButton();
@@ -63,7 +67,7 @@ function showOrHideRemoveAnswer(question)
 {
     var answersDiv = ("#answersDiv").concat(question);
     var removeAnswerClass = (".removeAnswer").concat(question);
-    if ($(answersDiv.concat(" > input")).length >= 4) {
+    if ($(answersDiv.concat(" > input")).length > 4) {
         $(removeAnswerClass).show();
     }
     else {

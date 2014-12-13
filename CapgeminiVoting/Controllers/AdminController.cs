@@ -42,6 +42,10 @@ namespace CapgeminiVoting.Controllers
                 return View("CreateEvent");
             }
 
+            var sortedQuestions = model.Questions.ToList();
+            sortedQuestions.Sort();
+            model.Questions = sortedQuestions;
+            
             return View("CreateEvent", model);
         }
 

@@ -12,6 +12,7 @@
 
 @{
     var action = Model != null ? "ModifyEvent" : "CreateEvent";
+    var addQuestionCount = 1;
 }
 
 <div id="eventDiv" class="container">
@@ -36,7 +37,6 @@
             <div id="questionsContainer" class="col-md-6 col-md-offset-1">
                 <div id="questionsDiv">
                     @{
-                        var addQuestionCount = 1;
                         if (Model == null)
                         {
                             @Html.Partial("_CreateQuestion", new QuestionModel() { QuestionNumber = 0 })
@@ -46,9 +46,8 @@
                             foreach (QuestionModel question in Model.Questions)
                             {
                                 @Html.Partial("_CreateQuestion", question)
+                                addQuestionCount = addQuestionCount < question.QuestionNumber ? addQuestionCount = question.QuestionNumber : addQuestionCount;
                             }
-
-                            addQuestionCount = Model.Questions.Count;
                         }
                     }
                 </div>
@@ -62,5 +61,8 @@
 </div>
 
 @section scripts {
+    <script type="text/javascript">
+        var viewBag = { questionCount : @addQuestionCount };
+    </script>
     <script type="text/javascript" src="~/Scripts/createEvent.js"></script>
 }
