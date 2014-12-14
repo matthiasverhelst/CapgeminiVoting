@@ -35,17 +35,25 @@ namespace CapgeminiVoting.DAO
 
         public bool ModifyEvent(DTOEvent @event)
         {
-            var originalEvent = db.Events.Find(@event.Id);
-            db.Entry(originalEvent).OriginalValues.SetValues(originalEvent);
-            db.Entry(originalEvent).CurrentValues.SetValues(@event);
+            var existingEvent = GetEventById(@event.Id);
+            DeleteEventById(@event.Id);
 
-            originalEvent.Questions = @event.Questions;
+            db.SaveChanges();
 
-            db.Entry(originalEvent).State = EntityState.Modified;
+            @event.CreationDate = existingEvent.CreationDate;
+            return CreateEvent(@event);
 
-            var result = db.SaveChanges();
+            //var originalEvent = db.Events.Find(@event.Id);
+            //db.Entry(originalEvent).OriginalValues.SetValues(originalEvent);
+            //db.Entry(originalEvent).CurrentValues.SetValues(@event);
 
-            return result >= 0;
+            //originalEvent.Questions = @event.Questions;
+
+            //db.Entry(originalEvent).State = EntityState.Modified;
+
+            //var result = db.SaveChanges();
+
+            //return result >= 0;
         }
         public bool DeleteEventById(int eventId)
         {

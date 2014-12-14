@@ -17,9 +17,9 @@
     <div class="form-group">
         @Html.Label(Resources.Type)
         @Html.DropDownList("Questions[" + Model.QuestionNumber + "].QuestionType", new List<SelectListItem> {
-                            new SelectListItem { Value = "0", Text = Resources.Multiple_choice },
-                            new SelectListItem { Value = "1", Text = Resources.Checkboxes },
-                            new SelectListItem { Value = "2", Text = Resources.Free_text }
+                            new SelectListItem { Value = "0", Text = Resources.Multiple_choice, Selected = (Model.QuestionType == 0) },
+                            new SelectListItem { Value = "1", Text = Resources.Checkboxes, Selected = (Model.QuestionType == 1) },
+                            new SelectListItem { Value = "2", Text = Resources.Free_text, Selected = (Model.QuestionType == 2) }
                         }, new { @class = "form-control questionType" })
     </div>
 

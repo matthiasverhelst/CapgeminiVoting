@@ -37,6 +37,7 @@ namespace CapgeminiVoting.Controllers
         {
             ViewBag.Title = Resources.Modify_event;
             EventDetailsModel model = AdminBusinessLayer.GetEventById(id);
+
             if (model == null)
             {
                 return View("CreateEvent");
@@ -55,7 +56,18 @@ namespace CapgeminiVoting.Controllers
             bool result = false;
 
             if (@event != null)
-                result = AdminBusinessLayer.CreateEvent(@event);
+            {
+                var questionList = @event.Questions.ToList();
+                questionList.RemoveAll(question => string.IsNullOrWhiteSpace(question.Question));
+                foreach (var question in @event.Questions)
+                {
+                    var answerList = question.Answers.ToList();
+                    answerList.RemoveAll(answer => string.IsNullOrWhiteSpace(answer.Answer));
+                    question.Answers = answerList;
+                }
+            }
+
+            result = AdminBusinessLayer.CreateEvent(@event);
 
             if (result)
                 return RedirectToAction("Index");
@@ -65,6 +77,20 @@ namespace CapgeminiVoting.Controllers
         [HttpPost]
         public ActionResult ModifyEvent(EventDetailsModel @event)
         {
+            if (@event == null)
+            {
+                RedirectToAction("Index");
+            }
+
+            var questionList = @event.Questions.ToList();
+            questionList.RemoveAll(question => string.IsNullOrWhiteSpace(question.Question));
+            foreach (var question in @event.Questions)
+            {
+                var answerList = question.Answers.ToList();
+                answerList.RemoveAll(answer => string.IsNullOrWhiteSpace(answer.Answer));
+                question.Answers = answerList;
+            }
+
             AdminBusinessLayer.ModifyEvent(@event);
             return RedirectToAction("Index");
         }

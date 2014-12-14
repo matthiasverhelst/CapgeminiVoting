@@ -1,5 +1,7 @@
 $(document).ready(function () {
     showOrHideRemoveQuestion();
+    bindQuestionTypeTrigger();
+    $(".questionType").trigger("change");
 
     for (var i = 0; i <= viewBag.questionCount; i++)
     {
@@ -11,7 +13,6 @@ $(document).ready(function () {
 	});
 
 	enableOrDisableSubmitButton();
-	bindQuestionTypeTrigger();
 });
 
 function bindQuestionTypeTrigger()
