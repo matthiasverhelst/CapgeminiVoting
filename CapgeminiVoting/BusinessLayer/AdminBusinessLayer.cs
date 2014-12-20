@@ -49,7 +49,7 @@ namespace CapgeminiVoting.BusinessLayer
             List<AnswerModel> result = new List<AnswerModel>();
             using (DAOAnswer dao = new DAOAnswer())
             {
-                IList<DTOAnswer> answers = dao.getAnswersByQuestion(questionId);
+                IList<DTOAnswer> answers = dao.GetAnswersByQuestion(questionId);
                 if (answers.Count == 0)
                     return result;
 
@@ -84,6 +84,7 @@ namespace CapgeminiVoting.BusinessLayer
                 return daoEvent.CreateEvent(dtoEvent);
             }
         }
+
         public static bool DeleteEvent(int eventID)
         {
             using (DAOEvent dao = new DAOEvent())
@@ -111,6 +112,7 @@ namespace CapgeminiVoting.BusinessLayer
                 index++;
                 foreach (DTOAnswer answer in question.Answers)
                 {
+                    answer.QuestionId = question.Id;
                     answer.Predefined = true;
                 }
             }

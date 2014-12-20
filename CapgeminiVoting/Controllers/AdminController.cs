@@ -86,9 +86,12 @@ namespace CapgeminiVoting.Controllers
             questionList.RemoveAll(question => string.IsNullOrWhiteSpace(question.Question));
             foreach (var question in @event.Questions)
             {
-                var answerList = question.Answers.ToList();
-                answerList.RemoveAll(answer => string.IsNullOrWhiteSpace(answer.Answer));
-                question.Answers = answerList;
+                if (question.Answers != null)
+                {
+                    var answerList = question.Answers.ToList();
+                    answerList.RemoveAll(answer => string.IsNullOrWhiteSpace(answer.Answer));
+                    question.Answers = answerList;
+                }
             }
 
             AdminBusinessLayer.ModifyEvent(@event);

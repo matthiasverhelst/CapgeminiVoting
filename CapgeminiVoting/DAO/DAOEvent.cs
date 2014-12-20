@@ -13,9 +13,9 @@ namespace CapgeminiVoting.DAO
     {
         public DTOEvent GetEventById(int eventId)
         {
-            var query = from @event in db.Events
+            var query = (from @event in db.Events
                         where @event.Id == eventId
-                        select @event;
+                        select @event).AsNoTracking();
             List<DTOEvent> result = query.ToList();
             return result.Count > 0 ? result.First() : null;
         }
@@ -35,26 +35,75 @@ namespace CapgeminiVoting.DAO
 
         public bool ModifyEvent(DTOEvent @event)
         {
-            var existingEvent = GetEventById(@event.Id);
-            DeleteEventById(@event.Id);
+            //step 1: gather ids of already existing questions and answers related to this event
+            var originalEvent = GetEventById(@event.Id);
+            var existingQuestionIds = new List<int>();
+            var existingAnswerIds = new List<int>();
 
-            db.SaveChanges();
+            foreach (var question in originalEvent.Questions)
+            {
+                existingQuestionIds.Add(question.Id);
 
-            @event.CreationDate = existingEvent.CreationDate;
-            return CreateEvent(@event);
+                foreach (var answer in question.Answers)
+                {
+                    existingAnswerIds.Add(answer.Id);
+                }
+            }
 
-            //var originalEvent = db.Events.Find(@event.Id);
-            //db.Entry(originalEvent).OriginalValues.SetValues(originalEvent);
-            //db.Entry(originalEvent).CurrentValues.SetValues(@event);
+            //step 2: set the correct state to the updated event questions and answers; also remove these from the list created in step 1
+            foreach (var question in @event.Questions)
+            {
+                foreach (var answer in question.Answers)
+                {
+                    if (answer.Id == 0)
+                        db.Entry(answer).State = EntityState.Added;
+                    else
+                    {
+                        db.Entry(answer).State = EntityState.Modified;
+                        existingAnswerIds.Remove(answer.Id);
+                    }
+                }
 
-            //originalEvent.Questions = @event.Questions;
+                question.Answers = null;
 
-            //db.Entry(originalEvent).State = EntityState.Modified;
+                if (question.Id == 0)
+                    db.Entry(question).State = EntityState.Added;
+                else
+                {
+                    db.Entry(question).State = EntityState.Modified;
+                    existingQuestionIds.Remove(question.Id);
+                }
+            }
 
-            //var result = db.SaveChanges();
+            //step 3: for all ids not removed from the existing question or answer list: delete question or answer
+            foreach (var id in existingQuestionIds)
+            {
+                using(var dao = new DAOQuestion())
+                {
+                    var question = dao.GetQuestionById(id);
+                    question.Answers = null;
+                    db.Entry(question).State = EntityState.Deleted;
+                }
+            }
 
-            //return result >= 0;
+            foreach (var id in existingAnswerIds)
+            {
+                using (var dao = new DAOAnswer())
+                {
+                    var answer = dao.GetAnswerById(id);
+                    db.Entry(answer).State = EntityState.Deleted;
+                }
+            }
+
+            //step 4: set the state of the event entity to modified
+            @event.Questions = null;
+            db.Entry(@event).State = EntityState.Modified;
+
+            var result = db.SaveChanges();
+
+            return result >= 0;
         }
+
         public bool DeleteEventById(int eventId)
         {
             var query = (from @event in db.Events
