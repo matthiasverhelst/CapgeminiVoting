@@ -15,8 +15,9 @@ namespace CapgeminiVoting.BusinessLayer
         {
             EventDetailsModel eventDetails = null;
             QuestionModel questionDetails = null;
-            AnswerModel currentAnswer = new AnswerModel();
 
+
+            
             using (DAOEvent dao = new DAOEvent())
             {
                 DTOEvent dtoEvent = dao.GetEventById(eventId);
@@ -26,35 +27,44 @@ namespace CapgeminiVoting.BusinessLayer
                 eventDetails = Mapper.Map<DTOEvent, EventDetailsModel>(dtoEvent);
             }
 
-
-            questionDetails = eventDetails.Questions.ElementAtOrDefault(questionNumber-1);
+            for (int i = 0; i < eventDetails.Questions.Count(); i++ )
+            {
+                if (eventDetails.Questions[i].QuestionNumber == questionNumber)
+                {
+                    questionDetails = eventDetails.Questions[i];
+                }
+            }
 
             if (questionDetails == null)
                 return false;
 
             foreach(string ans in answers)
             {
-                currentAnswer.Answer = ans;
-                // contain probleem oplossen
-                if (questionDetails.Answers.Contains<AnswerModel>(currentAnswer))
+                for (int i = 0; i < questionDetails.Answers.Count(); i++ )
                 {
-                    using (DAOAnswer dao = new DAOAnswer())
+                    if (questionDetails.Answers[i].Answer.Equals(ans))
                     {
-                        dao.IncrementVotes(questionDetails.Answers.IndexOf(currentAnswer));
+                        using (DAOAnswer dao = new DAOAnswer())
+                        {
+                            dao.IncrementVotes(questionDetails.Answers[i].Id);
+                        }
                     }
+                    else if (questionDetails.QuestionType == 2) // Free text answer
+                    {
+                        // Update nog meerdere keren, moet aangepast worden voor maar 1 keer
+                        using (DAOAnswer dao = new DAOAnswer())
+                        {
+                            DTOAnswer newAnswer = new DTOAnswer();
+                            newAnswer.Answer = ans;
+                            newAnswer.Predefined = false;
+                            newAnswer.QuestionId = questionDetails.Id;
+                            newAnswer.Votes = 0;
+                            dao.CreateAnswer(newAnswer);
+                        }
+                    }
+
                 }
             }
-
-            // if it does not, get questionID based on eventcode
-
-            // and create this answer knowing: 
-            // - answer
-            // - predefined = false
-            // - votes = 0
-            // - questionID = ?
-
-            // if it does, update answer
-
             return true;
         }
     }

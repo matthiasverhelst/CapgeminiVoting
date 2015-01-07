@@ -71,7 +71,7 @@ namespace CapgeminiVoting
                                                            new DTOQuestion
                                                            {
                                                                Question = "Is de Matti weird?",
-                                                               QuestionType = 0,
+                                                               QuestionType = 2,
                                                                QuestionNumber = 1,
                                                                Answers = new List<DTOAnswer>()
                                                                {

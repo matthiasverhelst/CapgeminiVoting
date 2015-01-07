@@ -27,8 +27,18 @@ namespace CapgeminiVoting.DAO
 
         public bool IncrementVotes(int answerId)
         {
-            //update db
-            return true;
+            var query = (from answer in db.Answers
+                         where answer.Id == answerId
+                         select answer).First();
+
+            if (query == null)
+                return false;
+            else
+            {
+                query.Votes = query.Votes + 1;
+                int result = db.SaveChanges();
+                return (result == 1);
+            }
         }
 
         public bool CreateAnswer(DTOAnswer answer)
