@@ -41,7 +41,10 @@
                             <input type="button" value="@Resources.Delete" onclick="location.href = '@Url.Action("DeleteEvent", new { item.Id })'" class="btn btn-primary btn-xs" />
                         </td>
                         <td>
-                            <input type="button" value="@Resources.Share" onclick="location.href='@Url.Action("EventDetails2", new { item.Id })'" class="btn btn-primary btn-xs" />
+                            <!--<input type="button" value="@Resources.Share" onclick=Mailto("tstse","qsfqsfd") class="btn btn-primary btn-xs" />-->
+                            <input type="button" value="@Resources.Share" onclick="window.location.href = 'mailto:&subject=Capgemini Voting App: Code to vote&body=Dear Participant,%0D%0A %0D%0AUse the code below to go to the question-list in the Capgemini Voting app:%0D%0A '+(@item.Id)+' %0D%0A%0D%0AKind regards';" class="btn btn-primary btn-xs" />
+                            <!--<a href="mailto:&subject=Capgemini Voting App: Code to vote&body=this is a test {" + item.id + "} dsfsqdfs">sqdfsdqfdsqfsq</a>-->
+                            <!--<a href="mailto:&subject=Capgemini Voting App: Code to vote&body=this is a test "<%=item.id%>"dsfsqdfs">aaaaaaa</a>-->
                         </td>
                     </tr>
                 }
