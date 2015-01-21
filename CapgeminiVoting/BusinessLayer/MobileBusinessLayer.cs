@@ -13,64 +13,46 @@ namespace CapgeminiVoting.BusinessLayer
     {
         public static bool SetAnswerCount(int eventId, int questionNumber, IList<string> answers)
         {
-            EventDetailsModel eventDetails = null;
-            QuestionModel questionDetails = null;
-
-            using (DAOEvent dao = new DAOEvent())
-            {
-                DTOEvent dtoEvent = dao.GetEventById(eventId);
-                if (dtoEvent == null)
-                    return false;
-
-                eventDetails = Mapper.Map<DTOEvent, EventDetailsModel>(dtoEvent);
-            }
-
-            for (int i = 0; i < eventDetails.Questions.Count(); i++ )
-            {
-                if (eventDetails.Questions[i].QuestionNumber == questionNumber)
-                {
-                    questionDetails = eventDetails.Questions[i];
-                }
-            }
-
-            if (questionDetails == null)
-                return false;
-
-
+            IList<DTOQuestion> questions = null;
+            DTOQuestion currQuestion = null;
             bool answerFound = false;
 
-            foreach(string ans in answers)
+            using (DAOQuestion daoQuestion = new DAOQuestion())
             {
-                for (int i = 0; i < questionDetails.Answers.Count(); i++ )
-                {
-                    if (questionDetails.Answers[i].Answer.Equals(ans))
-                    {
-                        using (DAOAnswer dao = new DAOAnswer())
-                        {
-                            dao.IncrementVotes(questionDetails.Answers[i].Id);
-                            answerFound = true;
-                        }
-                    }
-                }
+                questions = daoQuestion.GetQuestionsByEvent(eventId);
+                if (questions.Count == 0)
+                    return false;
+
+                for (int i = 0; i < questions.Count(); i++ )
+                    if (questions[i].QuestionNumber == questionNumber)
+                        currQuestion = questions[i];
+
+                if (currQuestion == null)
+                    return false;
+
+                foreach (string ans in answers)
+                    for (int i = 0; i < currQuestion.Answers.Count(); i++)
+                        if (currQuestion.Answers[i].Answer.Equals(ans))
+                            using (DAOAnswer daoAnswer = new DAOAnswer())
+                            {
+                                daoAnswer.IncrementVotes(currQuestion.Answers[i].Id);
+                                answerFound = true;
+                            }
             }
 
             if (!answerFound)
-            {
-                if (questionDetails.QuestionType == 2)
-                {
-                    using (DAOAnswer dao = new DAOAnswer())
+                if (currQuestion.QuestionType == 2)
+                    using (DAOAnswer daoAnswer = new DAOAnswer())
                     {
                         DTOAnswer newAnswer = new DTOAnswer();
                         newAnswer.Answer = answers.First().ToString();
                         newAnswer.Predefined = false;
-                        newAnswer.QuestionId = questionDetails.Id;
+                        newAnswer.QuestionId = currQuestion.Id;
                         newAnswer.Votes = 1;
-                        dao.CreateAnswer(newAnswer);
+                        daoAnswer.CreateAnswer(newAnswer);
                     }
-                }
                 else
                     return false;
-            }
             return true;
         }
     }
