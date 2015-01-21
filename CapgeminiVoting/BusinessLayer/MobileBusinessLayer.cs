@@ -16,8 +16,6 @@ namespace CapgeminiVoting.BusinessLayer
             EventDetailsModel eventDetails = null;
             QuestionModel questionDetails = null;
 
-
-            
             using (DAOEvent dao = new DAOEvent())
             {
                 DTOEvent dtoEvent = dao.GetEventById(eventId);
@@ -38,6 +36,9 @@ namespace CapgeminiVoting.BusinessLayer
             if (questionDetails == null)
                 return false;
 
+
+            bool answerFound = false;
+
             foreach(string ans in answers)
             {
                 for (int i = 0; i < questionDetails.Answers.Count(); i++ )
@@ -47,23 +48,28 @@ namespace CapgeminiVoting.BusinessLayer
                         using (DAOAnswer dao = new DAOAnswer())
                         {
                             dao.IncrementVotes(questionDetails.Answers[i].Id);
+                            answerFound = true;
                         }
                     }
-                    else if (questionDetails.QuestionType == 2) // Free text answer
-                    {
-                        // Update nog meerdere keren, moet aangepast worden voor maar 1 keer
-                        using (DAOAnswer dao = new DAOAnswer())
-                        {
-                            DTOAnswer newAnswer = new DTOAnswer();
-                            newAnswer.Answer = ans;
-                            newAnswer.Predefined = false;
-                            newAnswer.QuestionId = questionDetails.Id;
-                            newAnswer.Votes = 0;
-                            dao.CreateAnswer(newAnswer);
-                        }
-                    }
-
                 }
+            }
+
+            if (!answerFound)
+            {
+                if (questionDetails.QuestionType == 2)
+                {
+                    using (DAOAnswer dao = new DAOAnswer())
+                    {
+                        DTOAnswer newAnswer = new DTOAnswer();
+                        newAnswer.Answer = answers.First().ToString();
+                        newAnswer.Predefined = false;
+                        newAnswer.QuestionId = questionDetails.Id;
+                        newAnswer.Votes = 1;
+                        dao.CreateAnswer(newAnswer);
+                    }
+                }
+                else
+                    return false;
             }
             return true;
         }
