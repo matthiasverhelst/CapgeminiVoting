@@ -109,16 +109,35 @@ namespace CapgeminiVoting.Controllers
             return View(model);
         }
 
-        public ActionResult ResultDetails(int eventId)
+        public ActionResult EventResult(int id)
         {
-            //TODO: Return results of this specific event using ResultModel.
-            return View();
+            if (AdminBusinessLayer.IsEventOwner(id, User.Identity.GetUserId()))
+            {
+                ViewBag.EventId = id;
+                return View();
+            }
+
+            return View("Index");
         }
+
         public ActionResult DeleteEvent(int id)
         {
             AdminBusinessLayer.DeleteEvent(id);
             IList<EventOverviewModel> model = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
             return View("Index", model);
+        }
+
+        [HttpGet]
+        public JsonResult GetQuestions(int eventId)
+        {
+            var eventDetails = AdminBusinessLayer.GetEventById(eventId);
+            return Json(eventDetails.Questions.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetQuestionResult(int questionId)
+        {
+            return Json(AdminBusinessLayer.GetQuestionResult(questionId), JsonRequestBehavior.AllowGet);
         }
     }
 }

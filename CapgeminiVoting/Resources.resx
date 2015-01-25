@@ -210,4 +210,16 @@
   <data name="Modify_event" xml:space="preserve">
     <value>Modify event</value>
   </data>
+  <data name="Event_result_title" xml:space="preserve">
+    <value>Event result</value>
+  </data>
+  <data name="Refresh_in" xml:space="preserve">
+    <value>Refresh in:</value>
+  </data>
+  <data name="Select_question" xml:space="preserve">
+    <value>Select question:</value>
+  </data>
+  <data name="Back_to_event_list" xml:space="preserve">
+    <value>Back to event list</value>
+  </data>
 </root>

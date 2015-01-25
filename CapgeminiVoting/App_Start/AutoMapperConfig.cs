@@ -19,6 +19,7 @@ namespace CapgeminiVoting.App_Start
             Mapper.CreateMap<EventDetailsModel, DTOEvent>();
             Mapper.CreateMap<QuestionModel, DTOQuestion>();
             Mapper.CreateMap<AnswerModel, DTOAnswer>();
+            Mapper.CreateMap<DTOAnswer, AnswerResultModel>();
         }
     }
 }
