@@ -29,22 +29,24 @@ textarea {
     background-color: #00A0D7;
 }
 
-.header-bottom-left {
-    background-color: red;
-    width: 20%;
-    height: 50px;
-    background-color: white;
-    border-top-right-radius: 100px;
-    float: left;
-
+.header {
+    color: white;
 }
 
-.header-bottom-right {
-    background-color: red;
-    background-color: red;
-    width: 80%;
-    height: 50px;
-    background-color: white;
-    border-top-left-radius: 100px;
+.header a {
+    color: white;
+}
+
+.header a:hover {
+    color: #21496C;
+}
+
+#capgemini-logo {
+    height: 40px;
     float: left;
+    margin: 5px 15px 5px 0px;
+}
+
+.navbar-fixed-top {
+    border-bottom: 1px solid #005B78;
 }
