@@ -21,6 +21,12 @@ namespace CapgeminiVoting.Controllers
             int eventCode;
             QuestionInfoModel model = new QuestionInfoModel();
 
+            if (String.IsNullOrEmpty(questionRequest.EventCode))
+            {
+                TempData["Message"] = "No event code filled in.";
+                return RedirectToAction("Index");
+            } 
+            
             try 
             {
                 eventCode = Convert.ToInt32(questionRequest.EventCode);
@@ -31,7 +37,7 @@ namespace CapgeminiVoting.Controllers
                 return RedirectToAction("Index");
             }
 
-            IList<QuestionModel> questionList = CommonBusinessLayer.getQuestionsByEvent(eventCode);
+            IList<QuestionModel> questionList = CommonBusinessLayer.GetQuestionsByEvent(eventCode);
 
             if (questionList.Count() >= questionRequest.QuestionNumber && questionRequest.QuestionNumber > 0)
             {
@@ -71,8 +77,8 @@ namespace CapgeminiVoting.Controllers
                 TempData["Message"] = Resources.Err_event_not_numeric;
                 return RedirectToAction("Index");
             }
-            
-            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber) != true)
+
+            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber, voteResult.Answer) != true)
             {
                 TempData["Message"] = Resources.Err_unable_to_update_answer_on_db;
                 return RedirectToAction("Index");

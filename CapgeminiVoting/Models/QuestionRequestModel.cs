@@ -8,7 +8,6 @@ namespace CapgeminiVoting.Models
 {
     public class QuestionRequestModel
     {
-        [Required(ErrorMessage = "")]
         public string EventCode { get; set; }
 
         public int QuestionNumber { get; set; }

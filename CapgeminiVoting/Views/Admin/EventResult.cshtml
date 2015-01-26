@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Event Result";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Content/createEvent.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/jchartfx.css")">
+
+<div class="row">
+
+    <div class="col-md-2">
+        <br /><img alt="" src="@Url.Content("~/Images/CapBE.png")">
+    </div>
+
+    <div class="col-md-10">
+
+        <br />
+        <label id="title">@Resources.Event_result_title</label> <br /> <br />
+
+        <label for="select-choice-0" class="select">
+            @Resources.Select_question
+        </label>
+        <select name="select-choice-0" id="selectBox"></select> <br />
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink(Resources.Back_to_event_list, "Index")
+        <div>@Resources.Refresh_in</div>
+        <div id="Refresh">10</div>
+    </div>
+
+    <div id="eventList" class="col-md-10">
+        <div id="ChartDiv" style="width: 600px; height: 400px; display: inline-block"></div>
+        <div id="ChartDiv2" style="width: 600px; height: 400px; display: inline-block"></div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        var viewBag = { questionsLink : "@Url.Action("GetQuestions", "Admin", new { eventId = ViewBag.EventId })", questionResult : "@Url.Action("GetQuestionResult", "Admin")"};
+    </script>
+    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.system.js"></script>
+    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.coreVector.js"></script>
+    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.advanced.js"></script>
+    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.vectorTemplates.js"></script>
+    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.animation.js"></script>
+    <script type="text/javascript" src="~/Scripts/graph.js"></script>
+}

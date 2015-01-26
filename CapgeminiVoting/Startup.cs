@@ -54,8 +54,8 @@ namespace CapgeminiVoting
                                                                Question = "Was de pizza te pikant?",
                                                                QuestionType = 0,
                                                                QuestionNumber = 2,
-                                                               Answers = new List<DTOAnswer>()
-                                                               {
+                                                               Answers = new List<DTOAnswer>()    
+                                                            {
                                                                    new DTOAnswer
                                                                    {
                                                                        Answer = "Yes.",
@@ -71,21 +71,9 @@ namespace CapgeminiVoting
                                                            new DTOQuestion
                                                            {
                                                                Question = "Is de Matti weird?",
-                                                               QuestionType = 0,
+                                                               QuestionType = 2,
                                                                QuestionNumber = 1,
                                                                Answers = new List<DTOAnswer>()
-                                                               {
-                                                                   new DTOAnswer
-                                                                   {
-                                                                       Answer = "Yes.",
-                                                                       Predefined = true
-                                                                   },
-                                                                   new DTOAnswer
-                                                                   {
-                                                                       Answer = "FUCK YES.",
-                                                                       Predefined = true
-                                                                   }
-                                                               }
                                                            }
                                                        }
                                 };

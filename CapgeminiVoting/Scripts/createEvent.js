@@ -1,13 +1,18 @@
 $(document).ready(function () {
     showOrHideRemoveQuestion();
-    showOrHideRemoveAnswer(0);
+    bindQuestionTypeTrigger();
+    $(".questionType").trigger("change");
+
+    for (var i = 0; i <= viewBag.questionCount; i++)
+    {
+        showOrHideRemoveAnswer(i);
+    }
 	
 	$("#Name").keyup(function() {
 		enableOrDisableSubmitButton();
 	});
 
 	enableOrDisableSubmitButton();
-	bindQuestionTypeTrigger();
 });
 
 function bindQuestionTypeTrigger()
@@ -63,7 +68,7 @@ function showOrHideRemoveAnswer(question)
 {
     var answersDiv = ("#answersDiv").concat(question);
     var removeAnswerClass = (".removeAnswer").concat(question);
-    if ($(answersDiv.concat(" > input")).length >= 4) {
+    if ($(answersDiv.concat(" > input")).length > 6) {
         $(removeAnswerClass).show();
     }
     else {
@@ -97,6 +102,12 @@ function addQuestion(questionsIndex)
 	hiddenInput.setAttribute("name", "Questions.Index");
 	hiddenInput.setAttribute("value", questionsIndex);
 
+	var hiddenIdInput = document.createElement("input");
+	hiddenIdInput.setAttribute("type", "hidden");
+	hiddenIdInput.setAttribute("id", ("Questions[").concat(questionsIndex).concat("].Id"));
+	hiddenIdInput.setAttribute("name", ("Questions[").concat(questionsIndex).concat("].Id"));
+	hiddenIdInput.setAttribute("value", "0");
+
 	var questionInput = document.createElement("input");
 	questionInput.setAttribute("type", "text");
 	questionInput.setAttribute("id", ("Questions[").concat(questionsIndex).concat("].Question"));
@@ -106,6 +117,7 @@ function addQuestion(questionsIndex)
 
 	question.appendChild(questionLabel);
 	question.appendChild(hiddenInput);
+	question.appendChild(hiddenIdInput);
 	question.appendChild(questionInput);
 	
 	var questionType = document.createElement("div");
@@ -151,6 +163,12 @@ function addQuestion(questionsIndex)
 	hiddenInput1.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers.Index"));
 	hiddenInput1.setAttribute("value", "0");
 
+	var hiddenIdInput1 = document.createElement("input");
+	hiddenIdInput1.setAttribute("type", "hidden");
+	hiddenIdInput1.setAttribute("id", "Questions[".concat(question).concat("].Answers[0].Id"));
+	hiddenIdInput1.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers[0].Id"));
+	hiddenIdInput1.setAttribute("value", "0");
+
 	var answerInput1 = document.createElement("input");
 	answerInput1.setAttribute("type", "text");
 	answerInput1.setAttribute("id", ("Questions[").concat(questionsIndex).concat("].Answers[0].Answer"));
@@ -171,6 +189,12 @@ function addQuestion(questionsIndex)
 	hiddenInput2.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers.Index"));
 	hiddenInput2.setAttribute("value", "1");
 
+	var hiddenIdInput2 = document.createElement("input");
+	hiddenIdInput2.setAttribute("type", "hidden");
+	hiddenIdInput2.setAttribute("id", "Questions[".concat(question).concat("].Answers[1].Id"));
+	hiddenIdInput2.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers[1].Id"));
+	hiddenIdInput2.setAttribute("value", "0");
+
 	var answerInput2 = document.createElement("input");
 	answerInput2.setAttribute("type", "text");
 	answerInput2.setAttribute("id", ("Questions[").concat(questionsIndex).concat("].Answers[1].Answer"));
@@ -187,9 +211,11 @@ function addQuestion(questionsIndex)
 
 	div.appendChild(answerLabel);
 	div.appendChild(hiddenInput1);
+	div.appendChild(hiddenIdInput1);
 	div.appendChild(answerInput1);
 	div.appendChild(removeAnswer1);
 	div.appendChild(hiddenInput2);
+	div.appendChild(hiddenIdInput2);
 	div.appendChild(answerInput2);
 	div.appendChild(removeAnswer2);
 	
@@ -228,6 +254,12 @@ function addAnswer(question, answer)
     hiddenInput.setAttribute("name", "Questions[".concat(question).concat("].Answers.Index"));
     hiddenInput.setAttribute("value", answer);
 
+    var hiddenIdInput = document.createElement("input");
+    hiddenIdInput.setAttribute("type", "hidden");
+    hiddenIdInput.setAttribute("id", "Questions[".concat(question).concat("].Answers[").concat(answer).concat("].Id"));
+    hiddenIdInput.setAttribute("name", "Questions[".concat(question).concat("].Answers[").concat(answer).concat("].Id"));
+    hiddenIdInput.setAttribute("value", "0");
+
 	var answerInput = document.createElement("input");
 	answerInput.setAttribute("type", "text");
 	answerInput.setAttribute("id", (("Questions[").concat(question).concat("].Answers[").concat(answer).concat("].Answer")));
@@ -242,7 +274,8 @@ function addAnswer(question, answer)
 	removeAnswer.setAttribute("class", "removeAnswer removeAnswer".concat(question));
 	removeAnswer.setAttribute("onclick", "removeAnswer(".concat(question).concat(",").concat(answer).concat(")"));
 	
-	document.getElementById(("answersDiv").concat(question)).appendChild(hiddenInput)
+	document.getElementById(("answersDiv").concat(question)).appendChild(hiddenInput);
+	document.getElementById(("answersDiv").concat(question)).appendChild(hiddenIdInput);
 	document.getElementById(("answersDiv").concat(question)).appendChild(answerInput);
 	document.getElementById(("answersDiv").concat(question)).appendChild(removeAnswer);
 	document.getElementById(("addAnswer").concat(question)).onclick = function () { addAnswer(question, (answer + 1)); };
@@ -265,10 +298,12 @@ function removeAnswer(question, answer)
     var answersDiv = document.getElementById(("answersDiv").concat(question));
     var answerToRemove = document.getElementById(("Questions[").concat(question).concat("].Answers[").concat(answer).concat("].Answer"));
     var hiddenInputToRemove = document.getElementById(("Questions[").concat(question).concat("].Answers[").concat(answer).concat("].Index"));
+    var hiddenIdInputToRemove = document.getElementById(("Questions[").concat(question).concat("].Answers[").concat(answer).concat("].Id"));
     var closeImageToRemove = document.getElementById(("removeAnswer").concat(question).concat(answer));
     
     answersDiv.removeChild(answerToRemove);
     answersDiv.removeChild(hiddenInputToRemove);
+    answersDiv.removeChild(hiddenIdInputToRemove);
     answersDiv.removeChild(closeImageToRemove);
 
     showOrHideRemoveAnswer(question);

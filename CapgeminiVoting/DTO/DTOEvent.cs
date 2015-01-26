@@ -15,22 +15,22 @@ namespace CapgeminiVoting.DTO
         [Required]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         [Required]
         [Column("name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         [Required]
         [Column("start_date")]
-        public DateTime CreationDate { get; set; }
+        public virtual DateTime CreationDate { get; set; }
 
         [Column("description")]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         [Required]
         [Column("user_name")]
-        public string UserName { get; set; }
+        public virtual string UserName { get; set; }
 
         [ForeignKey("UserName")]
         public virtual ApplicationUser User { get; set; }

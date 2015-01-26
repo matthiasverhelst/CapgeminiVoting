@@ -26,6 +26,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
+                    var emailString = "mailto:&subject=Capgemini Voting App: Code to vote&body=Dear Colleague,%0D%0A %0D%0AI am pleased to invite you to join the following event on the Voting app:%0D%0A  Event name: " + item.Name + " %0D%0A  Event description: " + item.Id + " %0D%0A  Event ID: " + item.Id + " %0D%0A%0D%0AYou can reach the Voting app via www.CapgeminiSuperVoting.com %0D%0A%0D%0AKind regards";
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
@@ -35,13 +36,13 @@
                             <input type="button" value="@Resources.Modify" onclick="location.href='@Url.Action("ModifyEvent", new { item.Id })'" class="btn btn-primary btn-xs" />
                         </td>
                         <td>
-                            <input type="button" value="@Resources.Results" onclick="location.href='@Url.Action("ResultDetails", new { item.Id })'" class="btn btn-primary btn-xs" />
+                            <input type="button" value="@Resources.Results" onclick="location.href='@Url.Action("EventResult", new { item.Id })'" class="btn btn-primary btn-xs" />
                         </td>
                         <td>
                             <input type="button" value="@Resources.Delete" onclick="location.href = '@Url.Action("DeleteEvent", new { item.Id })'" class="btn btn-primary btn-xs" />
                         </td>
                         <td>
-                            <input type="button" value="@Resources.Share" onclick="location.href='@Url.Action("EventDetails2", new { item.Id })'" class="btn btn-primary btn-xs" />
+                            <input type="button" value="@Resources.Share" onclick="window.location.href = '@emailString';" class="btn btn-primary btn-xs" />
                         </td>
                     </tr>
                 }

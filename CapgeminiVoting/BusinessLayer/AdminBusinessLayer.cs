@@ -32,8 +32,6 @@ namespace CapgeminiVoting.BusinessLayer
             using(DAOEvent dao = new DAOEvent())
             {
                 IList<DTOEvent> events = dao.GetEventsByUser(userName);
-                if (events.Count == 0)
-                    return result;
 
                 foreach (DTOEvent dtoEvent in events)
                 {
@@ -49,9 +47,7 @@ namespace CapgeminiVoting.BusinessLayer
             List<AnswerModel> result = new List<AnswerModel>();
             using (DAOAnswer dao = new DAOAnswer())
             {
-                IList<DTOAnswer> answers = dao.getAnswersByQuestion(questionId);
-                if (answers.Count == 0)
-                    return result;
+                IList<DTOAnswer> answers = dao.GetAnswersByQuestion(questionId);
 
                 foreach (DTOAnswer dtoAnswer in answers)
                 {
@@ -84,6 +80,7 @@ namespace CapgeminiVoting.BusinessLayer
                 return daoEvent.CreateEvent(dtoEvent);
             }
         }
+
         public static bool DeleteEvent(int eventID)
         {
             using (DAOEvent dao = new DAOEvent())
@@ -111,6 +108,7 @@ namespace CapgeminiVoting.BusinessLayer
                 index++;
                 foreach (DTOAnswer answer in question.Answers)
                 {
+                    answer.QuestionId = question.Id;
                     answer.Predefined = true;
                 }
             }
@@ -118,6 +116,35 @@ namespace CapgeminiVoting.BusinessLayer
             using(DAOEvent daoEvent = new DAOEvent())
             {
                 return daoEvent.ModifyEvent(dtoEvent);
+            }
+        }
+
+        public static bool IsEventOwner(int eventId, string userName)
+        {
+            using (var daoEvent = new DAOEvent())
+            {
+                var dtoEvent = daoEvent.GetEventById(eventId);
+                return userName.Equals(dtoEvent.UserName);
+            }
+        }
+
+        public static QuestionResultModel GetQuestionResult(int questionId)
+        {
+            DTOQuestion dtoQuestion = null;
+            using (var daoQuestion = new DAOQuestion())
+            {
+                dtoQuestion = daoQuestion.GetQuestionById(questionId);
+
+                var questionResult = new QuestionResultModel();
+                questionResult.Question = dtoQuestion.Question;
+                questionResult.AnswerResult = new List<AnswerResultModel>();
+
+                foreach (var answer in dtoQuestion.Answers)
+                {
+                    questionResult.AnswerResult.Add(Mapper.Map<DTOAnswer, AnswerResultModel>(answer));
+                }
+
+                return questionResult;
             }
         }
     }

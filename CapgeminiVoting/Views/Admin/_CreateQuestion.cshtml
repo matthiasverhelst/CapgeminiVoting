@@ -10,29 +10,33 @@
 
     <img src="@Url.Content("~/Images/close.png")" alt="Remove question" class="removeQuestion" onclick="removeQuestion(@Model.QuestionNumber)" />
     <div class="form-group">
-        @Html.Label(Resources.Question)
+        @Html.LabelFor(m => m.Question)
         <input type="hidden" id="@Model.QuestionNumber" name="Questions.Index" value="@Model.QuestionNumber" />
+        @Html.Hidden("Questions[" + Model.QuestionNumber + "].Id", Model.QuestionNumber, new { id = "Questions[" + Model.QuestionNumber + "].Id" })
+
         @Html.TextBox("Questions[" + Model.QuestionNumber + "].Question", Model.Question, new { @placeholder = Resources.Enter_question, @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.Label(Resources.Type)
+        @Html.LabelFor(m => m.QuestionType)
         @Html.DropDownList("Questions[" + Model.QuestionNumber + "].QuestionType", new List<SelectListItem> {
-                            new SelectListItem { Value = "0", Text = Resources.Multiple_choice },
-                            new SelectListItem { Value = "1", Text = Resources.Checkboxes },
-                            new SelectListItem { Value = "2", Text = Resources.Free_text }
+                            new SelectListItem { Value = "0", Text = Resources.Multiple_choice, Selected = (Model.QuestionType == 0) },
+                            new SelectListItem { Value = "1", Text = Resources.Checkboxes, Selected = (Model.QuestionType == 1) },
+                            new SelectListItem { Value = "2", Text = Resources.Free_text, Selected = (Model.QuestionType == 2) }
                         }, new { @class = "form-control questionType" })
     </div>
 
     <div id="@answersDivId" class="form-group answersDiv">
-        @Html.Label(Resources.Possible_answers)
+        @Html.LabelFor(m => m.Answers)
         @if (Model.Answers != null)
         {
             for (int i = 0; i < Model.Answers.Count; i++)
-            {
+            {                                
                 var imageId = "removeAnswer" + Model.QuestionNumber + "" + i;
                 var imageClass = "removeAnswer removeAnswer" + Model.QuestionNumber;
 
                 <input type="hidden" id="Questions[@Model.QuestionNumber].Answers[@i].Index" name="Questions[@Model.QuestionNumber].Answers.Index" value="@i" />
+                @Html.Hidden("Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Id", Model.Answers[i].Id, new { id = "Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Id" })
+            
                 @Html.TextBox("Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", Model.Answers[i].Answer, new { id = "Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", @placeholder = Resources.Enter_answer, @class = "form-control answer" })<!--
                 --><img src="@Url.Content("~/Images/close.png")" alt="Remove this answer" id="@imageId" class="@imageClass" onclick="removeAnswer(@Model.QuestionNumber, @i)">
             }
@@ -40,10 +44,13 @@
         else
         {
             for (int i = 0; i < 2; i++)
-            {
+            {                
                 var imageId = "removeAnswer" + Model.QuestionNumber + "" + i;
                 var imageClass = "removeAnswer removeAnswer" + Model.QuestionNumber;
+                
                 <input type="hidden" id="Questions[@Model.QuestionNumber].Answers[@i].Index" name="Questions[@Model.QuestionNumber].Answers.Index" value="@i" />
+                @Html.Hidden("Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Id", "0", new { id = "Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Id" })
+            
                 @Html.TextBox("Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", "", new { id = "Questions[" + Model.QuestionNumber + "].Answers[" + i + "].Answer", @placeholder = Resources.Enter_answer, @class = "form-control answer" })<!--
                 --><img src="@Url.Content("~/Images/close.png")" alt="Remove this answer" id="@imageId" class="@imageClass" onclick="removeAnswer(@Model.QuestionNumber, @i)">
             }

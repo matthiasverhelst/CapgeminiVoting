@@ -11,22 +11,48 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class MobileBusinessLayer
     {
-        public static bool SetAnswerCount(int eventCode, int questionNumber)
+        public static bool SetAnswerCount(int eventId, int questionNumber, IList<string> answers)
         {
+            IList<DTOQuestion> questions = null;
+            DTOQuestion currQuestion = null;
+            bool answerFound = false;
 
-            // check if answer exists for this question
-            // daoEvent.GetEventById
+            using (DAOQuestion daoQuestion = new DAOQuestion())
+            {
+                questions = daoQuestion.GetQuestionsByEvent(eventId);
+                if (questions.Count == 0)
+                    return false;
 
-            // if it does not, get questionID based on eventcode
+                for (int i = 0; i < questions.Count(); i++ )
+                    if (questions[i].QuestionNumber == questionNumber)
+                        currQuestion = questions[i];
 
-            // and create this answer knowing: 
-            // - answer
-            // - predefined = false
-            // - votes = 0
-            // - questionID = ?
+                if (currQuestion == null)
+                    return false;
 
-            // if it does, update answer
+                foreach (string ans in answers)
+                    for (int i = 0; i < currQuestion.Answers.Count(); i++)
+                        if (currQuestion.Answers[i].Answer.Equals(ans))
+                            using (DAOAnswer daoAnswer = new DAOAnswer())
+                            {
+                                daoAnswer.IncrementVotes(currQuestion.Answers[i].Id);
+                                answerFound = true;
+                            }
+            }
 
+            if (!answerFound)
+                if (currQuestion.QuestionType == 2)
+                    using (DAOAnswer daoAnswer = new DAOAnswer())
+                    {
+                        DTOAnswer newAnswer = new DTOAnswer();
+                        newAnswer.Answer = answers.First().ToString();
+                        newAnswer.Predefined = false;
+                        newAnswer.QuestionId = currQuestion.Id;
+                        newAnswer.Votes = 1;
+                        daoAnswer.CreateAnswer(newAnswer);
+                    }
+                else
+                    return false;
             return true;
         }
     }

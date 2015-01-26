@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Web;
 
 namespace CapgeminiVoting.Models
 {
-    public class AnswerModel
+    public class AnswerResultModel
     {
-        public int Id { get; set; }
-        
         public string Answer { get; set; }
+
+        public int Votes { get; set; }
     }
 }

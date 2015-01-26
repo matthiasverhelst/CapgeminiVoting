@@ -37,11 +37,16 @@ namespace CapgeminiVoting.Controllers
         {
             ViewBag.Title = Resources.Modify_event;
             EventDetailsModel model = AdminBusinessLayer.GetEventById(id);
+
             if (model == null)
             {
                 return View("CreateEvent");
             }
 
+            var sortedQuestions = model.Questions.ToList();
+            sortedQuestions.Sort();
+            model.Questions = sortedQuestions;
+            
             return View("CreateEvent", model);
         }
 
@@ -51,7 +56,18 @@ namespace CapgeminiVoting.Controllers
             bool result = false;
 
             if (@event != null)
-                result = AdminBusinessLayer.CreateEvent(@event);
+            {
+                var questionList = @event.Questions.ToList();
+                questionList.RemoveAll(question => string.IsNullOrWhiteSpace(question.Question));
+                foreach (var question in @event.Questions)
+                {
+                    var answerList = question.Answers.ToList();
+                    answerList.RemoveAll(answer => string.IsNullOrWhiteSpace(answer.Answer));
+                    question.Answers = answerList;
+                }
+            }
+
+            result = AdminBusinessLayer.CreateEvent(@event);
 
             if (result)
                 return RedirectToAction("Index");
@@ -61,6 +77,23 @@ namespace CapgeminiVoting.Controllers
         [HttpPost]
         public ActionResult ModifyEvent(EventDetailsModel @event)
         {
+            if (@event == null)
+            {
+                RedirectToAction("Index");
+            }
+
+            var questionList = @event.Questions.ToList();
+            questionList.RemoveAll(question => string.IsNullOrWhiteSpace(question.Question));
+            foreach (var question in @event.Questions)
+            {
+                if (question.Answers != null)
+                {
+                    var answerList = question.Answers.ToList();
+                    answerList.RemoveAll(answer => string.IsNullOrWhiteSpace(answer.Answer));
+                    question.Answers = answerList;
+                }
+            }
+
             AdminBusinessLayer.ModifyEvent(@event);
             return RedirectToAction("Index");
         }
@@ -76,16 +109,35 @@ namespace CapgeminiVoting.Controllers
             return View(model);
         }
 
-        public ActionResult ResultDetails(int eventId)
+        public ActionResult EventResult(int id)
         {
-            //TODO: Return results of this specific event using ResultModel.
-            return View();
+            if (AdminBusinessLayer.IsEventOwner(id, User.Identity.GetUserId()))
+            {
+                ViewBag.EventId = id;
+                return View();
+            }
+
+            return View("Index");
         }
-        public ActionResult DeleteEvent(int eventID)
+
+        public ActionResult DeleteEvent(int id)
         {
-            AdminBusinessLayer.DeleteEvent(eventID);
+            AdminBusinessLayer.DeleteEvent(id);
             IList<EventOverviewModel> model = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
-            return View(model);
+            return View("Index", model);
+        }
+
+        [HttpGet]
+        public JsonResult GetQuestions(int eventId)
+        {
+            var eventDetails = AdminBusinessLayer.GetEventById(eventId);
+            return Json(eventDetails.Questions.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetQuestionResult(int questionId)
+        {
+            return Json(AdminBusinessLayer.GetQuestionResult(questionId), JsonRequestBehavior.AllowGet);
         }
     }
 }
