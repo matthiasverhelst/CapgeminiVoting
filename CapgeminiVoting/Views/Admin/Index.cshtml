@@ -26,7 +26,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var emailString = "mailto:&subject=Capgemini Voting App: Code to vote&body=Dear Colleague,%0D%0A %0D%0AI am pleased to invite you to join the following event on the Voting app:%0D%0A  Event name: " + item.Name + " %0D%0A  Event description: " + item.Id + " %0D%0A  Event ID: " + item.Id + " %0D%0A%0D%0AYou can reach the Voting app via www.CapgeminiSuperVoting.com %0D%0A%0D%0AKind regards";
+                    var emailString = string.Format(@Resources.shareEventMail, item.Name, item.Description, item.Id);
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>

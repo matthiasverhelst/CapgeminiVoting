@@ -222,4 +222,7 @@
   <data name="Back_to_event_list" xml:space="preserve">
     <value>Back to event list</value>
   </data>
+  <data name="shareEventMail" xml:space="preserve">
+    <value>mailto:&amp;subject=Capgemini Voting App: Code to vote&amp;body=Dear Colleague,%0D%0A %0D%0AI am pleased to invite you to join the following event on the Voting app:%0D%0A  Event name: {0} %0D%0A  Event description: {1} %0D%0A  Event ID: {2} %0D%0A%0D%0AYou can reach the Voting app via www.CapgeminiSuperVoting.com %0D%0A%0D%0AKind regards</value>
+  </data>
 </root>
