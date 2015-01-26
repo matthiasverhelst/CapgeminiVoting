@@ -222,4 +222,7 @@
   <data name="Back_to_event_list" xml:space="preserve">
     <value>Back to event list</value>
   </data>
+  <data name="Err_no_event_code" xml:space="preserve">
+    <value>No event code filled in.</value>
+  </data>
 </root>

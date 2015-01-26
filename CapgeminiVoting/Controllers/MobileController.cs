@@ -23,7 +23,7 @@ namespace CapgeminiVoting.Controllers
 
             if (String.IsNullOrEmpty(questionRequest.EventCode))
             {
-                TempData["Message"] = "No event code filled in.";
+                TempData["Message"] = Resources.Err_no_event_code;
                 return RedirectToAction("Index");
             } 
             
