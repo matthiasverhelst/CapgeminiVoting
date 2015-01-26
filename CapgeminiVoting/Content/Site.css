@@ -50,3 +50,7 @@ textarea {
 .navbar-fixed-top {
     border-bottom: 1px solid #005B78;
 }
+
+.pointer {
+    cursor: pointer;
+}

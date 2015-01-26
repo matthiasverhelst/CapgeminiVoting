@@ -217,6 +217,9 @@
     <Content Include="Images\CapBE.png" />
     <Content Include="Images\capgemini_logo.png" />
     <Content Include="Images\close.png" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\share.png" />
+    <Content Include="Images\results.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

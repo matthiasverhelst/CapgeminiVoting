@@ -26,23 +26,23 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var emailString = string.Format(@Resources.shareEventMail, item.Name, item.Description, item.Id);
+                    var emailString = string.Format(Resources.shareEventMail, item.Name, item.Description, item.Id);
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         <td>@Html.DisplayFor(modelItem => item.CreationDate)</td>  <!--.ToString("dd-MM-yy")-->
                         <td>@Html.DisplayFor(modelItem => item.Description)</td>
                         <td>
-                            <input type="button" value="@Resources.Modify" onclick="location.href='@Url.Action("ModifyEvent", new { item.Id })'" class="btn btn-primary btn-xs" />
+                            <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/edit.png")" onclick="location.href='@Url.Action("ModifyEvent", new { item.Id })'" />
                         </td>
                         <td>
-                            <input type="button" value="@Resources.Results" onclick="location.href='@Url.Action("EventResult", new { item.Id })'" class="btn btn-primary btn-xs" />
+                            <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/results.png")" onclick="location.href='@Url.Action("EventResult", new { item.Id })'" />
                         </td>
                         <td>
-                            <input type="button" value="@Resources.Delete" onclick="location.href = '@Url.Action("DeleteEvent", new { item.Id })'" class="btn btn-primary btn-xs" />
+                            <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/close.png")" onclick="location.href = '@Url.Action("DeleteEvent", new { item.Id })'" />
                         </td>
                         <td>
-                            <input type="button" value="@Resources.Share" onclick="window.location.href = '@emailString';" class="btn btn-primary btn-xs" />
+                            <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/share.png")" onclick="window.location.href = '@emailString';" />
                         </td>
                     </tr>
                 }

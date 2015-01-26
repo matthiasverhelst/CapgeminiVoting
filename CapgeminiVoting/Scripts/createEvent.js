@@ -159,13 +159,13 @@ function addQuestion(questionsIndex)
 
 	var hiddenInput1 = document.createElement("input");
 	hiddenInput1.setAttribute("type", "hidden");
-	hiddenInput1.setAttribute("id", "Questions[".concat(question).concat("].Answers[0].Index"));
+	hiddenInput1.setAttribute("id", "Questions[".concat(questionsIndex).concat("].Answers[0].Index"));
 	hiddenInput1.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers.Index"));
 	hiddenInput1.setAttribute("value", "0");
 
 	var hiddenIdInput1 = document.createElement("input");
 	hiddenIdInput1.setAttribute("type", "hidden");
-	hiddenIdInput1.setAttribute("id", "Questions[".concat(question).concat("].Answers[0].Id"));
+	hiddenIdInput1.setAttribute("id", "Questions[".concat(questionsIndex).concat("].Answers[0].Id"));
 	hiddenIdInput1.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers[0].Id"));
 	hiddenIdInput1.setAttribute("value", "0");
 
@@ -185,13 +185,13 @@ function addQuestion(questionsIndex)
 
 	var hiddenInput2 = document.createElement("input");
 	hiddenInput2.setAttribute("type", "hidden");
-	hiddenInput2.setAttribute("id", "Questions[".concat(question).concat("].Answers[1].Index"));
+	hiddenInput2.setAttribute("id", "Questions[".concat(questionsIndex).concat("].Answers[1].Index"));
 	hiddenInput2.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers.Index"));
 	hiddenInput2.setAttribute("value", "1");
 
 	var hiddenIdInput2 = document.createElement("input");
 	hiddenIdInput2.setAttribute("type", "hidden");
-	hiddenIdInput2.setAttribute("id", "Questions[".concat(question).concat("].Answers[1].Id"));
+	hiddenIdInput2.setAttribute("id", "Questions[".concat(questionsIndex).concat("].Answers[1].Id"));
 	hiddenIdInput2.setAttribute("name", "Questions[".concat(questionsIndex).concat("].Answers[1].Id"));
 	hiddenIdInput2.setAttribute("value", "0");
 
@@ -205,7 +205,7 @@ function addQuestion(questionsIndex)
 	var removeAnswer2 = document.createElement("img");
 	removeAnswer2.setAttribute("src", "/Images/close.png");
 	removeAnswer2.setAttribute("alt", "Remove this answer");
-	removeAnswer1.setAttribute("id", "removeAnswer".concat(questionsIndex).concat("1"));
+	removeAnswer2.setAttribute("id", "removeAnswer".concat(questionsIndex).concat("1"));
 	removeAnswer2.setAttribute("class", "removeAnswer removeAnswer".concat(questionsIndex));
 	removeAnswer2.setAttribute("onclick", ("removeAnswer(").concat(questionsIndex).concat(", 1)"));
 
