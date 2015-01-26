@@ -37,7 +37,7 @@ namespace CapgeminiVoting.Controllers
                 return RedirectToAction("Index");
             }
 
-            IList<QuestionModel> questionList = CommonBusinessLayer.getQuestionsByEvent(eventCode);
+            IList<QuestionModel> questionList = CommonBusinessLayer.GetQuestionsByEvent(eventCode);
 
             if (questionList.Count() >= questionRequest.QuestionNumber && questionRequest.QuestionNumber > 0)
             {

@@ -11,7 +11,7 @@ namespace CapgeminiVoting.BusinessLayer
 {
     public class CommonBusinessLayer
     {
-        public static IList<QuestionModel> getQuestionsByEvent(int eventId)
+        public static IList<QuestionModel> GetQuestionsByEvent(int eventId)
         {
             List<QuestionModel> result = new List<QuestionModel>();
             using (DAOQuestion dao = new DAOQuestion())
