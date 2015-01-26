@@ -23,3 +23,30 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Header */
+.header {
+    background-color: #00A0D7;
+}
+
+.header {
+    color: white;
+}
+
+.header a {
+    color: white;
+}
+
+.header a:hover {
+    color: #21496C;
+}
+
+#capgemini-logo {
+    height: 40px;
+    float: left;
+    margin: 5px 15px 5px 0px;
+}
+
+.navbar-fixed-top {
+    border-bottom: 1px solid #005B78;
+}

@@ -340,6 +340,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mailto:&amp;subject=Capgemini Voting App: Code to vote&amp;body=Dear Colleague,%0D%0A %0D%0AI am pleased to invite you to join the following event on the Voting app:%0D%0A  Event name: {0} %0D%0A  Event description: {1} %0D%0A  Event ID: {2} %0D%0A%0D%0AYou can reach the Voting app via www.CapgeminiSuperVoting.com %0D%0A%0D%0AKind regards.
+        /// </summary>
+        public static string shareEventMail {
+            get {
+                return ResourceManager.GetString("shareEventMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string Table_code {
