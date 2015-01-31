@@ -228,4 +228,46 @@
   <data name="Err_no_event_code" xml:space="preserve">
     <value>No event code filled in.</value>
   </data>
+  <data name="Mail_already_registered" xml:space="preserve">
+    <value>This e-mail address has already been registered</value>
+  </data>
+  <data name="Capgemini_Voting" xml:space="preserve">
+    <value>Capgemini Voting</value>
+  </data>
+  <data name="Click_here_to_log_in" xml:space="preserve">
+    <value>Click here to log in.</value>
+  </data>
+  <data name="Confirm_email" xml:space="preserve">
+    <value>Confirm e-mail</value>
+  </data>
+  <data name="Email_link" xml:space="preserve">
+    <value>E-mail link</value>
+  </data>
+  <data name="Forgot_password" xml:space="preserve">
+    <value>Forgot your password</value>
+  </data>
+  <data name="Forgot_password_confirmation" xml:space="preserve">
+    <value>Forgot password confirmation</value>
+  </data>
+  <data name="Password_reset" xml:space="preserve">
+    <value>Your password has been reset.</value>
+  </data>
+  <data name="Please_check_mail_to_reset_password" xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="Please_confirm_email" xml:space="preserve">
+    <value>Please confirm your e-mail address first.</value>
+  </data>
+  <data name="Registration_succeeded" xml:space="preserve">
+    <value>Registration succeeded. An e-mail has been sent to activate your account.</value>
+  </data>
+  <data name="Reset_password" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="Reset_password_confirmation" xml:space="preserve">
+    <value>Reset password confirmation</value>
+  </data>
+  <data name="Thanks_for_confirming_email" xml:space="preserve">
+    <value>Thank you for confirming your e-mail.</value>
+  </data>
 </root>

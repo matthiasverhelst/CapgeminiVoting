@@ -71,8 +71,14 @@ namespace CapgeminiVoting.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var user = await UserManager.FindByNameAsync(model.Email);
+
+            if (user != null && !await UserManager.IsEmailConfirmedAsync(user.Id))
+            {
+                ModelState.AddModelError(String.Empty, Resources.Please_confirm_email);
+                return View(model);
+            }
+
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
@@ -158,20 +164,26 @@ namespace CapgeminiVoting.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your Capgemini voting account", "Please confirm your Capgemini voting account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    var message = new IdentityMessage();
+                    message.Destination = user.Email;
+                    message.Subject = "Confirm your Capgemini voting account";
+                    message.Body = "Please confirm your Capgemini voting account by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+                    var emailService = new EmailService();
+                    await emailService.SendAsync(message);
+
+                    TempData["RegisterMessage"] = Resources.Registration_succeeded;
                     return RedirectToAction("Index", "Mobile");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
+            ModelState.Remove(String.Empty);
+            ModelState.AddModelError(String.Empty, Resources.Mail_already_registered);
             return View(model);
         }
 
@@ -212,24 +224,23 @@ namespace CapgeminiVoting.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+
+                var message = new IdentityMessage();
+                message.Destination = user.Email;
+                message.Subject = "Reset your Capgemini voting account password";
+                message.Body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+                var emailService = new EmailService();
+                await emailService.SendAsync(message);
+
+                return View("ForgotPasswordConfirmation");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        //
-        // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
-        {
-            return View();
         }
 
         //

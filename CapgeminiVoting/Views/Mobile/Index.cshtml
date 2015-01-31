@@ -1,10 +1,14 @@
-﻿ 
-@{
-    ViewBag.Title = "Capgemini Voting";
+﻿@{
+    ViewBag.Title = Resources.Capgemini_Voting;
 }
-<br />
+
+@if (!string.IsNullOrWhiteSpace((string) TempData["RegisterMessage"]))
+{
+    <div class="alert alert-success" role="alert">@TempData["RegisterMessage"]</div>
+}
+
 <div class="jumbotron">
-    <h1>Capgemini Voting</h1>
+    <h1>@Resources.Capgemini_Voting</h1>
     <p class="lead">Please provide the event code given to you during the presentation.</p>
     @using (Html.BeginForm("Vote", "Mobile", FormMethod.Post))
     {
@@ -12,7 +16,7 @@
         {
             <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> @ViewBag.Message</div>
         }
-        <p>@Html.TextBox("EventCode", String.Empty) </p>
+        <p>@Html.TextBox("EventCode", String.Empty)</p>
         <input type="hidden" name="QuestionNumber" value="1">
         <p><input type="submit" value="Go! &raquo;" class="btn btn-primary btn-lg" /></p>
     }

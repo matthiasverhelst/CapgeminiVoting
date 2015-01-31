@@ -29,7 +29,7 @@ namespace CapgeminiVoting
             msg.IsBodyHtml = true;
 
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
-            NetworkCredential credentials = new System.Net.NetworkCredential("appvoting@gmail.com", "Voting123");
+            NetworkCredential credentials = new System.Net.NetworkCredential("appvoting@gmail.com", "Capvoting123");
             smtpClient.Credentials = credentials;
             smtpClient.EnableSsl = true;
             return smtpClient.SendMailAsync(msg);

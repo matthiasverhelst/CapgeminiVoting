@@ -6,7 +6,9 @@ namespace CapgeminiVoting.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
+        [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+(@capgemini\.com)$", ErrorMessage = "Only Capgemini e-mail adresses can be used.")]
         public string Email { get; set; }
     }
 
@@ -49,8 +51,9 @@ namespace CapgeminiVoting.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+(@capgemini\.com)$", ErrorMessage = "Only Capgemini e-mail adresses can be used.")]
         public string Email { get; set; }
 
         [Required]
@@ -66,7 +69,8 @@ namespace CapgeminiVoting.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+(@capgemini\.com)$", ErrorMessage = "Only Capgemini e-mail adresses can be used.")]
         public string Email { get; set; }
 
         [Required]
@@ -85,7 +89,8 @@ namespace CapgeminiVoting.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+(@capgemini\.com)$", ErrorMessage = "Only Capgemini e-mail adresses can be used.")]
         public string Email { get; set; }
 
         [Required]
@@ -106,7 +111,8 @@ namespace CapgeminiVoting.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+(@capgemini\.com)$", ErrorMessage = "Only Capgemini e-mail adresses can be used.")]
         public string Email { get; set; }
     }
 }
