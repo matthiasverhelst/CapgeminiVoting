@@ -105,14 +105,14 @@ namespace CapgeminiVoting
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new ApplicationUserManager(userStore);
                 ApplicationUser user = new ApplicationUser();
-                user.Email = "dummy@gmail.com";
+                user.Email = "dummy@capgemini.com";
                 user.EmailConfirmed = true;
                 user.LockoutEnabled = false;
                 user.LockoutEndDateUtc = null;
                 user.PhoneNumber = "027081777";
                 user.PhoneNumberConfirmed = true;
                 user.SecurityStamp = "kdafskfdjjkf";
-                user.UserName = "dummy@gmail.com";
+                user.UserName = "dummy@capgemini.com";
 
                 userManager.Create(user, "Test123");
             }
