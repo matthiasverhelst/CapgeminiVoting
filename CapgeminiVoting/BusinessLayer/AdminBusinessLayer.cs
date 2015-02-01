@@ -68,6 +68,7 @@ namespace CapgeminiVoting.BusinessLayer
             foreach (DTOQuestion question in dtoEvent.Questions)
             {
                 question.QuestionNumber = index;
+                question.VoterCount = 0;
                 index++;
                 foreach(DTOAnswer answer in question.Answers)
                 {
@@ -124,6 +125,8 @@ namespace CapgeminiVoting.BusinessLayer
             using (var daoEvent = new DAOEvent())
             {
                 var dtoEvent = daoEvent.GetEventById(eventId);
+                if (dtoEvent == null)
+                    return false;
                 return userName.Equals(dtoEvent.UserName);
             }
         }
@@ -137,6 +140,7 @@ namespace CapgeminiVoting.BusinessLayer
 
                 var questionResult = new QuestionResultModel();
                 questionResult.Question = dtoQuestion.Question;
+                questionResult.VoterCount = dtoQuestion.VoterCount;
                 questionResult.AnswerResult = new List<AnswerResultModel>();
 
                 foreach (var answer in dtoQuestion.Answers)

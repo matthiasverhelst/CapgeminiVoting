@@ -50,9 +50,8 @@ function getData() {
 
 	 $.getJSON(viewBag.questionResult + "?questionId=" + selectedOption)
 	.done(function(json) {
-		
+	    $("#voterCount").text(json.VoterCount);
 		generateChart(json);
-
 	}).fail(function(jqxhr, textStatus, error) {
 		var err = textStatus + ", " + error;
 		alert("Request Failed: " + err);

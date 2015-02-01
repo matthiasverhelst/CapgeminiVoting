@@ -30,18 +30,23 @@ namespace CapgeminiVoting.BusinessLayer
                 if (currQuestion == null)
                     return false;
 
+                daoQuestion.IncrementVoterCount(currQuestion.Id);
+
                 foreach (string ans in answers)
                     for (int i = 0; i < currQuestion.Answers.Count(); i++)
                         if (currQuestion.Answers[i].Answer.Equals(ans))
+                        {
                             using (DAOAnswer daoAnswer = new DAOAnswer())
                             {
                                 daoAnswer.IncrementVotes(currQuestion.Answers[i].Id);
                                 answerFound = true;
                             }
+                        }
             }
 
             if (!answerFound)
                 if (currQuestion.QuestionType == 2)
+                {
                     using (DAOAnswer daoAnswer = new DAOAnswer())
                     {
                         DTOAnswer newAnswer = new DTOAnswer();
@@ -51,6 +56,7 @@ namespace CapgeminiVoting.BusinessLayer
                         newAnswer.Votes = 1;
                         daoAnswer.CreateAnswer(newAnswer);
                     }
+                }
                 else
                     return false;
             return true;

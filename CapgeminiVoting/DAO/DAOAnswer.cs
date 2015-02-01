@@ -35,7 +35,7 @@ namespace CapgeminiVoting.DAO
                 return false;
             else
             {
-                query.Votes = query.Votes + 1;
+                query.Votes++;
                 int result = db.SaveChanges();
                 return (result == 1);
             }

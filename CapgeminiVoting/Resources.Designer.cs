@@ -79,6 +79,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount of voters.
+        /// </summary>
+        public static string Amount_of_voters {
+            get {
+                return ResourceManager.GetString("Amount_of_voters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to event list.
         /// </summary>
         public static string Back_to_event_list {
@@ -232,6 +241,33 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event successfully created.
+        /// </summary>
+        public static string Event_successfully_created {
+            get {
+                return ResourceManager.GetString("Event_successfully_created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event successfully modified.
+        /// </summary>
+        public static string Event_successfully_modified {
+            get {
+                return ResourceManager.GetString("Event_successfully_modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event successfully removed.
+        /// </summary>
+        public static string Event_successfully_removed {
+            get {
+                return ResourceManager.GetString("Event_successfully_removed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot your password.
         /// </summary>
         public static string Forgot_password {
@@ -349,6 +385,24 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No answers were found for this question..
+        /// </summary>
+        public static string No_answers_found_for_question {
+            get {
+                return ResourceManager.GetString("No_answers_found_for_question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is not your event!.
+        /// </summary>
+        public static string Not_your_event {
+            get {
+                return ResourceManager.GetString("Not_your_event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your password has been reset..
         /// </summary>
         public static string Password_reset {
@@ -372,6 +426,24 @@ namespace CapgeminiVoting {
         public static string Please_confirm_email {
             get {
                 return ResourceManager.GetString("Please_confirm_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify at least two answers for the questions which don&apos;t expect free text answers.
+        /// </summary>
+        public static string Please_specify_answer {
+            get {
+                return ResourceManager.GetString("Please_specify_answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify at least one question for your event.
+        /// </summary>
+        public static string Please_specify_question {
+            get {
+                return ResourceManager.GetString("Please_specify_question", resourceCulture);
             }
         }
         
@@ -516,6 +588,15 @@ namespace CapgeminiVoting {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your events.
+        /// </summary>
+        public static string Your_events {
+            get {
+                return ResourceManager.GetString("Your_events", resourceCulture);
             }
         }
     }

@@ -27,5 +27,21 @@ namespace CapgeminiVoting.DAO
                         select question;
             return query.ToList();
         }
+
+        public bool IncrementVoterCount(int id)
+        {
+            var query = from question in db.Questions
+                        where question.Id == id
+                        select question;
+            var dtoQuestion = query.FirstOrDefault();
+
+            if (dtoQuestion != null)
+            {
+                dtoQuestion.VoterCount++;
+                db.Entry(dtoQuestion).State = EntityState.Modified;
+            }
+
+            return (db.SaveChanges() == 1);
+        }
     }
 }

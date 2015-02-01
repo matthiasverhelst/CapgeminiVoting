@@ -4,7 +4,7 @@
 
 @if (!string.IsNullOrWhiteSpace((string) TempData["RegisterMessage"]))
 {
-    <div class="alert alert-success" role="alert">@TempData["RegisterMessage"]</div>
+    <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok-circle"></span> @TempData["RegisterMessage"]</div>
 }
 
 <div class="jumbotron">

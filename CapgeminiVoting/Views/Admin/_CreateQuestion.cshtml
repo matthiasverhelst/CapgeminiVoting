@@ -12,7 +12,8 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Question)
         <input type="hidden" id="@Model.QuestionNumber" name="Questions.Index" value="@Model.QuestionNumber" />
-        @Html.Hidden("Questions[" + Model.QuestionNumber + "].Id", Model.QuestionNumber, new { id = "Questions[" + Model.QuestionNumber + "].Id" })
+        @Html.Hidden("Questions[" + Model.QuestionNumber + "].Id", Model.Id, new { id = "Questions[" + Model.QuestionNumber + "].Id" })
+        @Html.Hidden("Questions[" + Model.QuestionNumber + "].VoterCount", Model.VoterCount, new { id = "Questions[" + Model.QuestionNumber + "].VoterCount" })
 
         @Html.TextBox("Questions[" + Model.QuestionNumber + "].Question", Model.Question, new { @placeholder = Resources.Enter_question, @class = "form-control" })
     </div>

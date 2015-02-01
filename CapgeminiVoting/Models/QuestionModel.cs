@@ -18,6 +18,8 @@ namespace CapgeminiVoting.Models
 
         public int QuestionNumber { get; set; }
 
+        public int VoterCount { get; set; }
+
         [Display(Name = "Possible_answers", ResourceType = typeof(Resources))]
         public IList<AnswerModel> Answers { get; set; }
     

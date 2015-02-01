@@ -9,6 +9,8 @@ namespace CapgeminiVoting.Models
     {
         public string Question { get; set; }
 
+        public int VoterCount { get; set; }
+
         public IList<AnswerResultModel> AnswerResult { get; set; }
     }
 }

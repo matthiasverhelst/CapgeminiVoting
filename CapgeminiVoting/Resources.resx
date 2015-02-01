@@ -270,4 +270,31 @@
   <data name="Thanks_for_confirming_email" xml:space="preserve">
     <value>Thank you for confirming your e-mail.</value>
   </data>
+  <data name="Amount_of_voters" xml:space="preserve">
+    <value>Amount of voters</value>
+  </data>
+  <data name="No_answers_found_for_question" xml:space="preserve">
+    <value>No answers were found for this question.</value>
+  </data>
+  <data name="Not_your_event" xml:space="preserve">
+    <value>This is not your event!</value>
+  </data>
+  <data name="Event_successfully_created" xml:space="preserve">
+    <value>Event successfully created</value>
+  </data>
+  <data name="Event_successfully_modified" xml:space="preserve">
+    <value>Event successfully modified</value>
+  </data>
+  <data name="Event_successfully_removed" xml:space="preserve">
+    <value>Event successfully removed</value>
+  </data>
+  <data name="Please_specify_answer" xml:space="preserve">
+    <value>Please specify at least two answers for the questions which don't expect free text answers</value>
+  </data>
+  <data name="Please_specify_question" xml:space="preserve">
+    <value>Please specify at least one question for your event</value>
+  </data>
+  <data name="Your_events" xml:space="preserve">
+    <value>Your events</value>
+  </data>
 </root>

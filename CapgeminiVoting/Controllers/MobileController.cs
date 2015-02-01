@@ -12,7 +12,6 @@ namespace CapgeminiVoting.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = TempData["Message"] as string;
             return View();
         }
 
@@ -23,8 +22,8 @@ namespace CapgeminiVoting.Controllers
 
             if (String.IsNullOrEmpty(questionRequest.EventCode))
             {
-                TempData["Message"] = Resources.Err_no_event_code;
-                return RedirectToAction("Index");
+                ViewBag.Message = Resources.Err_no_event_code;
+                return View("Index");
             } 
             
             try 
@@ -33,8 +32,8 @@ namespace CapgeminiVoting.Controllers
             }
             catch
             {
-                TempData["Message"] = Resources.Err_event_not_numeric;
-                return RedirectToAction("Index");
+                ViewBag.Message = Resources.Err_event_not_numeric;
+                return View("Index");
             }
 
             IList<QuestionModel> questionList = CommonBusinessLayer.GetQuestionsByEvent(eventCode);
@@ -46,17 +45,17 @@ namespace CapgeminiVoting.Controllers
             }
             else if (questionList.Count() < questionRequest.QuestionNumber)
             {
-                TempData["Message"] = Resources.Msg_all_questions_processed;
-                return RedirectToAction("VoteComplete");
+                ViewBag.Message = Resources.Msg_all_questions_processed;
+                return View("VoteComplete");
             }
             else if (questionList.Count() == 0)
             {
-                TempData["Message"] = Resources.Err_no_questions_found_for_event; 
-                return RedirectToAction("Index");
+                ViewBag.Message = Resources.Err_no_questions_found_for_event; 
+                return View("Index");
             }
             else
             {
-                TempData["Message"] = Resources.Err_no_questions_found_for_event;
+                ViewBag.Message = Resources.Err_no_questions_found_for_event;
                 return RedirectToAction("Index");
             }
 
@@ -74,14 +73,14 @@ namespace CapgeminiVoting.Controllers
             }
             catch
             {
-                TempData["Message"] = Resources.Err_event_not_numeric;
-                return RedirectToAction("Index");
+                ViewBag.Message = Resources.Err_event_not_numeric;
+                return View("Index");
             }
 
             if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber, voteResult.Answer) != true)
             {
-                TempData["Message"] = Resources.Err_unable_to_update_answer_on_db;
-                return RedirectToAction("Index");
+                ViewBag.Message = Resources.Err_unable_to_update_answer_on_db;
+                return View("Index");
             }
 
             model.EventCode = voteResult.EventCode;
@@ -92,7 +91,6 @@ namespace CapgeminiVoting.Controllers
 
         public ActionResult VoteComplete()
         {
-            ViewBag.Message = TempData["Message"] as string;
             return View();
         }
     }

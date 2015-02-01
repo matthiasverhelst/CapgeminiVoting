@@ -30,6 +30,10 @@ namespace CapgeminiVoting.DTO
         public virtual int QuestionNumber { get; set; }
 
         [Required]
+        [Column("voter_count")]
+        public virtual int VoterCount { get; set; }
+
+        [Required]
         [Column("event_id")]
         public virtual int EventId { get; set; }
 

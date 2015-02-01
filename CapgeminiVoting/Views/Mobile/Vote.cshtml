@@ -16,7 +16,7 @@
 
         @if (Model.QuestionData.Answers.Count() == 0 && !Model.QuestionData.QuestionType.Equals(2))
         {
-            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>No answers were found for this question.</div>
+            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>@Resources.No_answers_found_for_question</div>
         }
 
         <input type="hidden" name="EventCode" value="@Model.EventCode">

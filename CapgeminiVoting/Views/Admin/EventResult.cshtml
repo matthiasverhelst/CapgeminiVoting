@@ -23,14 +23,13 @@
         <label for="select-choice-0" class="select">
             @Resources.Select_question
         </label>
-        <select name="select-choice-0" id="selectBox"></select> <br />
-
+        <select name="select-choice-0" id="selectBox"></select> @Resources.Amount_of_voters: <span id="voterCount"></span>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-2">
-        @Html.ActionLink(Resources.Back_to_event_list, "Index")
+        @Html.ActionLink(Resources.Back_to_event_list, "Index", "", new { @class = "btn btn-primary" })
         <div>@Resources.Refresh_in</div>
         <div id="Refresh">10</div>
     </div>

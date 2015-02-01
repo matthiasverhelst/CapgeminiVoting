@@ -11,9 +11,11 @@
 }
 
 @{
-    var action = Model != null ? "ModifyEvent" : "CreateEvent";
+    var action = (ViewBag.Title.Equals(Resources.Modify_event)) ? "ModifyEvent" : "CreateEvent";
     var addQuestionCount = 1;
 }
+
+@Html.ValidationSummary(string.Empty, new { @class = "text-danger" })
 
 <div id="eventDiv" class="container">
     <div class="row">
@@ -39,7 +41,7 @@
                     @{
                         if (Model == null)
                         {
-                            @Html.Partial("_CreateQuestion", new QuestionModel() { QuestionNumber = 0 })
+                            @Html.Partial("_CreateQuestion", new QuestionModel() { QuestionNumber = 0, VoterCount = 0 })
                         }
                         else
                         {
