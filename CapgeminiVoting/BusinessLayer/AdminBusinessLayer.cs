@@ -17,7 +17,7 @@ namespace CapgeminiVoting.BusinessLayer
             EventDetailsModel model = null;
             using(DAOEvent dao = new DAOEvent())
             {
-                DTOEvent dtoEvent = dao.GetEventById(eventId);
+                var dtoEvent = dao.GetEventById(eventId);
                 if (dtoEvent == null)
                     return null;
 
@@ -28,14 +28,14 @@ namespace CapgeminiVoting.BusinessLayer
 
         public static IList<EventOverviewModel> GetEventsByUser(string userName)
         {
-            List<EventOverviewModel> result = new List<EventOverviewModel>();
-            using(DAOEvent dao = new DAOEvent())
+            var result = new List<EventOverviewModel>();
+            using(var dao = new DAOEvent())
             {
-                IList<DTOEvent> events = dao.GetEventsByUser(userName);
+                var events = dao.GetEventsByUser(userName);
 
-                foreach (DTOEvent dtoEvent in events)
+                foreach (var dtoEvent in events)
                 {
-                    EventOverviewModel model = Mapper.Map<DTOEvent, EventOverviewModel>(dtoEvent);
+                    var model = Mapper.Map<DTOEvent, EventOverviewModel>(dtoEvent);
                     result.Add(model);
                 }
             }
@@ -44,14 +44,14 @@ namespace CapgeminiVoting.BusinessLayer
 
         public static IList<AnswerModel> GetAnswersByQuestion(int questionId)
         {
-            List<AnswerModel> result = new List<AnswerModel>();
-            using (DAOAnswer dao = new DAOAnswer())
+            var result = new List<AnswerModel>();
+            using (var dao = new DAOAnswer())
             {
-                IList<DTOAnswer> answers = dao.GetAnswersByQuestion(questionId);
+                var answers = dao.GetAnswersByQuestion(questionId);
 
-                foreach (DTOAnswer dtoAnswer in answers)
+                foreach (var dtoAnswer in answers)
                 {
-                    AnswerModel model = Mapper.Map<DTOAnswer, AnswerModel>(dtoAnswer);
+                    var model = Mapper.Map<DTOAnswer, AnswerModel>(dtoAnswer);
                     result.Add(model);
                 }
             }
@@ -60,23 +60,24 @@ namespace CapgeminiVoting.BusinessLayer
 
         public static bool CreateEvent(EventDetailsModel @event)
         {
-            DTOEvent dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
+            var dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
             dtoEvent.UserName = HttpContext.Current.GetOwinContext().Authentication.User.Identity.GetUserId();
             dtoEvent.CreationDate = DateTime.Now;
+            dtoEvent.Locked = true;
 
             var index = 1;
-            foreach (DTOQuestion question in dtoEvent.Questions)
+            foreach (var question in dtoEvent.Questions)
             {
                 question.QuestionNumber = index;
                 question.VoterCount = 0;
                 index++;
-                foreach(DTOAnswer answer in question.Answers)
+                foreach(var answer in question.Answers)
                 {
                     answer.Predefined = true;
                 }
             }
 
-            using(DAOEvent daoEvent = new DAOEvent())
+            using(var daoEvent = new DAOEvent())
             {
                 return daoEvent.CreateEvent(dtoEvent);
             }
@@ -84,7 +85,7 @@ namespace CapgeminiVoting.BusinessLayer
 
         public static bool DeleteEvent(int eventID)
         {
-            using (DAOEvent dao = new DAOEvent())
+            using (var dao = new DAOEvent())
             {
                 return dao.DeleteEventById(eventID);
                 // DTOEvent dtoEvent = dao.DeleteEventById(eventID);
@@ -97,12 +98,12 @@ namespace CapgeminiVoting.BusinessLayer
 
         public static bool ModifyEvent(EventDetailsModel @event)
         {
-            DTOEvent dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
+            var dtoEvent = Mapper.Map<EventDetailsModel, DTOEvent>(@event);
             dtoEvent.UserName = HttpContext.Current.GetOwinContext().Authentication.User.Identity.GetUserId();
             dtoEvent.CreationDate = DateTime.Now;
 
             var index = 1;
-            foreach (DTOQuestion question in dtoEvent.Questions)
+            foreach (var question in dtoEvent.Questions)
             {
                 question.EventId = @event.Id;
                 question.QuestionNumber = index;
@@ -114,7 +115,7 @@ namespace CapgeminiVoting.BusinessLayer
                 }
             }
 
-            using(DAOEvent daoEvent = new DAOEvent())
+            using(var daoEvent = new DAOEvent())
             {
                 return daoEvent.ModifyEvent(dtoEvent);
             }
@@ -149,6 +150,14 @@ namespace CapgeminiVoting.BusinessLayer
                 }
 
                 return questionResult;
+            }
+        }
+
+        public static bool LockOrUnlockEvent(int id, bool lockOrUnlock)
+        {
+            using(var daoEvent = new DAOEvent())
+            {
+                return daoEvent.LockOrUnlockEvent(id, lockOrUnlock);
             }
         }
     }

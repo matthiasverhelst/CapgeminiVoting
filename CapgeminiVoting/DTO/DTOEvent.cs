@@ -28,6 +28,9 @@ namespace CapgeminiVoting.DTO
         [Column("description")]
         public virtual string Description { get; set; }
 
+        [Column("locked")]
+        public virtual bool Locked { get; set; }
+
         [Required]
         [Column("user_name")]
         public virtual string UserName { get; set; }

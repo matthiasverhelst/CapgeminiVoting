@@ -220,10 +220,13 @@
     <Content Include="Images\edit.png" />
     <Content Include="Images\share.png" />
     <Content Include="Images\results.png" />
+    <Content Include="Images\locked.png" />
+    <Content Include="Images\unlocked.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\createEvent.js" />
+    <Content Include="Scripts\eventList.js" />
     <Content Include="Scripts\graph.js" />
     <Content Include="Scripts\jchartfx\jchartfx.advanced.js" />
     <Content Include="Scripts\jchartfx\jchartfx.animation.js" />

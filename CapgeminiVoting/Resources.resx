@@ -297,4 +297,19 @@
   <data name="Your_events" xml:space="preserve">
     <value>Your events</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Log_in" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Forgot_your_password" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="Register_as_new_user" xml:space="preserve">
+    <value>Register as a new user</value>
+  </data>
+  <data name="Event_locked" xml:space="preserve">
+    <value>This event is locked</value>
+  </data>
 </root>

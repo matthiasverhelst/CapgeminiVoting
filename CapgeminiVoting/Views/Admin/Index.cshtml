@@ -30,7 +30,7 @@
                     <th>@Html.DisplayNameFor(model => model.Name)</th>
                     <th>@Html.DisplayNameFor(model => model.CreationDate)</th>
                     <th>@Html.DisplayNameFor(model => model.Description)</th>
-                    <th colspan="4"></th>
+                    <th colspan="5"></th>
                 </tr>
             </thead>
             <tbody>
@@ -54,9 +54,28 @@
                         <td>
                             <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/share.png")" onclick="window.location.href = '@emailString';" />
                         </td>
+                        <td>
+                            @if (item.Locked)
+                            {
+                                var id = "lockImage" + item.Id;
+                                <img id="@id" alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/locked.png")" onclick="lockOrUnlockEvent(@item.Id, false)" />
+                            }
+                            else
+                            {
+                                var id = "lockImage" + item.Id;
+                                <img id="@id" alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/unlocked.png")" onclick="lockOrUnlockEvent(@item.Id, true)" />
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     }
 </div>
+
+@section scripts {
+    <script type="text/javascript">
+        var viewBag = { lockLink : '@Url.Action("LockOrUnlockEvent", "Admin")' };
+    </script>
+    <script type="text/javascript" src="~/Scripts/eventList.js"></script>
+}

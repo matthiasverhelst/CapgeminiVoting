@@ -61,5 +61,16 @@ namespace CapgeminiVoting.BusinessLayer
                     return false;
             return true;
         }
+
+        public static bool IsEventLocked(int id)
+        {
+            using (var daoEvent = new DAOEvent())
+            {
+                var @event = daoEvent.GetEventById(id);
+                if (@event != null)
+                    return (@event.Locked == true);
+                return true;
+            }
+        }
     }
 }

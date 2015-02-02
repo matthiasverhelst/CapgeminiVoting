@@ -127,5 +127,17 @@ namespace CapgeminiVoting.DAO
               //}
 
          }
+
+        public bool LockOrUnlockEvent(int id, bool lockOrUnlock)
+        {
+            var eventToUpdate = (from @event in db.Events
+                                where @event.Id == id
+                                select @event).First();
+
+            eventToUpdate.Locked = lockOrUnlock;
+            db.Entry(eventToUpdate).State = EntityState.Modified;
+
+            return (db.SaveChanges() == 1);
+        }
     }
 }

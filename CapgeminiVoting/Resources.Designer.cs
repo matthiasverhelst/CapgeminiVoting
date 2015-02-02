@@ -232,6 +232,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This event is locked.
+        /// </summary>
+        public static string Event_locked {
+            get {
+                return ResourceManager.GetString("Event_locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event result.
         /// </summary>
         public static string Event_result_title {
@@ -286,11 +295,29 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot your password?.
+        /// </summary>
+        public static string Forgot_your_password {
+            get {
+                return ResourceManager.GetString("Forgot_your_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Free text.
         /// </summary>
         public static string Free_text {
             get {
                 return ResourceManager.GetString("Free_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        public static string Log_in {
+            get {
+                return ResourceManager.GetString("Log_in", resourceCulture);
             }
         }
         
@@ -471,6 +498,24 @@ namespace CapgeminiVoting {
         public static string Refresh_in {
             get {
                 return ResourceManager.GetString("Refresh_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register as a new user.
+        /// </summary>
+        public static string Register_as_new_user {
+            get {
+                return ResourceManager.GetString("Register_as_new_user", resourceCulture);
             }
         }
         

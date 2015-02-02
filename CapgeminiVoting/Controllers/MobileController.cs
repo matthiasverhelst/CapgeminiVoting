@@ -20,7 +20,7 @@ namespace CapgeminiVoting.Controllers
             int eventCode;
             QuestionInfoModel model = new QuestionInfoModel();
 
-            if (String.IsNullOrEmpty(questionRequest.EventCode))
+            if (string.IsNullOrEmpty(questionRequest.EventCode))
             {
                 ViewBag.Message = Resources.Err_no_event_code;
                 return View("Index");
@@ -33,6 +33,12 @@ namespace CapgeminiVoting.Controllers
             catch
             {
                 ViewBag.Message = Resources.Err_event_not_numeric;
+                return View("Index");
+            }
+
+            if (MobileBusinessLayer.IsEventLocked(eventCode))
+            {
+                ViewBag.Message = Resources.Event_locked;
                 return View("Index");
             }
 

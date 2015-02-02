@@ -47,6 +47,7 @@ namespace CapgeminiVoting
                                    CreationDate = DateTime.Now,
                                    Description = "Bla.",
                                    UserName = userName,
+                                   Locked = true,
                                    Questions = new List<DTOQuestion>()
                                                        {
                                                            new DTOQuestion

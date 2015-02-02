@@ -207,5 +207,16 @@ namespace CapgeminiVoting.Controllers
         {
             return Json(AdminBusinessLayer.GetQuestionResult(questionId), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult LockOrUnlockEvent(int id, bool lockEvent)
+        {
+            if(AdminBusinessLayer.IsEventOwner(id, User.Identity.GetUserId()))
+            {
+                return Json(AdminBusinessLayer.LockOrUnlockEvent(id, lockEvent));
+            }
+
+            return Json(false);
+        }
     }
 }

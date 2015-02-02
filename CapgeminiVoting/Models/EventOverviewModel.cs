@@ -19,5 +19,7 @@ namespace CapgeminiVoting.Models
 
         [Display(Name = "Table_description", ResourceType = typeof(Resources))]
         public string Description { get; set; }
+
+        public bool Locked { get; set; }
     }
 }
