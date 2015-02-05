@@ -81,7 +81,8 @@ namespace CapgeminiVoting
                 events.Add(dtoEvent);
 
                 events.ForEach(p => context.Events.Add(p));
-                context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Event', RESEED, 100000)");
+               // Not compatible with Azure SQL Server
+               // context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Event', RESEED, 100000)");
                 try
                 {
                     context.SaveChanges();
