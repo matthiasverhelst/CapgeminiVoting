@@ -21,12 +21,14 @@ namespace CapgeminiVoting
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
-            Database.SetInitializer<VotingContext>(new DbInitializer());
-            using (VotingContext db = new VotingContext())
-            {
-                db.Database.Initialize(false);
-            }
+
+            // Should not happen in Azure deployment
+            //      Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            //      Database.SetInitializer<VotingContext>(new DbInitializer());
+            //      using (VotingContext db = new VotingContext())
+            //      {
+            //          db.Database.Initialize(false);
+            //      }
         }
 
         private class DbInitializer : DropCreateDatabaseAlways<VotingContext>
