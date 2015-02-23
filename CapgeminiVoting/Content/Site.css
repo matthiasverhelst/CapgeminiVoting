@@ -29,15 +29,15 @@ textarea {
     background-color: #00A0D7;
 }
 
-.header {
+.navbar-inverse .header {
     color: white;
 }
 
-.header a {
+.navbar-inverse .header a {
     color: white;
 }
 
-.header a:hover {
+.navbar-inverse .header:hover {
     color: #21496C;
 }
 
