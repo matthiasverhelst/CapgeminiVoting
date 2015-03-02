@@ -79,7 +79,7 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amount of voters.
+        ///   Looks up a localized string similar to Number of voters.
         /// </summary>
         public static string Amount_of_voters {
             get {

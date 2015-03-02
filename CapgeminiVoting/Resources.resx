@@ -271,7 +271,7 @@
     <value>Thank you for confirming your e-mail.</value>
   </data>
   <data name="Amount_of_voters" xml:space="preserve">
-    <value>Amount of voters</value>
+    <value>Number of voters</value>
   </data>
   <data name="No_answers_found_for_question" xml:space="preserve">
     <value>No answers were found for this question.</value>
