@@ -41,6 +41,18 @@ textarea {
     color: #21496C;
 }
 
+.container>.navbar-header, .container>.navbar-collapse {
+    margin-left: 0px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    background-color: darkslategray;
+}
+
 #capgemini-logo {
     height: 40px;
     float: left;
