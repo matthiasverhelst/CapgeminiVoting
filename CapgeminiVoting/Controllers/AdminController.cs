@@ -71,6 +71,7 @@ namespace CapgeminiVoting.Controllers
                 ModelState.Clear();
                 ModelState.AddModelError(String.Empty, Resources.Please_specify_question);
                 ViewBag.Title = Resources.Create_new_event;
+                @event = AssignIdsAfterEvent(@event);
                 return View("CreateEvent", @event);
             }
 
@@ -85,6 +86,7 @@ namespace CapgeminiVoting.Controllers
                     ModelState.Clear();
                     ModelState.AddModelError(String.Empty, Resources.Please_specify_answer);
                     ViewBag.Title = Resources.Create_new_event;
+                    @event = AssignIdsAfterEvent(@event);
                     return View("CreateEvent", @event);
                 }
             }
@@ -121,6 +123,7 @@ namespace CapgeminiVoting.Controllers
                 ModelState.Clear();
                 ModelState.AddModelError(String.Empty, Resources.Please_specify_question);
                 ViewBag.Title = Resources.Modify_event;
+                @event = AssignIdsAfterEvent(@event);
                 return View("CreateEvent", @event);
             }
 
@@ -137,6 +140,7 @@ namespace CapgeminiVoting.Controllers
                         ModelState.Clear();
                         ModelState.AddModelError(String.Empty, Resources.Please_specify_answer);
                         ViewBag.Title = Resources.Modify_event;
+                        @event = AssignIdsAfterEvent(@event);
                         return View("CreateEvent", @event);
                     }
                 }
@@ -217,6 +221,30 @@ namespace CapgeminiVoting.Controllers
             }
 
             return Json(false);
+        }
+
+        private EventDetailsModel AssignIdsAfterEvent(EventDetailsModel model)
+        {
+            if (model == null)
+                return new EventDetailsModel();
+
+            if (model.Questions != null && model.Questions.Count > 0)
+            {
+                for (var i = 0; i < model.Questions.Count; i++)
+                {
+                    model.Questions.ElementAt(i).QuestionNumber = i;
+
+                    if (model.Questions.ElementAt(i).Answers != null && model.Questions.ElementAt(i).Answers.Count > 0)
+                    {
+                        for (var j = 0; j < model.Questions.Count; j++)
+                        {
+                            model.Questions.ElementAt(i).Answers.ElementAt(j).Id = j;
+                        }
+                    }
+                }
+            }
+
+            return model;
         }
     }
 }

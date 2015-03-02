@@ -97,6 +97,7 @@ namespace CapgeminiVoting.DAO
 
             //step 4: set the state of the event entity to modified
             @event.Questions = null;
+            @event.Locked = originalEvent.Locked;
             db.Entry(@event).State = EntityState.Modified;
 
             var result = db.SaveChanges();
