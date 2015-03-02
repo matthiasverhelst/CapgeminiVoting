@@ -130,7 +130,7 @@
     <value>Create new event</value>
   </data>
   <data name="Err_event_not_numeric" xml:space="preserve">
-    <value>The event ID should be numeric.</value>
+    <value>The event ID is not valid.</value>
   </data>
   <data name="Err_no_questions_found_for_event" xml:space="preserve">
     <value>No questions found for this event ID.</value>

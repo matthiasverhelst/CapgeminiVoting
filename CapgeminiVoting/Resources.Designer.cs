@@ -178,7 +178,7 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The event ID should be numeric..
+        ///   Looks up a localized string similar to The event ID is not valid..
         /// </summary>
         public static string Err_event_not_numeric {
             get {
