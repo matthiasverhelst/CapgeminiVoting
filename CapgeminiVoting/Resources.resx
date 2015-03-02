@@ -312,4 +312,7 @@
   <data name="Event_locked" xml:space="preserve">
     <value>This event is locked</value>
   </data>
+  <data name="Select_one_answer" xml:space="preserve">
+    <value>You need to select at least one answer.</value>
+  </data>
 </root>

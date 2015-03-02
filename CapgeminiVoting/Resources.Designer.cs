@@ -556,6 +556,15 @@ namespace CapgeminiVoting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You need to select at least one answer..
+        /// </summary>
+        public static string Select_one_answer {
+            get {
+                return ResourceManager.GetString("Select_one_answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select question:.
         /// </summary>
         public static string Select_question {

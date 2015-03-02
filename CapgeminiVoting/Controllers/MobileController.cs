@@ -83,6 +83,13 @@ namespace CapgeminiVoting.Controllers
                 return View("Index");
             }
 
+            if (voteResult.Answer == null)
+            {
+                model.EventCode = voteResult.EventCode;
+                model.QuestionNumber = voteResult.QuestionNumber;
+                return RedirectToAction("Vote", model);
+            }
+
             if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber, voteResult.Answer) != true)
             {
                 ViewBag.Message = Resources.Err_unable_to_update_answer_on_db;
