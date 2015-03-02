@@ -18,6 +18,10 @@
         {
             <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span>@Resources.No_answers_found_for_question</div>
         }
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> @ViewBag.Message</div>
+        }
 
         <input type="hidden" name="EventCode" value="@Model.EventCode">
         <input type="hidden" name="QuestionNumber" value="@Model.QuestionData.QuestionNumber">

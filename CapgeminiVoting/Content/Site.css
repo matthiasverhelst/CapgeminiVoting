@@ -29,16 +29,28 @@ textarea {
     background-color: #00A0D7;
 }
 
-.header {
+.navbar-inverse .header {
     color: white;
 }
 
-.header a {
+.navbar-inverse .header a {
     color: white;
 }
 
-.header a:hover {
+.navbar-inverse .header:hover {
     color: #21496C;
+}
+
+.container>.navbar-header, .container>.navbar-collapse {
+    margin-left: 0px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    background-color: darkslategray;
 }
 
 #capgemini-logo {
