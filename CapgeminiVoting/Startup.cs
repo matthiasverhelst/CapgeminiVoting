@@ -23,12 +23,12 @@ namespace CapgeminiVoting
             ConfigureAuth(app);
 
             // Should not happen in Azure deployment
-                  Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
-                  Database.SetInitializer<VotingContext>(new DbInitializer());
-                  using (VotingContext db = new VotingContext())
-                  {
-                      db.Database.Initialize(false);
-                  }
+            //      Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            //      Database.SetInitializer<VotingContext>(new DbInitializer());
+            //      using (VotingContext db = new VotingContext())
+            //      {
+            //          db.Database.Initialize(false);
+            //      }
         }
 
         private class DbInitializer : DropCreateDatabaseAlways<VotingContext>
@@ -75,7 +75,7 @@ namespace CapgeminiVoting
                                                            {
                                                                Question = "Is de Matti weird?",
                                                                QuestionType = 2,
-                                                               QuestionNumber = 1,
+                                                               QuestionNumber = 2,
                                                                Answers = new List<DTOAnswer>()
                                                            }
                                                        }
@@ -84,7 +84,7 @@ namespace CapgeminiVoting
 
                 events.ForEach(p => context.Events.Add(p));
                // Not compatible with Azure SQL Server
-                context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Event', RESEED, 100000)");
+               // context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Event', RESEED, 100000)");
                 try
                 {
                     context.SaveChanges();

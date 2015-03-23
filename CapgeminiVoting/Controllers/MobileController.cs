@@ -83,14 +83,14 @@ namespace CapgeminiVoting.Controllers
                 return View("Index");
             }
 
-            if (voteResult.Answer == null)
+            if (voteResult.AnswerId == null && voteResult.FreeTextAnswer == null)
             {
                 model.EventCode = voteResult.EventCode;
                 model.QuestionNumber = voteResult.QuestionNumber;
                 return RedirectToAction("Vote", model);
             }
 
-            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber, voteResult.Answer) != true)
+            if (MobileBusinessLayer.SetAnswerCount(eventCode, voteResult.QuestionNumber, voteResult.AnswerId, voteResult.FreeTextAnswer) != true)
             {
                 ViewBag.Message = Resources.Err_unable_to_update_answer_on_db;
                 return View("Index");

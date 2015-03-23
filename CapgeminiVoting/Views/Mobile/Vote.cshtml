@@ -25,7 +25,7 @@
 
         <input type="hidden" name="EventCode" value="@Model.EventCode">
         <input type="hidden" name="QuestionNumber" value="@Model.QuestionData.QuestionNumber">
-
+        
         <div>
                 @if (Model.QuestionData.QuestionType.Equals(0))
                 {
@@ -33,7 +33,7 @@
                     {
                         <h3>
                             <label class="radio">
-                                <input type="radio" name="Answer" value="@a.Answer" checked> @a.Answer
+                                <input type="radio" name="AnswerId" value="@a.Id" checked> @a.Answer
                             </label>
                         </h3>
                     }
@@ -44,14 +44,14 @@
                     {
                         <h3>
                             <label class="checkbox">
-                                <input type="checkbox" name="Answer" value="@a.Answer"> @a.Answer
+                                <input type="checkbox" name="AnswerId" value="@a.Id"> @a.Answer
                             </label>
                         </h3>
                     }
                 }
                 else if (Model.QuestionData.QuestionType.Equals(2))
                 {
-                    @Html.TextBox("Answer", String.Empty)
+                    @Html.TextBox("FreeTextAnswer", String.Empty)
                 }
         </div>
         <h1>
