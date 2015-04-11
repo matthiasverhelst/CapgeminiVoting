@@ -47,5 +47,17 @@ namespace CapgeminiVoting.DAO
             int result = db.SaveChanges();
             return (result == 1);
         }
+
+        public int GetFreeTextAnswerId(int questionId, string answer)
+        {
+            IList<DTOAnswer> dtoAnswers = GetAnswersByQuestion(questionId);
+            foreach (var dtoAnswer in dtoAnswers)
+            {
+                if (dtoAnswer.Answer.Trim().Equals(answer))
+                    return dtoAnswer.Id;
+            }
+
+            return -1;
+        }
     }
 }

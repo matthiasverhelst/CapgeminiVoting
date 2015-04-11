@@ -16,7 +16,7 @@ namespace CapgeminiVoting.BusinessLayer
             IList<DTOQuestion> questions = null;
             DTOQuestion currQuestion = null;
 
-            using (DAOQuestion daoQuestion = new DAOQuestion())
+            using (var daoQuestion = new DAOQuestion())
             {
                 questions = daoQuestion.GetQuestionsByEvent(eventId);
                 if (questions.Count == 0)
@@ -38,7 +38,7 @@ namespace CapgeminiVoting.BusinessLayer
                 case 1:
                     if (answerIds != null)
                         foreach (int ans in answerIds)
-                            using (DAOAnswer daoAnswer = new DAOAnswer())
+                            using (var daoAnswer = new DAOAnswer())
                             {
                                 daoAnswer.IncrementVotes(ans);
                             }
@@ -47,14 +47,20 @@ namespace CapgeminiVoting.BusinessLayer
                     break;
                 case 2:
                     if (freeTextAnswer != null)
-                        using (DAOAnswer daoAnswer = new DAOAnswer())
+                        using (var daoAnswer = new DAOAnswer())
                         {
-                            DTOAnswer newAnswer = new DTOAnswer();
-                            newAnswer.Answer = freeTextAnswer;
-                            newAnswer.Predefined = false;
-                            newAnswer.QuestionId = currQuestion.Id;
-                            newAnswer.Votes = 1;
-                            daoAnswer.CreateAnswer(newAnswer);
+                            var answerId = daoAnswer.GetFreeTextAnswerId(currQuestion.Id, freeTextAnswer);
+                            if (answerId >= 0)
+                                daoAnswer.IncrementVotes(answerId);
+                            else
+                            {
+                                var newAnswer = new DTOAnswer();
+                                newAnswer.Answer = freeTextAnswer;
+                                newAnswer.Predefined = false;
+                                newAnswer.QuestionId = currQuestion.Id;
+                                newAnswer.Votes = 1;
+                                daoAnswer.CreateAnswer(newAnswer);
+                            }
                         }
                     else
                         return false;
