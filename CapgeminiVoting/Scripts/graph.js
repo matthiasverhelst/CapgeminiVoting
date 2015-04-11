@@ -1,10 +1,11 @@
-var chart1;
+var barChart;
 var chart2;
 var teller = 10;
 var dataTimer;
 var displayTimer;
 var selectedOption;
-
+var chartMaxValue = 4;
+google.load("visualization", "1", { packages: ["corechart"] });
 
 $(document).ready(function ($) {
 	getQuestions();
@@ -51,7 +52,16 @@ function getData() {
 	 $.getJSON(viewBag.questionResult + "?questionId=" + selectedOption)
 	.done(function(json) {
 	    $("#voterCount").text(json.VoterCount);
-		generateChart(json);
+	    var dataArray = new Array(new Array({ label: "Answer", id: "answer" },
+                                            { label: "Votes", id: "votes", type: "number" },
+                                            { role: 'style' }));
+	    $.each(json.AnswerResult, function (key, value) {
+	        var intValue = parseInt(value);
+	        dataArray.push(new Array(key, intValue, 'color: #76A7FA'));
+	        if (intValue > chartMaxValue)
+	            chartMaxValue = calculateChartMaxValue(value);
+	    });
+		generateChart(json.Question, dataArray);
 	}).fail(function(jqxhr, textStatus, error) {
 		var err = textStatus + ", " + error;
 		alert("Request Failed: " + err);
@@ -65,52 +75,34 @@ function displayTimer() {
 	}
 }
 
-function generateChart(json) {
-	
-	//var data = [{ "Answer": "Yes", "Female": 22000, "Male": 23356 }, { "Answer": "No", "Female": 27000, "Male": 21351 }, { "Answer": "Undecided", "Female": 4823, "Male": 8314}];
-	var title = 'Question: ' + json.Question;
-	var data = json.AnswerResult;
-	if (chart1 == undefined || chart1 == null) {
-		chart1 = createChart(cfx.Gallery.Pie, "PieSpotlight", data,
-				title, "Answers", "Count", "ChartDiv");
-	} else {
-		chart1.setDataSource(data);
-		chart1.update();
-	}
-	if (chart2 == undefined || chart2 == null) {
-		chart2 = createChart(cfx.Gallery.bar, "BarSpotlight", data,
-				title, "Answers", "Count", "ChartDiv2");
-	} else {
-		chart2.setDataSource(data);
-		chart2.update();
-	}
+function generateChart(question, dataArray) {
+    var data = google.visualization.arrayToDataTable(dataArray);
 
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1, {
+                             calc: "stringify",
+                             sourceColumn: 1,
+                             type: "string",
+                             role: "annotation"
+                            },
+                     2]);
+
+    var options = {
+        title: question,
+        width: 1000,
+        height: 600,
+        fontSize: 24,
+        vAxis: { minValue: 0, maxValue: chartMaxValue }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+    chart.draw(view, options);
 }
 
-function createChart(gallery, template, data, title, axisX, axisY, div) {
-	var chart = new cfx.Chart();
-	chart.setGallery(gallery);
-	var pie = chart.getGalleryAttributes();
-	pie.setTemplate(template);
+function calculateChartMaxValue(value) {
+    while (value % 4 != 0) {
+        value++;
+    }
 
-	chart.getAxisX().getTitle().setText(axisX);
-	chart.getAxisY().getTitle().setText(axisY);
-
-	/*var newTitle;
-	newTitle = new cfx.TitleDockable();
-	newTitle.setText(title);
-	newTitle.setFont("14pt arial");
-	newTitle.setDock(cfx.DockArea.Top);
-	chart.getTitles().add(newTitle);*/
-	
-
-	chart.getLegendBox().setVisible(true);
-	chart.getAllSeries().getPointLabels().setVisible(true);
-	chart.getAnimations().getLoad().setEnabled(true);
-
-	chart.setDataSource(data);
-
-	var divHolder = document.getElementById(div);
-	chart.create(divHolder);
-	return chart;
+    return value;
 }

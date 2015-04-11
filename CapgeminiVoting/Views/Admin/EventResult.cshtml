@@ -7,7 +7,6 @@
 }
 
 <link rel="stylesheet" href="@Url.Content("~/Content/createEvent.css")">
-<link rel="stylesheet" href="@Url.Content("~/Content/jchartfx.css")">
 
 <div class="row">
 
@@ -35,8 +34,7 @@
     </div>
 
     <div id="eventList" class="col-md-10">
-        <div id="ChartDiv" style="width: 600px; height: 400px; display: inline-block"></div>
-        <div id="ChartDiv2" style="width: 600px; height: 400px; display: inline-block"></div>
+        <div id="chart" display: inline-block"></div>
     </div>
 </div>
 
@@ -44,10 +42,6 @@
     <script type="text/javascript">
         var viewBag = { questionsLink : "@Url.Action("GetQuestions", "Admin", new { eventId = ViewBag.EventId })", questionResult : "@Url.Action("GetQuestionResult", "Admin")"};
     </script>
-    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.system.js"></script>
-    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.coreVector.js"></script>
-    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.advanced.js"></script>
-    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.vectorTemplates.js"></script>
-    <script type="text/javascript" src="~/Scripts/jchartfx/jchartfx.animation.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="~/Scripts/graph.js"></script>
 }

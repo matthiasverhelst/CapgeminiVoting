@@ -142,11 +142,11 @@ namespace CapgeminiVoting.BusinessLayer
                 var questionResult = new QuestionResultModel();
                 questionResult.Question = dtoQuestion.Question;
                 questionResult.VoterCount = dtoQuestion.VoterCount;
-                questionResult.AnswerResult = new List<AnswerResultModel>();
+                questionResult.AnswerResult = new Dictionary<string, int>();
 
                 foreach (var answer in dtoQuestion.Answers)
                 {
-                    questionResult.AnswerResult.Add(Mapper.Map<DTOAnswer, AnswerResultModel>(answer));
+                    questionResult.AnswerResult.Add(answer.Answer, answer.Votes);
                 }
 
                 return questionResult;
