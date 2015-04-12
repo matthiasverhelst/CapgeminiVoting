@@ -49,7 +49,7 @@
                             <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/results.png")" onclick="location.href='@Url.Action("EventResult", new { item.Id })'" />
                         </td>
                         <td>
-                            <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/close.png")" onclick="location.href = '@Url.Action("DeleteEvent", new { item.Id })'" />
+                            <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/close.png")" onclick="deleteEventDialog(@item.Id)" />
                         </td>
                         <td>
                             <img alt="" class="pointer" height="20" width="20" src="@Url.Content("~/Images/share.png")" onclick="window.location.href = '@emailString';" />
@@ -72,6 +72,8 @@
         </table>
     }
 </div>
+
+<div id="deleteDialog"></div>
 
 @section scripts {
     <script type="text/javascript">

@@ -15,3 +15,32 @@
         }
     });
 }
+
+function deleteEventDialog(id) {
+    var dialog = $("#deleteDialog");
+    dialog.html("Are you sure you want to delete this event?");
+
+    dialog.dialog({
+        dialogClass: "noclose",
+        resizable: false,
+        modal: true,
+        title: "Delete event",
+        height: 150,
+        width: 400,
+        buttons: {
+            "Yes": function () {
+                $(this).dialog('close');
+                $.ajax({
+                    url: "/Admin/DeleteEvent/" + id,
+                    method: 'POST',
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            },
+            "No": function () {
+                $(this).dialog('close');
+            }
+        }
+    });
+}

@@ -184,19 +184,16 @@ namespace CapgeminiVoting.Controllers
             return View("Index", indexModel);
         }
 
-        public ActionResult DeleteEvent(int id)
+        [HttpPost]
+        public bool DeleteEvent(int id)
         {
             if (AdminBusinessLayer.IsEventOwner(id, User.Identity.GetUserId()))
             {
                 AdminBusinessLayer.DeleteEvent(id);
-                var model = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
-                ViewBag.SuccessMessage = Resources.Event_successfully_removed;
-                return View("Index", model);
+                return true;
             }
 
-            ViewBag.ErrorMessage = Resources.Not_your_event;
-            var indexModel = AdminBusinessLayer.GetEventsByUser(User.Identity.GetUserId());
-            return View("Index", indexModel);
+            return false;
         }
 
         [HttpGet]

@@ -66,3 +66,13 @@ textarea {
 .pointer {
     cursor: pointer;
 }
+
+.noclose .ui-dialog-titlebar-close {
+    display:none;
+}
+
+.ui-dialog-titlebar {
+    background-color: #00a0d7;
+    background-image: none;
+    border: 1px solid #00a0d7;
+}
