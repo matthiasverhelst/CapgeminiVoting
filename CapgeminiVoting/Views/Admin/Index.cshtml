@@ -37,6 +37,7 @@
                 @foreach (var item in Model)
                 {
                     var emailString = string.Format(Resources.shareEventMail, item.Name, item.Description, item.Id);
+                    emailString = emailString.Replace("'", " ");
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
